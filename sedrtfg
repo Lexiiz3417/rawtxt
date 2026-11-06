@@ -1,0 +1,694 @@
+exiiz3417 > 
+             echo "=== ALL HDA MODPROBE OPTIONS ==="
+             sudo modprobe -c | grep -n -A2 -B2 'snd_hda_intel'
+
+             echo
+             echo "=== SOURCE CONFIG FILES ==="
+             sudo grep -RniE 'options snd_hda_intel|power_save' \
+                   /etc/modprobe.d \
+                   /usr/lib/modprobe.d \
+                   /run/modprobe.d \
+                   2>/dev/null
+
+             echo
+             echo "=== KERNEL MODULE LOAD STATE ==="
+             cat /sys/module/snd_hda_intel/parameters/power_save
+             cat /sys/module/snd_hda_intel/parameters/power_save_controller
+
+             echo
+             echo "=== SYSTEMD SERVICE TIMING ==="
+             sudo systemctl show alsa-no-powersave.service \
+                   -p ExecMainStartTimestamp \
+                   -p ActiveEnterTimestamp \
+                   -p ExecMainStatus
+
+             echo
+             echo "=== KERNEL MODULE EVENTS ==="
+             journalctl -b -k --no-pager | grep -iE \
+                   'snd_hda_intel|hda codec|audio'
+
+=== ALL HDA MODPROBE OPTIONS ===
+33-install libnvdimm /usr/bin/ndctl load-keys ; /sbin/modprobe --ignore-install libnvdimm $CMDLINE_OPTS
+34-alias char_major_89_* i2c_dev
+35:options snd_hda_intel power_save=0 power_save_controller=N
+36-options b43 nohwcrypt=1 qos=0
+37-options bonding max_bonds=0
+38-options dummy numdummies=0
+39-options ifb numifbs=0
+40:options snd_hda_intel power_save=0
+41:options snd_hda_intel power_save_controller=0
+42-options systemd show_status=1
+43-options udev log_level=info
+--
+10579-alias pci:v*d00008139sv000013D1sd0000AB06bc*sc*i* 8139too
+10580-alias pci:v00000001d00008168sv*sd00002410bc*sc*i* r8169
+10581:alias pci:v00000014d00007A07sv*sd*bc*sc*i* snd_hda_intel
+10582:alias pci:v00000014d00007A37sv*sd*bc*sc*i* snd_hda_intel
+10583-alias pci:v0000001Cd00000013sv*sd*bc*sc*i* peak_pciefd
+10584-alias pci:v0000001Cd00000014sv*sd*bc*sc*i* peak_pciefd
+--
+10736-alias pci:v00001002d*sv*sd*bc03sc00i00* amdgpu
+10737-alias pci:v00001002d*sv*sd*bc03sc80i00* amdgpu
+10738:alias pci:v00001002d*sv*sd*bc04sc03i00* snd_hda_intel
+10739-alias pci:v00001002d*sv*sd*bc12sc00i00* amdgpu
+10740:alias pci:v00001002d00000002sv*sd*bc*sc*i* snd_hda_intel
+10741-alias pci:v00001002d00001304sv*sd*bc*sc*i* radeon
+10742-alias pci:v00001002d00001304sv*sd*bc*sc*i* amdgpu
+--
+10747-alias pci:v00001002d00001307sv*sd*bc*sc*i* radeon
+10748-alias pci:v00001002d00001307sv*sd*bc*sc*i* amdgpu
+10749:alias pci:v00001002d00001308sv*sd*bc*sc*i* snd_hda_intel
+10750-alias pci:v00001002d00001309sv*sd*bc*sc*i* radeon
+10751-alias pci:v00001002d00001309sv*sd*bc*sc*i* amdgpu
+--
+10791-alias pci:v00001002d000013FEsv*sd*bc*sc*i* amdgpu
+10792-alias pci:v00001002d0000143Fsv*sd*bc*sc*i* amdgpu
+10793:alias pci:v00001002d0000157Asv*sd*bc*sc*i* snd_hda_intel
+10794:alias pci:v00001002d000015B3sv*sd*bc*sc*i* snd_hda_intel
+10795-alias pci:v00001002d000015D8sv*sd*bc*sc*i* amdgpu
+10796-alias pci:v00001002d000015DDsv*sd*bc*sc*i* amdgpu
+--
+10843-alias pci:v00001002d00004379sv*sd*bc*sc*i* sata_sil
+10844-alias pci:v00001002d0000437Asv*sd*bc*sc*i* sata_sil
+10845:alias pci:v00001002d0000437Bsv*sd*bc*sc*i* snd_hda_intel
+10846-alias pci:v00001002d00004382sv*sd*bc*sc*i* snd_atiixp
+10847:alias pci:v00001002d00004383sv*sd*bc*sc*i* snd_hda_intel
+10848-alias pci:v00001002d00004385sv*sd*bc*sc*i* i2c_piix4
+10849-alias pci:v00001002d00004385sv*sd*bc*sc*i* sp5100_tco
+--
+11499-alias pci:v00001002d00007834sv*sd*bc*sc*i* radeon
+11500-alias pci:v00001002d00007835sv*sd*bc*sc*i* radeon
+11501:alias pci:v00001002d00007919sv*sd*bc*sc*i* snd_hda_intel
+11502-alias pci:v00001002d0000791Esv*sd*bc*sc*i* radeon
+11503-alias pci:v00001002d0000791Fsv*sd*bc*sc*i* radeon
+11504:alias pci:v00001002d0000793Bsv*sd*bc*sc*i* snd_hda_intel
+11505-alias pci:v00001002d0000793Fsv*sd*bc*sc*i* radeon
+11506-alias pci:v00001002d00007941sv*sd*bc*sc*i* radeon
+--
+11629-alias pci:v00001002d000095CEsv*sd*bc*sc*i* radeon
+11630-alias pci:v00001002d000095CFsv*sd*bc*sc*i* radeon
+11631:alias pci:v00001002d0000960Fsv*sd*bc*sc*i* snd_hda_intel
+11632-alias pci:v00001002d00009610sv*sd*bc*sc*i* radeon
+11633-alias pci:v00001002d00009611sv*sd*bc*sc*i* radeon
+--
+11651-alias pci:v00001002d0000964Esv*sd*bc*sc*i* radeon
+11652-alias pci:v00001002d0000964Fsv*sd*bc*sc*i* radeon
+11653:alias pci:v00001002d0000970Fsv*sd*bc*sc*i* snd_hda_intel
+11654-alias pci:v00001002d00009710sv*sd*bc*sc*i* radeon
+11655-alias pci:v00001002d00009711sv*sd*bc*sc*i* radeon
+--
+11699-alias pci:v00001002d0000983Fsv*sd*bc*sc*i* radeon
+11700-alias pci:v00001002d0000983Fsv*sd*bc*sc*i* amdgpu
+11701:alias pci:v00001002d00009840sv*sd*bc*sc*i* snd_hda_intel
+11702-alias pci:v00001002d00009850sv*sd*bc*sc*i* radeon
+11703-alias pci:v00001002d00009850sv*sd*bc*sc*i* amdgpu
+--
+11740-alias pci:v00001002d00009900sv*sd*bc*sc*i* radeon
+11741-alias pci:v00001002d00009901sv*sd*bc*sc*i* radeon
+11742:alias pci:v00001002d00009902sv*sd*bc*sc*i* snd_hda_intel
+11743-alias pci:v00001002d00009903sv*sd*bc*sc*i* radeon
+11744-alias pci:v00001002d00009904sv*sd*bc*sc*i* radeon
+--
+11776-alias pci:v00001002d000099A2sv*sd*bc*sc*i* radeon
+11777-alias pci:v00001002d000099A4sv*sd*bc*sc*i* radeon
+11778:alias pci:v00001002d0000AA00sv*sd*bc*sc*i* snd_hda_intel
+11779:alias pci:v00001002d0000AA08sv*sd*bc*sc*i* snd_hda_intel
+11780:alias pci:v00001002d0000AA10sv*sd*bc*sc*i* snd_hda_intel
+11781:alias pci:v00001002d0000AA18sv*sd*bc*sc*i* snd_hda_intel
+11782:alias pci:v00001002d0000AA20sv*sd*bc*sc*i* snd_hda_intel
+11783:alias pci:v00001002d0000AA28sv*sd*bc*sc*i* snd_hda_intel
+11784:alias pci:v00001002d0000AA30sv*sd*bc*sc*i* snd_hda_intel
+11785:alias pci:v00001002d0000AA38sv*sd*bc*sc*i* snd_hda_intel
+11786:alias pci:v00001002d0000AA40sv*sd*bc*sc*i* snd_hda_intel
+11787:alias pci:v00001002d0000AA48sv*sd*bc*sc*i* snd_hda_intel
+11788:alias pci:v00001002d0000AA50sv*sd*bc*sc*i* snd_hda_intel
+11789:alias pci:v00001002d0000AA58sv*sd*bc*sc*i* snd_hda_intel
+11790:alias pci:v00001002d0000AA60sv*sd*bc*sc*i* snd_hda_intel
+11791:alias pci:v00001002d0000AA68sv*sd*bc*sc*i* snd_hda_intel
+11792:alias pci:v00001002d0000AA80sv*sd*bc*sc*i* snd_hda_intel
+11793:alias pci:v00001002d0000AA88sv*sd*bc*sc*i* snd_hda_intel
+11794:alias pci:v00001002d0000AA90sv*sd*bc*sc*i* snd_hda_intel
+11795:alias pci:v00001002d0000AA98sv*sd*bc*sc*i* snd_hda_intel
+11796:alias pci:v00001002d0000AAA0sv*sd*bc*sc*i* snd_hda_intel
+11797:alias pci:v00001002d0000AAA8sv*sd*bc*sc*i* snd_hda_intel
+11798:alias pci:v00001002d0000AAB0sv*sd*bc*sc*i* snd_hda_intel
+11799:alias pci:v00001002d0000AAC0sv*sd*bc*sc*i* snd_hda_intel
+11800:alias pci:v00001002d0000AAC8sv*sd*bc*sc*i* snd_hda_intel
+11801:alias pci:v00001002d0000AAD8sv*sd*bc*sc*i* snd_hda_intel
+11802:alias pci:v00001002d0000AAE0sv*sd*bc*sc*i* snd_hda_intel
+11803:alias pci:v00001002d0000AAE8sv*sd*bc*sc*i* snd_hda_intel
+11804:alias pci:v00001002d0000AAF0sv*sd*bc*sc*i* snd_hda_intel
+11805:alias pci:v00001002d0000AAF8sv*sd*bc*sc*i* snd_hda_intel
+11806:alias pci:v00001002d0000AB00sv*sd*bc*sc*i* snd_hda_intel
+11807:alias pci:v00001002d0000AB08sv*sd*bc*sc*i* snd_hda_intel
+11808:alias pci:v00001002d0000AB10sv*sd*bc*sc*i* snd_hda_intel
+11809:alias pci:v00001002d0000AB18sv*sd*bc*sc*i* snd_hda_intel
+11810:alias pci:v00001002d0000AB20sv*sd*bc*sc*i* snd_hda_intel
+11811:alias pci:v00001002d0000AB28sv*sd*bc*sc*i* snd_hda_intel
+11812:alias pci:v00001002d0000AB30sv*sd*bc*sc*i* snd_hda_intel
+11813:alias pci:v00001002d0000AB38sv*sd*bc*sc*i* snd_hda_intel
+11814:alias pci:v00001002d0000AB40sv*sd*bc*sc*i* snd_hda_intel
+11815-alias pci:v0000100Bd00000002sv*sd*bc*sc*i* pata_ns87415
+11816-alias pci:v0000100Bd00000020sv*sd*bc*sc*i* natsemi
+--
+11882-alias pci:v0000101Ed00009010sv*sd*bc*sc*i* megaraid
+11883-alias pci:v0000101Ed00009060sv*sd*bc*sc*i* megaraid
+11884:alias pci:v00001022d*sv*sd*bc04sc03i00* snd_hda_intel
+11885-alias pci:v00001022d*sv*sd*bc08sc05i* sdhci_pci
+11886-alias pci:v00001022d00001103sv*sd*bc*sc*i* k8temp
+--
+11899-alias pci:v00001022d00001443sv*sd*bc*sc*i* k10temp
+11900-alias pci:v00001022d0000144Bsv*sd*bc*sc*i* k10temp
+11901:alias pci:v00001022d00001457sv*sd*bc*sc*i* snd_hda_intel
+11902-alias pci:v00001022d00001458sv*sd*bc*sc*i* amd_xgbe
+11903-alias pci:v00001022d00001459sv*sd*bc*sc*i* amd_xgbe
+11904-alias pci:v00001022d0000145Bsv*sd*bc*sc*i* ntb_hw_amd
+11905-alias pci:v00001022d00001463sv*sd*bc*sc*i* k10temp
+11906:alias pci:v00001022d00001487sv*sd*bc*sc*i* snd_hda_intel
+11907-alias pci:v00001022d0000148Bsv*sd*bc*sc*i* ntb_hw_amd
+11908-alias pci:v00001022d00001493sv*sd*bc*sc*i* k10temp
+--
+11920-alias pci:v00001022d00001573sv*sd*bc*sc*i* k10temp
+11921-alias pci:v00001022d00001574sv*sd*bc*sc*i* fam15h_power
+11922:alias pci:v00001022d0000157Asv*sd*bc*sc*i* snd_hda_intel
+11923-alias pci:v00001022d00001583sv*sd*bc*sc*i* k10temp
+11924-alias pci:v00001022d00001584sv*sd*bc*sc*i* fam15h_power
+--
+11937-alias pci:v00001022d000015E2sv*sd*bc04sc80i00* snd_pci_ps
+11938-alias pci:v00001022d000015E2sv*sd*bc04sc80i00* snd_pci_acp7x
+11939:alias pci:v00001022d000015E3sv*sd*bc*sc*i* snd_hda_intel
+11940-alias pci:v00001022d000015E4sv*sd*bc*sc*i* amd_sfh
+11941-alias pci:v00001022d000015E6sv*sd*bc*sc*i* i2c_amd_mp2_pci
+--
+11986-alias pci:v00001022d0000780Bsv*sd*bc*sc*i* sp5100_tco
+11987-alias pci:v00001022d0000780Csv*sd*bc*sc*i* pata_atiixp
+11988:alias pci:v00001022d0000780Dsv*sd*bc*sc*i* snd_hda_intel
+11989-alias pci:v00001022d0000790Bsv*sd*bc*sc*i* i2c_piix4
+11990-alias pci:v00001022d0000790Bsv*sd*bc*sc*i* sp5100_tco
+--
+12040-alias pci:v00001039d00007016sv*sd*bc*sc*i* sis900
+12041-alias pci:v00001039d00007018sv*sd*bc*sc*i* snd_trident
+12042:alias pci:v00001039d00007502sv*sd*bc*sc*i* snd_hda_intel
+12043-alias pci:v0000103Cd*sv*sd*bc01sc04i* hpsa
+12044-alias pci:v0000103Cd0000121Asv*sd*bc*sc*i* ipmi_si
+--
+12520-alias pci:v000010B9d00005451sv*sd*bc*sc*i* snd_ali5451
+12521-alias pci:v000010B9d00005455sv*sd*bc*sc*i* snd_intel8x0
+12522:alias pci:v000010B9d00005461sv*sd*bc*sc*i* snd_hda_intel
+12523-alias pci:v000010B9d00007101sv*sd*bc*sc*i* alim7101_wdt
+12524-alias pci:v000010BDd00000E34sv*sd*bc*sc*i* ne2k_pci
+--
+12536-alias pci:v000010D9d00000531sv*sd*bc*sc*i* tulip
+12537-alias pci:v000010DEd*sv*sd*bc03sc*i* nouveau
+12538:alias pci:v000010DEd*sv*sd*bc04sc03i00* snd_hda_intel
+12539-alias pci:v000010DEd*sv*sd*bc0Csc80i* i2c_nvidia_gpu
+12540-alias pci:v000010DEd00000034sv*sd*bc*sc*i* i2c_nforce2
+--
+12796-alias pci:v00001102d00000007sv*sd*bc*sc*i* snd_ca0106
+12797-alias pci:v00001102d00000008sv*sd*bc*sc*i* snd_emu10k1
+12798:alias pci:v00001102d00000009sv*sd*bc*sc*i* snd_hda_intel
+12799-alias pci:v00001102d0000000Bsv*sd*bc*sc*i* snd_ctxfi
+12800:alias pci:v00001102d00000010sv*sd*bc*sc*i* snd_hda_intel
+12801:alias pci:v00001102d00000012sv*sd*bc*sc*i* snd_hda_intel
+12802-alias pci:v00001102d00007002sv*sd*bc*sc*i* emu10k1_gp
+12803-alias pci:v00001102d00007003sv*sd*bc*sc*i* emu10k1_gp
+--
+12891-alias pci:v00001106d00003249sv*sd*bc*sc*i* sata_via
+12892-alias pci:v00001106d00003287sv*sd*bc*sc*i* i2c_viapro
+12893:alias pci:v00001106d00003288sv*sd*bc*sc*i* snd_hda_intel
+12894-alias pci:v00001106d00003337sv*sd*bc*sc*i* i2c_viapro
+12895-alias pci:v00001106d00003372sv*sd*bc*sc*i* i2c_viapro
+--
+12909-alias pci:v00001106d00009000sv*sd*bc*sc*i* sata_via
+12910-alias pci:v00001106d00009001sv*sd*bc*sc*i* pata_via
+12911:alias pci:v00001106d00009140sv*sd*bc*sc*i* snd_hda_intel
+12912:alias pci:v00001106d00009170sv*sd*bc*sc*i* snd_hda_intel
+12913-alias pci:v00001106d00009530sv*sd*bc*sc*i* via_sdmmc
+12914-alias pci:v00001106d000095D0sv*sd*bc*sc*i* sdhci_pci
+--
+13831-alias pci:v000013F6d00000111sv*sd*bc*sc*i* snd_cmipci
+13832-alias pci:v000013F6d00000112sv*sd*bc*sc*i* snd_cmipci
+13833:alias pci:v000013F6d00005011sv*sd*bc*sc*i* snd_hda_intel
+13834-alias pci:v000013F6d00008788sv00001043sd00008269bc*sc*i* snd_virtuoso
+13835-alias pci:v000013F6d00008788sv00001043sd00008275bc*sc*i* snd_virtuoso
+--
+14786-alias pci:v000015ADd000007C0sv*sd*bc*sc*i* vmw_pvscsi
+14787-alias pci:v000015ADd00000820sv*sd*bc*sc*i* vmw_pvrdma
+14788:alias pci:v000015ADd00001977sv*sd*bc*sc*i* snd_hda_intel
+14789-alias pci:v000015B3d00001002sv*sd*bc*sc*i* mlx4_core
+14790-alias pci:v000015B3d00001003sv*sd*bc*sc*i* mlx4_core
+--
+15161-alias pci:v000017D3d0000188Asv*sd*bc*sc*i* arcmsr
+15162-alias pci:v000017F3d00001010sv*sd*bc*sc*i* pata_it821x
+15163:alias pci:v000017F3d00003010sv*sd*bc*sc*i* snd_hda_intel
+15164-alias pci:v000017F3d00006040sv*sd*bc*sc*i* r6040
+15165-alias pci:v00001814d00000101sv*sd*bc*sc*i* rt2400pci
+--
+15377-alias pci:v00001D0Fd0000EFA2sv*sd*bc*sc*i* efa
+15378-alias pci:v00001D0Fd0000EFA3sv*sd*bc*sc*i* efa
+15379:alias pci:v00001D17d00003288sv*sd*bc*sc*i* snd_hda_intel
+15380:alias pci:v00001D17d00009141sv*sd*bc*sc*i* snd_hda_intel
+15381:alias pci:v00001D17d00009142sv*sd*bc*sc*i* snd_hda_intel
+15382:alias pci:v00001D17d00009144sv*sd*bc*sc*i* snd_hda_intel
+15383:alias pci:v00001D17d00009145sv*sd*bc*sc*i* snd_hda_intel
+15384:alias pci:v00001D17d00009146sv*sd*bc*sc*i* snd_hda_intel
+15385-alias pci:v00001D6Ad00000001sv*sd*bc*sc*i* atlantic
+15386-alias pci:v00001D6Ad000000B1sv*sd*bc*sc*i* atlantic
+--
+15514-alias pci:v00005213d00000510sv*sd*bc04sc01i* snd_fm801
+15515-alias pci:v00005333d0000CA00sv*sd*bc*sc*i* snd_sonicvibes
+15516:alias pci:v00006549d00001200sv*sd*bc*sc*i* snd_hda_intel
+15517:alias pci:v00006549d00002200sv*sd*bc*sc*i* snd_hda_intel
+15518:alias pci:v00006766d*sv*sd*bc04sc03i00* snd_hda_intel
+15519-alias pci:v00008008d00003302sv*sd*bc*sc*i* cb7210
+15520-alias pci:v00008008d00003302sv*sd*bc*sc*i* ines_gpib
+15521-alias pci:v00008086d*sv*sd*bc01sc01i* ata_generic
+15522:alias pci:v00008086d*sv*sd*bc04sc03i00* snd_hda_intel
+15523-alias pci:v00008086d00000039sv*sd*bc*sc*i* tulip
+15524-alias pci:v00008086d00000042sv*sd*bc03sc*i* i915
+--
+15599-alias pci:v00008086d000002C8sv*sd*bc*sc*i* snd_soc_avs
+15600-alias pci:v00008086d000002C8sv*sd*bc*sc*i* snd_sof_pci_intel_cnl
+15601:alias pci:v00008086d000002C8sv*sd*bc*sc*i* snd_hda_intel
+15602-alias pci:v00008086d000002E0sv*sd*bc*sc*i* mei_me
+15603-alias pci:v00008086d000002E4sv*sd*bc*sc*i* mei_me
+--
+15633-alias pci:v00008086d000006C8sv*sd*bc*sc*i* snd_soc_avs
+15634-alias pci:v00008086d000006C8sv*sd*bc*sc*i* snd_sof_pci_intel_cnl
+15635:alias pci:v00008086d000006C8sv*sd*bc*sc*i* snd_hda_intel
+15636-alias pci:v00008086d000006E0sv*sd*bc*sc*i* mei_me
+15637-alias pci:v00008086d000006E4sv*sd*bc*sc*i* mei_me
+--
+15643-alias pci:v00008086d00000807sv*sd*bc*sc*i* sdhci_pci
+15644-alias pci:v00008086d00000808sv*sd*bc*sc*i* sdhci_pci
+15645:alias pci:v00008086d0000080Asv*sd*bc*sc*i* snd_hda_intel
+15646-alias pci:v00008086d00000820sv*sd*bc*sc*i* sdhci_pci
+15647-alias pci:v00008086d00000821sv*sd*bc*sc*i* sdhci_pci
+--
+15844-alias pci:v00008086d00000A0Asv*sd*bc03sc*i* i915
+15845-alias pci:v00008086d00000A0Bsv*sd*bc03sc*i* i915
+15846:alias pci:v00008086d00000A0Csv*sd*bc*sc*i* snd_hda_intel
+15847-alias pci:v00008086d00000A0Esv*sd*bc03sc*i* i915
+15848-alias pci:v00008086d00000A12sv*sd*bc03sc*i* i915
+--
+15895-alias pci:v00008086d00000C0Asv*sd*bc03sc*i* i915
+15896-alias pci:v00008086d00000C0Bsv*sd*bc03sc*i* i915
+15897:alias pci:v00008086d00000C0Csv*sd*bc*sc*i* snd_hda_intel
+15898-alias pci:v00008086d00000C0Esv*sd*bc03sc*i* i915
+15899-alias pci:v00008086d00000C12sv*sd*bc03sc*i* i915
+--
+15920-alias pci:v00008086d00000D0Asv*sd*bc03sc*i* i915
+15921-alias pci:v00008086d00000D0Bsv*sd*bc03sc*i* i915
+15922:alias pci:v00008086d00000D0Csv*sd*bc*sc*i* snd_hda_intel
+15923-alias pci:v00008086d00000D0Esv*sd*bc03sc*i* i915
+15924-alias pci:v00008086d00000D12sv*sd*bc03sc*i* i915
+--
+15960-alias pci:v00008086d00000E2Esv*sd*bc*sc*i* ioatdma
+15961-alias pci:v00008086d00000E2Fsv*sd*bc*sc*i* ioatdma
+15962:alias pci:v00008086d00000F04sv*sd*bc*sc*i* snd_hda_intel
+15963-alias pci:v00008086d00000F08sv*sd*bc*sc*i* pwm_lpss_pci
+15964-alias pci:v00008086d00000F09sv*sd*bc*sc*i* pwm_lpss_pci
+--
+16315-alias pci:v00008086d0000160Asv*sd*bc03sc*i* i915
+16316-alias pci:v00008086d0000160Bsv*sd*bc03sc*i* i915
+16317:alias pci:v00008086d0000160Csv*sd*bc*sc*i* snd_hda_intel
+16318-alias pci:v00008086d0000160Dsv*sd*bc03sc*i* i915
+16319-alias pci:v00008086d0000160Esv*sd*bc03sc*i* i915
+--
+16418-alias pci:v00008086d00001BE0sv*sd*bc*sc*i* mei_me
+16419-alias pci:v00008086d00001BFFsv*sd*bc*sc*i* i2c_ismt
+16420:alias pci:v00008086d00001C20sv*sd*bc*sc*i* snd_hda_intel
+16421-alias pci:v00008086d00001C22sv*sd*bc*sc*i* i2c_i801
+16422-alias pci:v00008086d00001C3Asv*sd*bc*sc*i* mei_me
+--
+16453-alias pci:v00008086d00001C5Fsv*sd*bc*sc*i* lpc_ich
+16454-alias pci:v00008086d00001CBAsv*sd*bc*sc*i* mei_me
+16455:alias pci:v00008086d00001D20sv*sd*bc*sc*i* snd_hda_intel
+16456-alias pci:v00008086d00001D22sv*sd*bc*sc*i* i2c_i801
+16457-alias pci:v00008086d00001D3Asv*sd*bc*sc*i* mei_me
+--
+16474-alias pci:v00008086d00001D72sv*sd*bc*sc*i* i2c_i801
+16475-alias pci:v00008086d00001DBAsv*sd*bc*sc*i* mei_me
+16476:alias pci:v00008086d00001E20sv*sd*bc*sc*i* snd_hda_intel
+16477-alias pci:v00008086d00001E22sv*sd*bc*sc*i* i2c_i801
+16478-alias pci:v00008086d00001E3Asv*sd*bc*sc*i* mei_me
+--
+16521-alias pci:v00008086d0000201Dsv*sd*bc*sc*i* vmd
+16522-alias pci:v00008086d00002021sv*sd*bc*sc*i* ioatdma
+16523:alias pci:v00008086d00002284sv*sd*bc*sc*i* snd_hda_intel
+16524-alias pci:v00008086d00002288sv*sd*bc*sc*i* pwm_lpss_pci
+16525-alias pci:v00008086d00002289sv*sd*bc*sc*i* pwm_lpss_pci
+--
+16696-alias pci:v00008086d00002641sv*sd*bc*sc*i* lpc_ich
+16697-alias pci:v00008086d00002642sv*sd*bc*sc*i* lpc_ich
+16698:alias pci:v00008086d00002668sv*sd*bc*sc*i* snd_hda_intel
+16699-alias pci:v00008086d0000266Asv*sd*bc*sc*i* i2c_i801
+16700-alias pci:v00008086d0000266Dsv*sd*bc*sc*i* snd_intel8x0m
+--
+16733-alias pci:v00008086d0000267Fsv*sd*bc*sc*i* lpc_ich
+16734-alias pci:v00008086d00002698sv*sd*bc*sc*i* snd_intel8x0
+16735:alias pci:v00008086d0000269Asv*sd*bc*sc*i* snd_hda_intel
+16736-alias pci:v00008086d0000269Bsv*sd*bc*sc*i* i2c_i801
+16737-alias pci:v00008086d0000271Bsv*sd*bc*sc*i* iwlwifi
+--
+16757-alias pci:v00008086d000027BDsv*sd*bc*sc*i* intel_rng
+16758-alias pci:v00008086d000027BDsv*sd*bc*sc*i* lpc_ich
+16759:alias pci:v00008086d000027D8sv*sd*bc*sc*i* snd_hda_intel
+16760-alias pci:v00008086d000027DAsv*sd*bc*sc*i* i2c_i801
+16761-alias pci:v00008086d000027DCsv*sd*bc02sc00i* e100
+--
+16768-alias pci:v00008086d00002815sv*sd*bc*sc*i* lpc_ich
+16769-alias pci:v00008086d0000283Esv*sd*bc*sc*i* i2c_i801
+16770:alias pci:v00008086d0000284Bsv*sd*bc*sc*i* snd_hda_intel
+16771-alias pci:v00008086d000028B4sv*sd*bc*sc*i* mei_me
+16772-alias pci:v00008086d000028C0sv*sd*bc*sc*i* vmd
+--
+16782-alias pci:v00008086d00002919sv*sd*bc*sc*i* lpc_ich
+16783-alias pci:v00008086d00002930sv*sd*bc*sc*i* i2c_i801
+16784:alias pci:v00008086d0000293Esv*sd*bc*sc*i* snd_hda_intel
+16785:alias pci:v00008086d0000293Fsv*sd*bc*sc*i* snd_hda_intel
+16786-alias pci:v00008086d0000294Csv*sd*bc*sc*i* e1000e
+16787-alias pci:v00008086d00002972sv*sd*bc03sc*i* i915
+--
+16861-alias pci:v00008086d00003198sv*sd*bc*sc*i* snd_soc_avs
+16862-alias pci:v00008086d00003198sv*sd*bc*sc*i* snd_sof_pci_intel_apl
+16863:alias pci:v00008086d00003198sv*sd*bc*sc*i* snd_hda_intel
+16864-alias pci:v00008086d0000319Asv*sd*bc*sc*i* mei_me
+16865-alias pci:v00008086d000031A2sv*sd*bc*sc*i* intel_ish_ipc
+--
+16896-alias pci:v00008086d000034C8sv*sd*bc*sc*i* snd_soc_avs
+16897-alias pci:v00008086d000034C8sv*sd*bc*sc*i* snd_sof_pci_intel_icl
+16898:alias pci:v00008086d000034C8sv*sd*bc*sc*i* snd_hda_intel
+16899-alias pci:v00008086d000034E0sv*sd*bc*sc*i* mei_me
+16900-alias pci:v00008086d000034EEsv*sd*bc*sc*i* dwc3_pci
+--
+16936-alias pci:v00008086d000038C8sv*sd*bc*sc*i* snd_soc_avs
+16937-alias pci:v00008086d000038C8sv*sd*bc*sc*i* snd_sof_pci_intel_icl
+16938:alias pci:v00008086d000038C8sv*sd*bc*sc*i* snd_hda_intel
+16939-alias pci:v00008086d000038E0sv*sd*bc*sc*i* mei_me
+16940-alias pci:v00008086d00003A14sv*sd*bc*sc*i* lpc_ich
+--
+16943-alias pci:v00008086d00003A1Asv*sd*bc*sc*i* lpc_ich
+16944-alias pci:v00008086d00003A30sv*sd*bc*sc*i* i2c_i801
+16945:alias pci:v00008086d00003A3Esv*sd*bc*sc*i* snd_hda_intel
+16946-alias pci:v00008086d00003A60sv*sd*bc*sc*i* i2c_i801
+16947:alias pci:v00008086d00003A6Esv*sd*bc*sc*i* snd_hda_intel
+16948-alias pci:v00008086d00003B00sv*sd*bc*sc*i* lpc_ich
+16949-alias pci:v00008086d00003B01sv*sd*bc*sc*i* lpc_ich
+--
+16963-alias pci:v00008086d00003B30sv*sd*bc*sc*i* i2c_i801
+16964-alias pci:v00008086d00003B32sv*sd*bc*sc*i* intel_ips
+16965:alias pci:v00008086d00003B56sv*sd*bc*sc*i* snd_hda_intel
+16966:alias pci:v00008086d00003B57sv*sd*bc*sc*i* snd_hda_intel
+16967-alias pci:v00008086d00003B64sv*sd*bc*sc*i* mei_me
+16968-alias pci:v00008086d00003B65sv*sd*bc*sc*i* mei_me
+--
+16982-alias pci:v00008086d00003DC8sv*sd*bc*sc*i* snd_soc_avs
+16983-alias pci:v00008086d00003DC8sv*sd*bc*sc*i* snd_sof_pci_intel_icl
+16984:alias pci:v00008086d00003DC8sv*sd*bc*sc*i* snd_hda_intel
+16985-alias pci:v00008086d00003DF0sv*sd*bc*sc*i* iwlwifi
+16986-alias pci:v00008086d00003E0Fsv*sd*bc*sc*i* ie31200_edac
+--
+17105-alias pci:v00008086d000043C8sv*sd*bc*sc*i* snd_soc_avs
+17106-alias pci:v00008086d000043C8sv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17107:alias pci:v00008086d000043C8sv*sd*bc*sc*i* snd_hda_intel
+17108-alias pci:v00008086d000043E0sv*sd*bc*sc*i* mei_me
+17109-alias pci:v00008086d000043EEsv*sd*bc*sc*i* dwc3_pci
+--
+17244-alias pci:v00008086d00004909sv*sd*bc03sc*i* i915
+17245-alias pci:v00008086d00004909sv*sd*bc03sc*i* xe
+17246:alias pci:v00008086d0000490Dsv*sd*bc*sc*i* snd_hda_intel
+17247-alias pci:v00008086d0000490Esv*sd*bc*sc*i* intel_vsec
+17248-alias pci:v00008086d00004940sv*sd*bc*sc*i* qat_4xxx
+--
+17264-alias pci:v00008086d00004B55sv*sd*bc*sc*i* snd_soc_avs
+17265-alias pci:v00008086d00004B55sv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17266:alias pci:v00008086d00004B55sv*sd*bc*sc*i* snd_hda_intel
+17267-alias pci:v00008086d00004B58sv*sd*bc*sc*i* snd_soc_avs
+17268-alias pci:v00008086d00004B58sv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17269:alias pci:v00008086d00004B58sv*sd*bc*sc*i* snd_hda_intel
+17270-alias pci:v00008086d00004B70sv*sd*bc*sc*i* mei_me
+17271-alias pci:v00008086d00004B75sv*sd*bc*sc*i* mei_me
+--
+17310-alias pci:v00008086d00004D23sv*sd*bc*sc*i* spi_intel_pci
+17311-alias pci:v00008086d00004D28sv*sd*bc*sc*i* snd_sof_pci_intel_ptl
+17312:alias pci:v00008086d00004D28sv*sd*bc*sc*i* snd_hda_intel
+17313-alias pci:v00008086d00004D33sv*sd*bc*sc*i* thunderbolt
+17314-alias pci:v00008086d00004D40sv*sd*bc*sc*i* iwlwifi
+--
+17331-alias pci:v00008086d00004DC8sv*sd*bc*sc*i* snd_soc_avs
+17332-alias pci:v00008086d00004DC8sv*sd*bc*sc*i* snd_sof_pci_intel_icl
+17333:alias pci:v00008086d00004DC8sv*sd*bc*sc*i* snd_hda_intel
+17334-alias pci:v00008086d00004DE0sv*sd*bc*sc*i* mei_me
+17335-alias pci:v00008086d00004DEEsv*sd*bc*sc*i* dwc3_pci
+--
+17344-alias pci:v00008086d00004E61sv*sd*bc03sc*i* i915
+17345-alias pci:v00008086d00004E71sv*sd*bc03sc*i* i915
+17346:alias pci:v00008086d00004F90sv*sd*bc*sc*i* snd_hda_intel
+17347:alias pci:v00008086d00004F91sv*sd*bc*sc*i* snd_hda_intel
+17348:alias pci:v00008086d00004F92sv*sd*bc*sc*i* snd_hda_intel
+17349-alias pci:v00008086d00005031sv*sd*bc*sc*i* lpc_ich
+17350-alias pci:v00008086d00005032sv*sd*bc*sc*i* i2c_i801
+--
+17355-alias pci:v00008086d000051C8sv*sd*bc*sc*i* snd_soc_avs
+17356-alias pci:v00008086d000051C8sv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17357:alias pci:v00008086d000051C8sv*sd*bc*sc*i* snd_hda_intel
+17358-alias pci:v00008086d000051C9sv*sd*bc*sc*i* snd_soc_avs
+17359-alias pci:v00008086d000051C9sv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17360:alias pci:v00008086d000051C9sv*sd*bc*sc*i* snd_hda_intel
+17361-alias pci:v00008086d000051CAsv*sd*bc*sc*i* snd_soc_avs
+17362-alias pci:v00008086d000051CAsv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17363:alias pci:v00008086d000051CAsv*sd*bc*sc*i* snd_hda_intel
+17364-alias pci:v00008086d000051CBsv*sd*bc*sc*i* snd_soc_avs
+17365-alias pci:v00008086d000051CBsv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17366:alias pci:v00008086d000051CBsv*sd*bc*sc*i* snd_hda_intel
+17367-alias pci:v00008086d000051CCsv*sd*bc*sc*i* snd_soc_avs
+17368-alias pci:v00008086d000051CCsv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17369:alias pci:v00008086d000051CCsv*sd*bc*sc*i* snd_hda_intel
+17370-alias pci:v00008086d000051CDsv*sd*bc*sc*i* snd_soc_avs
+17371-alias pci:v00008086d000051CDsv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17372:alias pci:v00008086d000051CDsv*sd*bc*sc*i* snd_hda_intel
+17373-alias pci:v00008086d000051CEsv*sd*bc*sc*i* snd_soc_avs
+17374-alias pci:v00008086d000051CEsv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17375:alias pci:v00008086d000051CEsv*sd*bc*sc*i* snd_hda_intel
+17376-alias pci:v00008086d000051CFsv*sd*bc*sc*i* snd_soc_avs
+17377-alias pci:v00008086d000051CFsv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17378:alias pci:v00008086d000051CFsv*sd*bc*sc*i* snd_hda_intel
+17379-alias pci:v00008086d000051E0sv*sd*bc*sc*i* mei_me
+17380-alias pci:v00008086d000051EEsv*sd*bc*sc*i* dwc3_pci
+--
+17390-alias pci:v00008086d000054C8sv*sd*bc*sc*i* snd_soc_avs
+17391-alias pci:v00008086d000054C8sv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17392:alias pci:v00008086d000054C8sv*sd*bc*sc*i* snd_hda_intel
+17393-alias pci:v00008086d000054E0sv*sd*bc*sc*i* mei_me
+17394-alias pci:v00008086d000054EEsv*sd*bc*sc*i* dwc3_pci
+--
+17518-alias pci:v00008086d00005A98sv*sd*bc*sc*i* snd_soc_avs
+17519-alias pci:v00008086d00005A98sv*sd*bc*sc*i* snd_sof_pci_intel_apl
+17520:alias pci:v00008086d00005A98sv*sd*bc*sc*i* snd_hda_intel
+17521-alias pci:v00008086d00005A9Asv*sd*bc*sc*i* mei_me
+17522-alias pci:v00008086d00005AA2sv*sd*bc*sc*i* intel_ish_ipc
+--
+17550-alias pci:v00008086d00006E2Dsv*sd*bc*sc*i* mipi_i3c_hci_pci
+17551-alias pci:v00008086d00006E50sv*sd*bc*sc*i* snd_sof_pci_intel_nvl
+17552:alias pci:v00008086d00006E50sv*sd*bc*sc*i* snd_hda_intel
+17553-alias pci:v00008086d00006E68sv*sd*bc*sc*i* mei_me
+17554-alias pci:v00008086d00006E6Fsv*sd*bc*sc*i* dwc3_pci
+--
+17583-alias pci:v00008086d00007724sv*sd*bc*sc*i* intel_th_pci
+17584-alias pci:v00008086d00007728sv*sd*bc*sc*i* snd_sof_pci_intel_mtl
+17585:alias pci:v00008086d00007728sv*sd*bc*sc*i* snd_hda_intel
+17586-alias pci:v00008086d00007740sv*sd*bc*sc*i* iwlwifi
+17587-alias pci:v00008086d00007745sv*sd*bc*sc*i* intel_ish_ipc
+--
+17598-alias pci:v00008086d00007A50sv*sd*bc*sc*i* snd_soc_avs
+17599-alias pci:v00008086d00007A50sv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17600:alias pci:v00008086d00007A50sv*sd*bc*sc*i* snd_hda_intel
+17601-alias pci:v00008086d00007A60sv*sd*bc*sc*i* mei_me
+17602-alias pci:v00008086d00007A61sv*sd*bc*sc*i* dwc3_pci
+--
+17611-alias pci:v00008086d00007AD0sv*sd*bc*sc*i* snd_soc_avs
+17612-alias pci:v00008086d00007AD0sv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17613:alias pci:v00008086d00007AD0sv*sd*bc*sc*i* snd_hda_intel
+17614-alias pci:v00008086d00007AE1sv*sd*bc*sc*i* dwc3_pci
+17615-alias pci:v00008086d00007AE8sv*sd*bc*sc*i* mei_me
+--
+17653-alias pci:v00008086d00007E24sv*sd*bc*sc*i* intel_th_pci
+17654-alias pci:v00008086d00007E28sv*sd*bc*sc*i* snd_sof_pci_intel_mtl
+17655:alias pci:v00008086d00007E28sv*sd*bc*sc*i* snd_hda_intel
+17656-alias pci:v00008086d00007E40sv*sd*bc*sc*i* iwlwifi
+17657-alias pci:v00008086d00007E45sv*sd*bc*sc*i* intel_ish_ipc
+--
+17671-alias pci:v00008086d00007F26sv*sd*bc*sc*i* intel_th_pci
+17672-alias pci:v00008086d00007F50sv*sd*bc*sc*i* snd_sof_pci_intel_mtl
+17673:alias pci:v00008086d00007F50sv*sd*bc*sc*i* snd_hda_intel
+17674-alias pci:v00008086d00007F68sv*sd*bc*sc*i* mei_me
+17675-alias pci:v00008086d00007F6Fsv*sd*bc*sc*i* dwc3_pci
+--
+17680-alias pci:v00008086d00008119sv*sd*bc*sc*i* lpc_sch
+17681-alias pci:v00008086d0000811Asv*sd*bc*sc*i* pata_sch
+17682:alias pci:v00008086d0000811Bsv*sd*bc*sc*i* snd_hda_intel
+17683-alias pci:v00008086d00008186sv*sd*bc*sc*i* lpc_sch
+17684-alias pci:v00008086d000087C0sv*sd*bc03sc*i* i915
+--
+17705-alias pci:v00008086d00008A70sv*sd*bc03sc*i* i915
+17706-alias pci:v00008086d00008A71sv*sd*bc03sc*i* i915
+17707:alias pci:v00008086d00008C20sv*sd*bc*sc*i* snd_hda_intel
+17708-alias pci:v00008086d00008C22sv*sd*bc*sc*i* i2c_i801
+17709-alias pci:v00008086d00008C24sv*sd*bc*sc*i* intel_pch_thermal
+--
+17741-alias pci:v00008086d00008C5Esv*sd*bc*sc*i* lpc_ich
+17742-alias pci:v00008086d00008C5Fsv*sd*bc*sc*i* lpc_ich
+17743:alias pci:v00008086d00008CA0sv*sd*bc*sc*i* snd_hda_intel
+17744-alias pci:v00008086d00008CA2sv*sd*bc*sc*i* i2c_i801
+17745-alias pci:v00008086d00008CBAsv*sd*bc*sc*i* mei_me
+--
+17749-alias pci:v00008086d00008CC4sv*sd*bc*sc*i* lpc_ich
+17750-alias pci:v00008086d00008CC6sv*sd*bc*sc*i* lpc_ich
+17751:alias pci:v00008086d00008D20sv*sd*bc*sc*i* snd_hda_intel
+17752:alias pci:v00008086d00008D21sv*sd*bc*sc*i* snd_hda_intel
+17753-alias pci:v00008086d00008D22sv*sd*bc*sc*i* i2c_i801
+17754-alias pci:v00008086d00008D24sv*sd*bc*sc*i* intel_pch_thermal
+--
+17843-alias pci:v00008086d00009BE6sv*sd*bc03sc*i* i915
+17844-alias pci:v00008086d00009BF6sv*sd*bc03sc*i* i915
+17845:alias pci:v00008086d00009C20sv*sd*bc*sc*i* snd_hda_intel
+17846:alias pci:v00008086d00009C21sv*sd*bc*sc*i* snd_hda_intel
+17847-alias pci:v00008086d00009C22sv*sd*bc*sc*i* i2c_i801
+17848-alias pci:v00008086d00009C24sv*sd*bc*sc*i* intel_pch_thermal
+--
+17858-alias pci:v00008086d00009C65sv*sd*bc*sc*i* spi_pxa2xx_pci
+17859-alias pci:v00008086d00009C66sv*sd*bc*sc*i* spi_pxa2xx_pci
+17860:alias pci:v00008086d00009CA0sv*sd*bc*sc*i* snd_hda_intel
+17861-alias pci:v00008086d00009CA2sv*sd*bc*sc*i* i2c_i801
+17862-alias pci:v00008086d00009CA4sv*sd*bc*sc*i* intel_pch_thermal
+--
+17889-alias pci:v00008086d00009D70sv*sd*bc*sc*i* snd_soc_avs
+17890-alias pci:v00008086d00009D70sv*sd*bc*sc*i* snd_sof_pci_intel_skl
+17891:alias pci:v00008086d00009D70sv*sd*bc*sc*i* snd_hda_intel
+17892-alias pci:v00008086d00009D71sv*sd*bc*sc*i* snd_soc_avs
+17893-alias pci:v00008086d00009D71sv*sd*bc*sc*i* snd_sof_pci_intel_skl
+17894:alias pci:v00008086d00009D71sv*sd*bc*sc*i* snd_hda_intel
+17895-alias pci:v00008086d00009DA3sv*sd*bc*sc*i* i2c_i801
+17896-alias pci:v00008086d00009DA4sv*sd*bc*sc*i* spi_intel_pci
+--
+17899-alias pci:v00008086d00009DC8sv*sd*bc*sc*i* snd_soc_avs
+17900-alias pci:v00008086d00009DC8sv*sd*bc*sc*i* snd_sof_pci_intel_cnl
+17901:alias pci:v00008086d00009DC8sv*sd*bc*sc*i* snd_hda_intel
+17902-alias pci:v00008086d00009DE0sv*sd*bc*sc*i* mei_me
+17903-alias pci:v00008086d00009DE4sv*sd*bc*sc*i* mei_me
+--
+17916-alias pci:v00008086d0000A0C8sv*sd*bc*sc*i* snd_soc_avs
+17917-alias pci:v00008086d0000A0C8sv*sd*bc*sc*i* snd_sof_pci_intel_tgl
+17918:alias pci:v00008086d0000A0C8sv*sd*bc*sc*i* snd_hda_intel
+17919-alias pci:v00008086d0000A0E0sv*sd*bc*sc*i* mei_me
+17920-alias pci:v00008086d0000A0EEsv*sd*bc*sc*i* dwc3_pci
+--
+17929-alias pci:v00008086d0000A13Bsv*sd*bc*sc*i* mei_me
+17930-alias pci:v00008086d0000A170sv*sd*bc*sc*i* snd_soc_avs
+17931:alias pci:v00008086d0000A170sv*sd*bc*sc*i* snd_hda_intel
+17932-alias pci:v00008086d0000A171sv*sd*bc*sc*i* snd_soc_avs
+17933:alias pci:v00008086d0000A171sv*sd*bc*sc*i* snd_hda_intel
+17934-alias pci:v00008086d0000A1A3sv*sd*bc*sc*i* i2c_i801
+17935-alias pci:v00008086d0000A1A4sv*sd*bc*sc*i* spi_intel_pci
+--
+17944-alias pci:v00008086d0000A1C6sv*sd*bc*sc*i* lpc_ich
+17945-alias pci:v00008086d0000A1C7sv*sd*bc*sc*i* lpc_ich
+17946:alias pci:v00008086d0000A1F0sv*sd*bc*sc*i* snd_hda_intel
+17947-alias pci:v00008086d0000A223sv*sd*bc*sc*i* i2c_i801
+17948-alias pci:v00008086d0000A224sv*sd*bc*sc*i* spi_intel_pci
+--
+17950-alias pci:v00008086d0000A242sv*sd*bc*sc*i* lpc_ich
+17951-alias pci:v00008086d0000A243sv*sd*bc*sc*i* lpc_ich
+17952:alias pci:v00008086d0000A270sv*sd*bc*sc*i* snd_hda_intel
+17953-alias pci:v00008086d0000A2A3sv*sd*bc*sc*i* i2c_i801
+17954-alias pci:v00008086d0000A2A4sv*sd*bc*sc*i* spi_intel_pci
+--
+17959-alias pci:v00008086d0000A2BEsv*sd*bc*sc*i* mei_me
+17960-alias pci:v00008086d0000A2F0sv*sd*bc*sc*i* snd_soc_avs
+17961:alias pci:v00008086d0000A2F0sv*sd*bc*sc*i* snd_hda_intel
+17962-alias pci:v00008086d0000A323sv*sd*bc*sc*i* i2c_i801
+17963-alias pci:v00008086d0000A324sv*sd*bc*sc*i* spi_intel_pci
+--
+17965-alias pci:v00008086d0000A348sv*sd*bc*sc*i* snd_soc_avs
+17966-alias pci:v00008086d0000A348sv*sd*bc*sc*i* snd_sof_pci_intel_cnl
+17967:alias pci:v00008086d0000A348sv*sd*bc*sc*i* snd_hda_intel
+17968-alias pci:v00008086d0000A360sv*sd*bc*sc*i* mei_me
+17969-alias pci:v00008086d0000A364sv*sd*bc*sc*i* mei_me
+--
+17980-alias pci:v00008086d0000A3F0sv*sd*bc*sc*i* snd_soc_avs
+17981-alias pci:v00008086d0000A3F0sv*sd*bc*sc*i* snd_sof_pci_intel_cnl
+17982:alias pci:v00008086d0000A3F0sv*sd*bc*sc*i* snd_hda_intel
+17983-alias pci:v00008086d0000A700sv*sd*bc*sc*i* ie31200_edac
+17984-alias pci:v00008086d0000A702sv*sd*bc*sc*i* ie31200_edac
+--
+18044-alias pci:v00008086d0000A824sv*sd*bc*sc*i* intel_th_pci
+18045-alias pci:v00008086d0000A828sv*sd*bc*sc*i* snd_sof_pci_intel_lnl
+18046:alias pci:v00008086d0000A828sv*sd*bc*sc*i* snd_hda_intel
+18047-alias pci:v00008086d0000A833sv*sd*bc*sc*i* thunderbolt
+18048-alias pci:v00008086d0000A834sv*sd*bc*sc*i* thunderbolt
+--
+18150-alias pci:v00008086d0000D324sv*sd*bc*sc*i* intel_th_pci
+18151-alias pci:v00008086d0000D328sv*sd*bc*sc*i* snd_sof_pci_intel_nvl
+18152:alias pci:v00008086d0000D328sv*sd*bc*sc*i* snd_hda_intel
+18153-alias pci:v00008086d0000D335sv*sd*bc*sc*i* ufshcd_pci
+18154-alias pci:v00008086d0000D340sv*sd*bc*sc*i* iwlwifi
+--
+18201-alias pci:v00008086d0000E222sv*sd*bc03sc*i* xe
+18202-alias pci:v00008086d0000E223sv*sd*bc03sc*i* xe
+18203:alias pci:v00008086d0000E2F7sv*sd*bc*sc*i* snd_hda_intel
+18204-alias pci:v00008086d0000E322sv*sd*bc*sc*i* i2c_i801
+18205-alias pci:v00008086d0000E323sv*sd*bc*sc*i* spi_intel_pci
+18206-alias pci:v00008086d0000E324sv*sd*bc*sc*i* intel_th_pci
+18207-alias pci:v00008086d0000E328sv*sd*bc*sc*i* snd_sof_pci_intel_ptl
+18208:alias pci:v00008086d0000E328sv*sd*bc*sc*i* snd_hda_intel
+18209-alias pci:v00008086d0000E332sv*sd*bc*sc*i* dwc3_pci
+18210-alias pci:v00008086d0000E333sv*sd*bc*sc*i* thunderbolt
+--
+18226-alias pci:v00008086d0000E424sv*sd*bc*sc*i* intel_th_pci
+18227-alias pci:v00008086d0000E428sv*sd*bc*sc*i* snd_sof_pci_intel_ptl
+18228:alias pci:v00008086d0000E428sv*sd*bc*sc*i* snd_hda_intel
+18229-alias pci:v00008086d0000E432sv*sd*bc*sc*i* dwc3_pci
+18230-alias pci:v00008086d0000E433sv*sd*bc*sc*i* thunderbolt
+--
+18244-alias pci:v00008086d0000E47Fsv*sd*bc*sc*i* intel_pmc_ssram_telemetry
+18245-alias pci:v00008086d0000F0C8sv*sd*bc*sc*i* snd_soc_avs
+18246:alias pci:v00008086d0000F0C8sv*sd*bc*sc*i* snd_hda_intel
+18247-alias pci:v00008086d0000F1A5sv*sd*bc*sc*i* nvme
+18248-alias pci:v00008086d0000F1A6sv*sd*bc*sc*i* nvme
+18249-alias pci:v00008086d0000F1C8sv*sd*bc*sc*i* snd_soc_avs
+18250:alias pci:v00008086d0000F1C8sv*sd*bc*sc*i* snd_hda_intel
+18251-alias pci:v00008086d0000FD00sv*sd*bc*sc*i* igen6_edac
+18252-alias pci:v00008086d0000FD1Dsv*sd*bc*sc*i* processor_thermal_device_pci
+
+=== SOURCE CONFIG FILES ===
+/etc/modprobe.d/alsa-hda-powersave.conf:2:options snd_hda_intel power_save=0 power_save_controller=N
+
+=== KERNEL MODULE LOAD STATE ===
+0
+N
+
+=== SYSTEMD SERVICE TIMING ===
+ActiveEnterTimestamp=Sat 2026-11-07 02:58:43 WIB
+ExecMainStartTimestamp=Sat 2026-11-07 02:58:43 WIB
+ExecMainStatus=0
+
+=== KERNEL MODULE EVENTS ===
+Nov 07 09:58:33 Lexiiz3417 kernel: Command line: BOOT_IMAGE=/vmlinuz-7.2.15-300.fc45.x86_64 root=UUID=81311a0e-2ec2-49a6-93f0-bcce61996bb4 ro rootflags=subvol=root snd_hda_intel.power_save=0 snd_hda_intel.power_save_controller=0 console=tty0 loglevel=7 systemd.show_status=1 rd.systemd.show_status=1 rd.udev.log_level=info udev.log_level=info vt.global_cursor_default=1 plymouth.enable=0 rd.plymouth=0 disablehooks=plymouth
+Nov 07 09:58:33 Lexiiz3417 kernel: Kernel command line: BOOT_IMAGE=/vmlinuz-7.2.15-300.fc45.x86_64 root=UUID=81311a0e-2ec2-49a6-93f0-bcce61996bb4 ro rootflags=subvol=root snd_hda_intel.power_save=0 snd_hda_intel.power_save_controller=0 console=tty0 loglevel=7 systemd.show_status=1 rd.systemd.show_status=1 rd.udev.log_level=info udev.log_level=info vt.global_cursor_default=1 plymouth.enable=0 rd.plymouth=0 disablehooks=plymouth
+Nov 07 02:58:42 Lexiiz3417 kernel: snd_hda_intel 0000:04:00.1: enabling device (0000 -> 0002)
+Nov 07 02:58:42 Lexiiz3417 kernel: snd_hda_intel 0000:04:00.1: Handle vga_switcheroo audio client
+Nov 07 02:58:42 Lexiiz3417 kernel: snd_hda_intel 0000:04:00.6: enabling device (0000 -> 0002)
+Nov 07 02:58:42 Lexiiz3417 kernel: snd_hda_intel 0000:04:00.1: bound 0000:04:00.0 (ops amdgpu_dm_audio_component_bind_ops [amdgpu])
+Nov 07 02:58:42 Lexiiz3417 kernel: input: HD-Audio Generic HDMI/DP,pcm=3 as /devices/pci0000:00/0000:00:08.1/0000:04:00.1/sound/card0/input18
+Nov 07 02:58:42 Lexiiz3417 kernel: snd_hda_codec_alc269 hdaudioC1D0: ALC257: picked fixup  for PCI SSID 17aa:0000
+Nov 07 02:58:42 Lexiiz3417 kernel: snd_hda_codec_alc269 hdaudioC1D0: autoconfig for ALC257: line_outs=1 (0x14/0x0/0x0/0x0/0x0) type:speaker
+Nov 07 02:58:42 Lexiiz3417 kernel: snd_hda_codec_alc269 hdaudioC1D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+Nov 07 02:58:42 Lexiiz3417 kernel: snd_hda_codec_alc269 hdaudioC1D0:    hp_outs=1 (0x21/0x0/0x0/0x0/0x0)
+Nov 07 02:58:42 Lexiiz3417 kernel: snd_hda_codec_alc269 hdaudioC1D0:    mono: mono_out=0x0
+Nov 07 02:58:42 Lexiiz3417 kernel: snd_hda_codec_alc269 hdaudioC1D0:    inputs:
+Nov 07 02:58:42 Lexiiz3417 kernel: snd_hda_codec_alc269 hdaudioC1D0:      Internal Mic=0x12
+Nov 07 02:58:42 Lexiiz3417 kernel: snd_hda_codec_alc269 hdaudioC1D0:      Mic=0x19
+Nov 07 02:58:42 Lexiiz3417 kernel: input: HD-Audio Generic Mic as /devices/pci0000:00/0000:00:08.1/0000:04:00.6/sound/card1/input19
+Nov 07 02:58:42 Lexiiz3417 kernel: input: HD-Audio Generic Headphone as /devices/pci0000:00/0000:00:08.1/0000:04:00.6/sound/card1/input20
+Lexiiz3417 > 
