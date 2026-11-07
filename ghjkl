@@ -1,0 +1,228 @@
+Lexiiz3417@Lexiiz3417:~$ 
+echo "===== USER SYSTEMD FILES ====="
+find ~/.config/systemd/user \
+  -iname '*opencode*' -o -iname '*alexia*' 2>/dev/null
+
+echo
+echo "===== USER AUTOSTART ====="
+find ~/.config/autostart \
+  -iname '*opencode*' -o -iname '*alexia*' 2>/dev/null
+
+echo
+echo "===== SYSTEMD USER PROCESSES ====="
+systemctl --user status
+
+echo
+echo "===== PROCESS CGROUP ====="
+cat /proc/97114/cgroup 2>/dev/null || echo "PID sudah berhenti"
+===== USER SYSTEMD FILES =====
+
+===== USER AUTOSTART =====
+
+===== SYSTEMD USER PROCESSES =====
+● Lexiiz3417
+    State: running
+    Units: 272 loaded (incl. loaded aliases)
+     Jobs: 0 queued
+   Failed: 0 units
+    Since: Sat 2026-11-07 04:14:03 WIB; 16h ago
+  systemd: 262.1-1.fc45
+  Tainted: local-hwclock
+   CGroup: /user.slice/user-1000.slice/user@1000.service
+           ├─app.slice
+           │ ├─app-dolphin@19dc74fc023e4816bb893c30c598c495.service
+           │ │ └─124658 /usr/bin/dolphin --new-window --select /home/Lexiiz3417/.local/bin/u>
+           │ ├─app-flatpak-com.discordapp.Discord-1634242682.scope
+           │ │ ├─159717 /usr/bin/bwrap --args 66 -- prlimit --as=11697805721 /usr/libexec/gl>
+           │ │ ├─159728 /usr/bin/bwrap --args 66 -- prlimit --as=11697805721 /usr/libexec/gl>
+           │ │ └─159730 /usr/libexec/glycin-loaders/2+/glycin-image-rs --dbus-fd 163
+           │ ├─app-flatpak-com.discordapp.Discord-1928329732.scope
+           │ │ ├─158575 /usr/bin/bwrap --args 72 -- /app/bin/zypak-helper child - /app/disco>
+           │ │ ├─158586 /usr/bin/bwrap --args 72 -- /app/bin/zypak-helper child - /app/disco>
+           │ │ └─158587 "/app/discord/Discord --type=zygote"
+           │ ├─app-flatpak-com.discordapp.Discord-2909222431.scope
+           │ │ ├─158528 /usr/bin/bwrap --args 75 -- com.discordapp.Discord
+           │ │ ├─158540 /usr/bin/bwrap --args 76 -- /usr/bin/xdg-dbus-proxy --args=77
+           │ │ ├─158541 /usr/bin/xdg-dbus-proxy --args=77
+           │ │ ├─158545 /usr/bin/bwrap --args 75 -- com.discordapp.Discord
+           │ │ ├─158546 /bin/bash /app/bin/com.discordapp.Discord
+           │ │ ├─158547 socat UNIX-LISTEN:/run/user/1000/app/com.discordapp.Discord/discord->
+           │ │ ├─158551 /app/discord/Discord
+           │ │ ├─158569 "/app/discord/Discord --type=zygote --no-zygote-sandbox"
+           │ │ ├─158573 cat
+           │ │ ├─158574 cat
+           │ │ ├─158605 /app/discord/chrome_crashpad_handler --monitor-self-annotation=ptype>
+           │ │ ├─158632 "/app/discord/Discord --type=gpu-process --ozone-platform=wayland -->
+           │ │ ├─158638 "/app/discord/Discord --type=utility --utility-sub-type=network.mojo>
+           │ │ ├─158716 "/app/discord/Discord --type=renderer --crashpad-handler-pid=42 --en>
+           │ │ ├─158818 "/app/discord/Discord --type=utility --utility-sub-type=audio.mojom.>
+           │ │ ├─159710 flatpak-spawn --sandbox --watch-bus --directory=/ --forward-fd=163 p>
+           │ │ └─160262 "/app/discord/Discord --type=utility --utility-sub-type=video_captur>
+           │ ├─app-geoclue\x2ddemo\x2dagent@autostart.service
+           │ │ └─2074 /usr/libexec/geoclue-2.0/demos/agent
+           │ ├─app-kitty@fdabf738a3554483ab51833804cd1cdd.service
+           │ │ ├─87444 /usr/bin/kitty
+           │ │ ├─87462 /usr/bin/kitten __atexit__
+           │ │ └─87471 /usr/bin/kitten __watch_conf__ 87444 100 /etc/xdg/kitty/kitty.conf /h>
+           │ ├─app-org.freedesktop.problems.applet@autostart.service
+           │ │ └─2037 /usr/bin/abrt-applet --gapplication-service
+           │ ├─app-org.kde.kalendarac@autostart.service
+           │ │ └─2081 /usr/bin/kalendarac
+           │ ├─app-org.kde.kate@5ade8fa2f2964c92b6163843975aa7a6.service
+           │ │ └─91645 /usr/bin/kate -b
+           │ ├─app-org.kde.kate@6a0b5b4e64d94d78ab286d5f918acead.service
+           │ │ └─124871 /usr/bin/kate -b /home/Lexiiz3417/.local/bin/usb-replug.sh
+           │ ├─app-org.kde.kdeconnect.daemon@autostart.service
+           │ │ └─2042 /usr/bin/kdeconnectd
+           │ ├─app-org.kde.xwaylandvideobridge@autostart.service
+           │ │ └─2047 /usr/bin/xwaylandvideobridge
+           │ ├─app-org.mozilla.firefox@3fb207bfe64047dfa87658954405b188.service
+           │ │ ├─  2860 /usr/lib64/firefox/firefox
+           │ │ ├─  2880 /usr/lib64/firefox/crashhelper 2860 9 /tmp/ 11 20261104112603
+           │ │ ├─  2979 /usr/lib64/firefox/firefox -contentproc -ipcHandle 0 -signalPipe 1 ->
+           │ │ ├─  3045 "/usr/lib64/firefox/firefox -contentproc -parentBuildID 202611041126>
+           │ │ ├─  3067 "/usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle >
+           │ │ ├─  3076 "/usr/lib64/firefox/firefox -contentproc -parentBuildID 202611041126>
+           │ │ ├─  3200 "/usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle >
+           │ │ ├─  3221 "/usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle >
+           │ │ ├─  3236 "/usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle >
+           │ │ ├─  3252 "/usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle >
+           │ │ ├─  3415 "/usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle >
+           │ │ ├─  3452 "/usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle >
+           │ │ ├─  3505 "/usr/lib64/firefox/firefox -contentproc -parentBuildID 202611041126>
+           │ │ ├─  3519 "/usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle >
+           │ │ ├─  3614 "/usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle >
+           │ │ ├─146001 "/usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle >
+           │ │ ├─151759 "/usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle >
+           │ │ ├─151806 "/usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle >
+           │ │ ├─159509 "/usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle >
+           │ │ └─159567 "/usr/lib64/firefox/firefox -contentproc -isForBrowser -prefsHandle >
+           │ ├─app-pano\x2dscrobbler@autostart.service
+           │ │ └─2050 /usr/bin/pano-scrobbler --minimized
+           │ ├─app-sealertauto@autostart.service
+           │ │ └─2051 /usr/bin/python3 -Es /usr/bin/seapplet
+           │ ├─dbus-:1.2-org.kde.kwalletd6@0.service
+           │ │ └─2577 /usr/bin/kwalletd6
+           │ ├─dbus-:1.30-org.a11y.atspi.Registry@0.service
+           │ │ └─1831 /usr/libexec/at-spi2-registryd --use-gnome-session
+           │ ├─dconf.service
+           │ │ └─1871 /usr/libexec/dconf-service
+           │ ├─flatpak-portal.service
+           │ │ └─158557 /usr/libexec/flatpak-portal
+           │ ├─flatpak-session-helper.service
+           │ │ ├─158532 /usr/libexec/flatpak-session-helper
+           │ │ ├─158537 server --sh -n /run/user/1000/.flatpak-helper/pkcs11-flatpak-158532 >
+           │ │ └─158706 p11-kit-remote --provider p11-kit-trust.so "pkcs11:model=p11-kit-tru>
+           │ ├─kitty-87444-16.scope
+           │ │ └─156365 /usr/bin/fish
+           │ ├─kitty-87444-17.scope
+           │ │ ├─156669 bash
+           │ │ ├─160555 systemctl --user status
+           │ │ └─160556 less
+           │ ├─obex.service
+           │ │ └─2091 /usr/libexec/bluetooth/obexd
+           │ ├─ssh-agent.service
+           │ │ └─1703 /usr/bin/ssh-agent -D
+           │ └─xdg-desktop-portal-gtk.service
+           │   └─2220 /usr/libexec/xdg-desktop-portal-gtk
+           ├─background.slice
+           │ ├─akonadi_control.service
+           │ │ ├─2282 /usr/bin/akonadi_control
+           │ │ ├─2298 /usr/bin/akonadiserver
+           │ │ ├─2320 /usr/bin/mysqld --defaults-file=/home/Lexiiz3417/.local/share/akonadi/>
+           │ │ ├─2451 /usr/bin/akonadi_archivemail_agent --identifier akonadi_archivemail_ag>
+           │ │ ├─2452 /usr/bin/akonadi_birthdays_resource --identifier akonadi_birthdays_res>
+           │ │ ├─2453 /usr/bin/akonadi_contacts_resource --identifier akonadi_contacts_resou>
+           │ │ ├─2454 /usr/bin/akonadi_followupreminder_agent --identifier akonadi_followupr>
+           │ │ ├─2455 /usr/bin/akonadi_google_resource --identifier akonadi_google_resource_0
+           │ │ ├─2456 /usr/bin/akonadi_ical_resource --identifier akonadi_ical_resource_0
+           │ │ ├─2457 /usr/bin/akonadi_imap_resource --identifier akonadi_imap_resource_2
+           │ │ ├─2458 /usr/bin/akonadi_indexing_agent --identifier akonadi_indexing_agent
+           │ │ ├─2459 /usr/bin/akonadi_maildir_resource --identifier akonadi_maildir_resourc>
+           │ │ ├─2461 /usr/bin/akonadi_maildispatcher_agent --identifier akonadi_maildispatc>
+           │ │ ├─2462 /usr/bin/akonadi_mailfilter_agent --identifier akonadi_mailfilter_agent
+           │ │ ├─2463 /usr/bin/akonadi_mailmerge_agent --identifier akonadi_mailmerge_agent
+           │ │ ├─2464 /usr/bin/akonadi_migration_agent --identifier akonadi_migration_agent
+           │ │ ├─2465 /usr/bin/akonadi_newmailnotifier_agent --identifier akonadi_newmailnot>
+           │ │ ├─2466 /usr/bin/akonadi_sendlater_agent --identifier akonadi_sendlater_agent
+           │ │ └─2468 /usr/bin/akonadi_unifiedmailbox_agent --identifier akonadi_unifiedmail>
+           │ ├─kde-baloo.service
+           │ │ └─2103 /usr/libexec/kf6/baloo_file
+           │ ├─kunifiedpush-distributor.service
+           │ │ └─2053 /usr/bin/kunifiedpush-distributor
+           │ ├─plasma-baloorunner.service
+           │ │ └─158505 /usr/libexec/baloorunner
+           │ ├─plasma-dolphin.service
+           │ │ └─84227 /usr/bin/dolphin --daemon
+           │ ├─plasma-gmenudbusmenuproxy.service
+           │ │ └─1698 /usr/bin/gmenudbusmenuproxy
+           │ ├─plasma-kaccess.service
+           │ │ └─1699 /usr/bin/kaccess
+           │ ├─plasma-kactivitymanagerd.service
+           │ │ └─1683 /usr/libexec/kactivitymanagerd
+           │ ├─plasma-knighttimed.service
+           │ │ └─1648 /usr/libexec/knighttimed
+           │ ├─plasma-krunner.service
+           │ │ └─2702 /usr/bin/krunner --daemon
+           │ ├─plasma-polkit-agent.service
+           │ │ └─1700 /usr/libexec/kf6/polkit-kde-authentication-agent-1
+           │ ├─plasma-powerdevil.service
+           │ │ └─1701 /usr/libexec/org_kde_powerdevil
+           │ └─plasma-xembedsniproxy.service
+           │   └─1702 /usr/bin/xembedsniproxy
+           ├─init.scope
+           │ ├─1412 /usr/lib/systemd/systemd --user
+           │ └─1414 "(sd-pam)"
+           ├─session.slice
+           │ ├─at-spi-dbus-bus.service
+           │ │ ├─1781 /usr/libexec/at-spi-bus-launcher
+           │ │ ├─1794 /usr/bin/dbus-broker-launch --config-file=/usr/share/defaults/at-spi2/>
+           │ │ └─1798 dbus-broker --log 10 --controller 9 --machine-id 6681a10b6c5a4826aa0a2>
+           │ ├─dbus-broker.service
+           │ │ ├─1433 /usr/bin/dbus-broker-launch --scope user
+           │ │ └─1434 dbus-broker --log 11 --controller 10 --machine-id 6681a10b6c5a4826aa0a>
+           │ ├─gvfs-daemon.service
+           │ │ └─1548 /usr/libexec/gvfsd
+           │ ├─gvfs-metadata.service
+           │ │ └─3003 /usr/libexec/gvfsd-metadata
+           │ ├─pipewire-pulse.service
+           │ │ └─1911 /usr/bin/pipewire-pulse
+           │ ├─pipewire.service
+           │ │ └─1560 /usr/bin/pipewire
+           │ ├─plasma-kded6.service
+           │ │ ├─1544 /usr/bin/kded6
+           │ │ └─2049 /usr/bin/xsettingsd
+           │ ├─plasma-ksmserver.service
+           │ │ └─1541 /usr/bin/ksmserver
+           │ ├─plasma-kwin_wayland.service
+           │ │ ├─1530 /usr/bin/kwin_wayland_wrapper --xwayland
+           │ │ ├─1538 /usr/bin/kwin_wayland --wayland-fd 7 --socket wayland-1 --xwayland-fd >
+           │ │ ├─1651 /usr/bin/plasma-keyboard
+           │ │ └─1708 /usr/bin/Xwayland :0 -auth /run/user/1000/xauth_LFhjfl -listenfd 8 -li>
+           │ ├─plasma-plasmashell.service
+           │ │ ├─  1562 /usr/bin/plasmashell --no-respawn
+           │ │ ├─  2520 cava -p /dev/stdin
+           │ │ ├─  5896 "/usr/lib64/qt6/libexec/QtWebEngineProcess --type=zygote --no-zygote>
+           │ │ ├─  5897 "/usr/lib64/qt6/libexec/QtWebEngineProcess --type=zygote --applicati>
+           │ │ ├─  5900 "/usr/lib64/qt6/libexec/QtWebEngineProcess --type=zygote --applicati>
+           │ │ └─142626 /usr/libexec/kf6/kioworker /usr/lib64/qt6/plugins/kf6/kio/kio_http.s>
+           │ ├─plasma-xdg-desktop-portal-kde.service
+           │ │ └─2151 /usr/libexec/xdg-desktop-portal-kde
+           │ ├─wireplumber.service
+           │ │ └─1561 /usr/bin/wireplumber
+           │ ├─xdg-desktop-portal.service
+           │ │ └─2060 /usr/libexec/xdg-desktop-portal
+           │ ├─xdg-document-portal.service
+           │ │ ├─2131 /usr/libexec/xdg-document-portal
+           │ │ └─2143 fusermount3 -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=port>
+           │ └─xdg-permission-store.service
+           │   └─2111 /usr/libexec/xdg-permission-store
+           ├─uresourced.service
+           │ └─1531 /usr/libexec/uresourced --user
+           └─user.slice
+             └─podman-pause-35b9b701.scope
+               └─95004 catatonit -P
+
+===== PROCESS CGROUP =====
+PID sudah berhenti
+Lexiiz3417@Lexiiz3417:~$ 
