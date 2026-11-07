@@ -1,0 +1,582 @@
+exiiz3417 > 
+             echo "=== OPENCODE CONFIG SOURCES ==="
+             opencode debug config
+
+             echo
+             echo "=== AVAILABLE MODELS ==="
+             opencode models
+
+             echo
+             echo "=== AUTHENTICATED PROVIDERS ==="
+             opencode auth list
+
+             echo
+             echo "=== OPENCODE PATHS ==="
+             opencode debug paths
+
+             echo
+             echo "=== AGENT DETAILS ==="
+             opencode agent list
+
+             echo
+             echo "=== OLLAMA OVERRIDE ==="
+             sudo systemctl cat ollama.service
+             sudo systemctl cat ollama.service.d/override.conf 2>/dev/null
+
+=== OPENCODE CONFIG SOURCES ===
+[
+  {
+    "type": "document",
+    "info": {
+      "websearch": {
+        "provider": "opencode"
+      },
+      "providers": {
+        "opencode": {
+          "name": "Personal / OpenCode",
+          "headers": {
+            "x-opencode-org-id": "***"
+          },
+          "models": {
+            "claude-fable-5": {
+              "disabled": true
+            },
+            "claude-haiku-4-5": {
+              "disabled": true
+            },
+            "claude-opus-4-5": {
+              "disabled": true
+            },
+            "claude-opus-4-6": {
+              "disabled": true
+            },
+            "claude-opus-4-7": {
+              "disabled": true
+            },
+            "claude-opus-4-8": {
+              "disabled": true
+            },
+            "claude-opus-5": {
+              "disabled": true
+            },
+            "claude-sonnet-4-5": {
+              "disabled": true
+            },
+            "claude-sonnet-4-6": {
+              "disabled": true
+            },
+            "claude-sonnet-5": {
+              "disabled": true
+            },
+            "gemini-3-flash": {
+              "disabled": true
+            },
+            "gemini-3.5-flash": {
+              "disabled": true
+            },
+            "gemini-3.6-flash": {
+              "disabled": true
+            },
+            "gemini-3.7-flash": {
+              "disabled": true
+            },
+            "glm-5": {
+              "disabled": true
+            },
+            "glm-5.1": {
+              "disabled": true
+            },
+            "glm-5.2": {
+              "disabled": true
+            },
+            "gpt-5": {
+              "disabled": true
+            },
+            "gpt-5-codex": {
+              "disabled": true
+            },
+            "gpt-5-nano": {
+              "disabled": true
+            },
+            "gpt-5.1": {
+              "disabled": true
+            },
+            "gpt-5.1-codex": {
+              "disabled": true
+            },
+            "gpt-5.1-codex-max": {
+              "disabled": true
+            },
+            "gpt-5.1-codex-mini": {
+              "disabled": true
+            },
+            "gpt-5.2": {
+              "disabled": true
+            },
+            "gpt-5.2-codex": {
+              "disabled": true
+            },
+            "gpt-5.4": {
+              "disabled": true
+            },
+            "gpt-5.4-pro": {
+              "disabled": true
+            },
+            "gpt-5.6-luna": {
+              "disabled": true
+            },
+            "gpt-5.6-sol": {
+              "disabled": true
+            },
+            "gpt-6-sol": {
+              "disabled": true
+            },
+            "grok-4.5": {
+              "disabled": true
+            },
+            "grok-4.6": {
+              "disabled": true
+            },
+            "kimi-k2.5": {
+              "disabled": true
+            },
+            "kimi-k2.6": {
+              "disabled": true
+            },
+            "minimax-m2.5": {
+              "disabled": true
+            },
+            "minimax-m2.7": {
+              "disabled": true
+            },
+            "muse-spark-1.2": {
+              "disabled": true
+            },
+            "muse-spark-1.3": {
+              "disabled": true
+            },
+            "qwen3.5-plus": {
+              "disabled": true
+            },
+            "qwen3.6-plus": {
+              "disabled": true
+            },
+            "qwen3.8-max": {
+              "disabled": true
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "document",
+    "path": "/home/Lexiiz3417/.config/opencode/opencode.json",
+    "info": {
+      "$schema": "https://opencode.ai/config.json",
+      "permissions": [
+        {
+          "action": "*",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "dd *",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "mkfs*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "wipefs *",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "parted *",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "fdisk *",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "efibootmgr *",
+          "effect": "deny"
+        },
+        {
+          "action": "external_directory",
+          "resource": "*",
+          "effect": "ask"
+        },
+        {
+          "action": "read",
+          "resource": "*.env",
+          "effect": "ask"
+        },
+        {
+          "action": "read",
+          "resource": "*.env.*",
+          "effect": "ask"
+        },
+        {
+          "action": "read",
+          "resource": "*.env.example",
+          "effect": "allow"
+        },
+        {
+          "action": "edit",
+          "resource": "*.env",
+          "effect": "ask"
+        },
+        {
+          "action": "*",
+          "resource": "*.ssh/*",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.ssh",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.gnupg/*",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.gnupg",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.local/share/keyrings/*",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*opencode.db*",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.config/opencode/service.json",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.aws/credentials",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.aws/config",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.docker/config.json",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.git-credentials",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.netrc",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.npmrc",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.pypirc",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.config/gh/hosts.yml",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*credentials.json",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*client_secret*.json",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*id_rsa*",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*id_ed25519*",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*id_ecdsa*",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.pem",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.key",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.p12",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.pfx",
+          "effect": "deny"
+        },
+        {
+          "action": "*",
+          "resource": "*.kdbx",
+          "effect": "deny"
+        }
+      ],
+      "providers": {
+        "ollama": {
+          "models": {
+            "qwen3.5:4b": {
+              "body": {
+                "reasoning_effort": "none",
+                "temperature": 0.2,
+                "top_p": 0.9,
+                "presence_penalty": 0
+              },
+              "limit": {
+                "context": 32768,
+                "output": 4096
+              }
+            },
+            "qwen2.5-coder:3b": {
+              "body": {
+                "temperature": 0.2,
+                "presence_penalty": 0
+              },
+              "limit": {
+                "context": 32768,
+                "output": 4096
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "directory",
+    "path": "/home/Lexiiz3417/.config/opencode"
+  },
+  {
+    "type": "directory",
+    "path": "/home/Lexiiz3417/.opencode"
+  }
+]
+
+=== AVAILABLE MODELS ===
+google/deep-research-max-preview-04-2026
+google/deep-research-preview-04-2026
+google/gemini-2.5-computer-use-preview-10-2025
+google/gemini-2.5-flash
+google/gemini-2.5-flash-lite
+google/gemini-2.5-pro
+google/gemini-3-flash-preview
+google/gemini-3.1-flash-lite
+google/gemini-3.1-pro-preview
+google/gemini-3.1-pro-preview-customtools
+google/gemini-3.5-flash
+google/gemini-3.5-flash-lite
+google/gemini-3.6-flash
+google/gemini-3.7-flash
+google/gemini-3.8-flash
+google/gemini-4-argon
+google/gemini-flash-latest
+google/gemini-flash-lite-latest
+google/gemini-pro-latest
+google/gemini-robotics-er-2-preview
+google/gemma-4-26b-a4b-it
+google/gemma-4-31b-it
+ollama/qwen2.5-coder:3b
+ollama/qwen3.5:4b
+opencode/beam-free
+opencode/big-pickle
+opencode/claude-fable-5-1
+opencode/claude-haiku-5-5
+opencode/claude-opus-5-5
+opencode/claude-sonnet-5-5
+opencode/crouton-alpha-free
+opencode/deepseek-v4-pro
+opencode/deepseek-v4.1-flash
+opencode/deepseek-v4.1-flash-free
+opencode/flint-40b-free
+opencode/gemini-3.1-pro
+opencode/gemini-3.5-flash-lite
+opencode/gemini-3.8-flash
+opencode/gemini-4-argon
+opencode/glm-5.3
+opencode/glm-5.3-flash
+opencode/glm-5.3-flash-free
+opencode/gpt-5.3-codex
+opencode/gpt-5.3-codex-spark
+opencode/gpt-5.4-mini
+opencode/gpt-5.4-nano
+opencode/gpt-5.5
+opencode/gpt-5.5-pro
+opencode/gpt-5.6-terra
+opencode/gpt-6-astra
+opencode/gpt-6-luna
+opencode/gpt-6.1-sol
+opencode/grok-4.7
+opencode/grok-build-0.1
+opencode/iceman-free
+opencode/inkling-2-small-free
+opencode/kimi-k2.7-code
+opencode/kimi-k3
+opencode/mimo-v2.6-flash-free
+opencode/minimax-m3
+opencode/mistral-large-4
+opencode/muse-wonder-1.0
+opencode/nemotron-3.5-lightning-free
+opencode/nemotron-3.5-super-vl-free
+opencode/qwen3.8-flash
+
+=== AUTHENTICATED PROVIDERS ===
+GitHub Copilot    GitHub Copilot              stored
+Google            Google                      stored
+OpenCode Console  Personal                    stored
+
+=== OPENCODE PATHS ===
+home       /home/Lexiiz3417
+data       /home/Lexiiz3417/.local/share/opencode
+cache      /home/Lexiiz3417/.cache/opencode
+config     /home/Lexiiz3417/.config/opencode
+state      /home/Lexiiz3417/.local/state/opencode
+tmp        /tmp/opencode
+bin        /home/Lexiiz3417/.cache/opencode/bin
+log        /home/Lexiiz3417/.local/share/opencode/log
+repos      /home/Lexiiz3417/.local/share/opencode/repos
+db         /home/Lexiiz3417/.local/share/opencode/opencode.db
+
+=== AGENT DETAILS ===
+DESCRIPTION
+  OpenCode command line interface
+
+USAGE
+  opencode <subcommand> [flags] [<directory>]
+
+ARGUMENTS
+  directory string    Directory to start OpenCode in (optional)
+
+FLAGS
+  --standalone            Run with a private server instead of the background service
+  --server string         Connect to a server URL instead of the background service
+  --auto                  Auto-approve permissions that are not explicitly denied
+  --continue, -c          Continue the last session
+  --session, -s string    Session ID to continue, or to create if it does not exist
+  --prompt string         Prompt to use
+
+GLOBAL FLAGS
+  --help, -h                                                          Show help information
+  --version, -v                                                       Show version information
+  --wizard                                                            Start wizard mode for a command
+  --completions <bash|zsh|fish|powershell|sh|pwsh>                    Print shell completion script (choices: bash, zsh, fish, powershell, sh, pwsh)
+  --log-level <all|trace|debug|info|warn|warning|error|fatal|none>    Sets the minimum log level (choices: all, trace, debug, info, warn, warning, error, fatal, none)
+  --print-logs                                                        Print logs to stderr (server logs require --standalone)
+
+SUBCOMMANDS
+  upgrade, update    Upgrade OpenCode to the latest or a specific version
+  uninstall          Uninstall OpenCode, keeping session data, configuration, and state
+  acp                Start an Agent Client Protocol server
+  api                Make a request to the running server
+  debug              Debugging and troubleshooting tools
+  auth               manage integrations and credentials
+  mcp                Manage MCP (Model Context Protocol) servers
+  plugin             Manage plugins
+  models             List all available models
+  stats              Show shareable usage statistics
+  mini               Start the minimal interactive interface
+  run                Run OpenCode with a message
+  session            Manage sessions
+  service            Manage the background server
+  reload             Reload configuration
+  pair               Print one-time links to connect a browser or app
+  serve              Start the v2 API and web server
+
+ERROR
+  Unexpected positional argument: "list"
+
+=== OLLAMA OVERRIDE ===
+# /etc/systemd/system/ollama.service
+[Unit]
+Description=Ollama Service
+After=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/ollama serve
+User=ollama
+Group=ollama
+Restart=always
+RestartSec=3
+Environment="PATH=/home/Lexiiz3417/.local/bin:/home/Lexiiz3417/.opencode/bin:/usr/local/bin:>
+
+[Install]
+WantedBy=default.target
+
+# /usr/lib/systemd/system/service.d/10-timeout-abort.conf
+# This file is part of the systemd package.
+# See https://fedoraproject.org/wiki/Changes/Shorter_Shutdown_Timer.
+#
+# To facilitate debugging when a service fails to stop cleanly,
+# TimeoutStopFailureMode=abort is set to "crash" services that fail to stop in
+# the time allotted. This will cause the service to be terminated with SIGABRT
+# and a coredump to be generated.
+#
+# To undo this configuration change, create a mask file:
+#   sudo mkdir -p /etc/systemd/system/service.d
+#   sudo ln -sv /dev/null /etc/systemd/system/service.d/10-timeout-abort.conf
+
+[Service]
+TimeoutStopFailureMode=abort
+
+# /etc/systemd/system/ollama.service.d/override.conf
+[Service]
+Environment="OLLAMA_CONTEXT_LENGTH=32768"
+Environment="OLLAMA_FLASH_ATTENTION=1"
+Environment="OLLAMA_MAX_LOADED_MODELS=1"
+Environment="OLLAMA_NUM_PARALLEL=1"
+Environment="OLLAMA_KEEP_ALIVE=30m"
+Environment="OLLAMA_NO_CLOUD=1"
+Lexiiz3417 > 
