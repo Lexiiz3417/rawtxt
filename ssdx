@@ -1,0 +1,1927 @@
+Lexiiz3417 > 
+             echo "========== 1. HOME OVERVIEW =========="
+             printf 'HOME: %s\n' "$HOME"
+             du -sh "$HOME" 2>/dev/null
+             find "$HOME" -maxdepth 2 -mindepth 1 \
+                   -printf '%y %TY-%Tm-%Td %TH:%TM %p\n' 2>/dev/null \
+                   | sort
+
+             echo
+             echo "========== 2. CONFIG DIRECTORIES =========="
+             for dir in \
+                   ~/.config/opencode \
+                   ~/.config/fish \
+                   ~/.config/kitty \
+                   ~/.config/systemd/user \
+                   ~/.local/bin \
+                   ~/.local/share/applications \
+                   ~/.local/share/systemd/user
+                 do
+                 echo "--- $dir ---"
+                 if test -d "$dir"
+                     find "$dir" -maxdepth 3 -type f \
+                               -printf '%TY-%Tm-%Td %TH:%TM %s bytes %p\n' \
+                               2>/dev/null
+                 else
+                     echo "NOT FOUND"
+                 end
+             end
+
+             echo
+             echo "========== 3. USER SERVICES =========="
+             systemctl --user list-unit-files --no-pager
+             echo
+             systemctl --user list-units --type=service --all --no-pager
+
+             echo
+             echo "========== 4. USER TIMERS =========="
+             systemctl --user list-timers --all --no-pager
+
+             echo
+             echo "========== 5. AUTOSTART =========="
+             if test -d ~/.config/autostart
+                 ls -lah ~/.config/autostart
+             else
+                 echo "No autostart directory"
+             end
+
+             echo
+             echo "========== 6. OPENCode VERSION =========="
+             command -v opencode
+             if command -v opencode >/dev/null
+                 opencode --version
+             end
+
+             echo
+             echo "========== 7. OPENCode DIRECTORY METADATA =========="
+             for dir in ~/.config/opencode ~/.local/share/opencode
+                 if test -d "$dir"
+                     echo "--- $dir ---"
+                     du -sh "$dir"
+                     find "$dir" -maxdepth 3 -type f \
+                               -printf '%TY-%Tm-%Td %TH:%TM %s bytes %p\n' \
+                               2>/dev/null
+                 end
+             end
+
+             echo
+             echo "========== 8. LOCAL EXECUTABLES =========="
+             if test -d ~/.local/bin
+                 ls -lah ~/.local/bin
+             end
+
+             echo
+             echo "========== 9. CRONTAB =========="
+             crontab -l 2>&1
+
+             echo
+             echo "========== 10. SNAPSHOT HOME MOUNT =========="
+             findmnt -T "$HOME"
+
+========== 1. HOME OVERVIEW ==========
+HOME: /home/Lexiiz3417
+20G	/home/Lexiiz3417
+d 2023-01-05 08:50 /home/Lexiiz3417/tugas/algo
+d 2023-01-07 19:00 /home/Lexiiz3417/tugas/sisdig
+d 2023-05-11 22:44 /home/Lexiiz3417/tugas/PTI
+d 2023-06-11 20:29 /home/Lexiiz3417/tugas/smt2
+d 2023-07-11 23:15 /home/Lexiiz3417/tugas/AIK
+d 2024-01-10 20:44 /home/Lexiiz3417/tugas/Pancasila
+d 2024-01-16 11:10 /home/Lexiiz3417/tugas/smt3
+d 2024-05-17 01:17 /home/Lexiiz3417/tugas/praktikum
+d 2025-01-08 08:34 /home/Lexiiz3417/tugas/SMT5
+d 2025-03-14 22:44 /home/Lexiiz3417/tugas/LCHL
+d 2025-03-21 13:51 /home/Lexiiz3417/tugas/pemrog game
+d 2025-06-03 03:07 /home/Lexiiz3417/tugas/SMT6
+d 2025-06-27 21:31 /home/Lexiiz3417/tugas/WorkoutRPG
+d 2025-06-30 00:00 /home/Lexiiz3417/tugas/workout_rpg
+d 2025-07-07 09:36 /home/Lexiiz3417/tugas/data mining
+d 2025-07-17 13:45 /home/Lexiiz3417/tugas/UAS AI
+d 2025-12-01 18:39 /home/Lexiiz3417/tugas/UTS PCD 221080200038
+d 2025-12-01 18:39 /home/Lexiiz3417/tugas/UTS TEKS MINING KEL 6
+d 2026-02-05 06:28 /home/Lexiiz3417/tugas/grafika
+d 2026-04-27 15:32 /home/Lexiiz3417/tugas/IMK
+d 2026-05-05 13:12 /home/Lexiiz3417/tugas/psk
+d 2026-10-08 23:34 /home/Lexiiz3417/tugas/ZAIDAN
+d 2026-10-13 11:27 /home/Lexiiz3417/tugas/skripsi
+d 2026-10-29 18:37 /home/Lexiiz3417/.cache/abrt
+d 2026-10-29 18:37 /home/Lexiiz3417/.cache/ksplash
+d 2026-10-29 18:37 /home/Lexiiz3417/.cache/kwin
+d 2026-10-29 18:37 /home/Lexiiz3417/.cache/obexd
+d 2026-10-29 18:37 /home/Lexiiz3417/.cache/plasma-keyboard
+d 2026-10-29 18:37 /home/Lexiiz3417/.cache/xwaylandvideobridge
+d 2026-10-29 18:37 /home/Lexiiz3417/.config/ibus
+d 2026-10-29 18:37 /home/Lexiiz3417/.config/libaccounts-glib
+d 2026-10-29 18:37 /home/Lexiiz3417/.config/qtvirtualkeyboard
+d 2026-10-29 18:37 /home/Lexiiz3417/.var
+d 2026-10-29 18:38 /home/Lexiiz3417/.cache/kdeconnect.app
+d 2026-10-29 18:38 /home/Lexiiz3417/.cache/plasma-systemmonitor
+d 2026-10-29 18:38 /home/Lexiiz3417/.cache/spectacle
+d 2026-10-29 18:39 /home/Lexiiz3417/.cache/glycin
+d 2026-10-29 18:39 /home/Lexiiz3417/.cache/mozilla
+d 2026-10-29 18:39 /home/Lexiiz3417/.config/mozilla
+d 2026-10-29 18:43 /home/Lexiiz3417/.cache/xdg-desktop-portal-kde
+d 2026-10-29 18:48 /home/Lexiiz3417/.cache/kcmshell6
+d 2026-10-29 18:50 /home/Lexiiz3417/.cache/org.kde.kunifiedpush
+d 2026-10-29 18:51 /home/Lexiiz3417/.config/plasma-workspace
+d 2026-10-29 18:52 /home/Lexiiz3417/.cache/krunner
+d 2026-10-29 18:52 /home/Lexiiz3417/.cache/org.kde.unitconversion
+d 2026-10-29 18:55 /home/Lexiiz3417/.config/KDE
+d 2026-10-29 18:59 /home/Lexiiz3417/.pki
+d 2026-10-29 18:59 /home/Lexiiz3417/.pki/nssdb
+d 2026-10-29 19:02 /home/Lexiiz3417/.cache/signon-ui
+d 2026-10-29 19:02 /home/Lexiiz3417/.config/signond
+d 2026-10-29 19:09 /home/Lexiiz3417/.cache/polkit-kde-authentication-agent-1
+d 2026-10-29 19:35 /home/Lexiiz3417/grub-backup-20261030T0251/grub.d
+d 2026-10-29 19:39 /home/Lexiiz3417/grub-backup-20261030T0251/loader-entries
+d 2026-10-29 19:45 /home/Lexiiz3417/.cache/kdeconnect.daemon
+d 2026-10-29 19:47 /home/Lexiiz3417/.config/toolbox
+d 2026-10-29 19:50 /home/Lexiiz3417/.cache/discover
+d 2026-10-29 19:53 /home/Lexiiz3417/.cache/thumbnails
+d 2026-10-29 20:08 /home/Lexiiz3417/.npm
+d 2026-10-29 20:09 /home/Lexiiz3417/.npm/_cacache
+d 2026-10-29 20:09 /home/Lexiiz3417/.opencode
+d 2026-10-29 20:09 /home/Lexiiz3417/.opencode/node_modules
+d 2026-10-29 20:42 /home/Lexiiz3417/.cache/flatpak
+d 2026-10-29 21:07 /home/Lexiiz3417/.cache/QtLocation
+d 2026-10-29 21:24 /home/Lexiiz3417/.cache/kscreenlocker_greet
+d 2026-10-29 22:24 /home/Lexiiz3417/.cache/kdeconnect.sms
+d 2026-10-29 22:36 /home/Lexiiz3417/.config/imsettings
+d 2026-10-29 22:36 /home/Lexiiz3417/.config/pulse
+d 2026-10-29 22:36 /home/Lexiiz3417/Public
+d 2026-10-29 22:36 /home/Lexiiz3417/Templates
+d 2026-10-29 23:45 /home/Lexiiz3417/.config/libreoffice
+d 2026-10-30 00:27 /home/Lexiiz3417/.cache/zotero
+d 2026-10-30 00:27 /home/Lexiiz3417/.zotero
+d 2026-10-30 00:27 /home/Lexiiz3417/Zotero/locate
+d 2026-10-30 00:27 /home/Lexiiz3417/Zotero/storage
+d 2026-10-30 00:27 /home/Lexiiz3417/.zotero/zotero
+d 2026-10-30 00:28 /home/Lexiiz3417/Zotero/styles
+d 2026-10-30 00:28 /home/Lexiiz3417/Zotero/translators
+d 2026-10-30 00:33 /home/Lexiiz3417/Zotero
+d 2026-10-30 01:00 /home/Lexiiz3417/.mozilla/extensions
+d 2026-10-30 01:04 /home/Lexiiz3417/.cache/kscreen_osd_service
+d 2026-10-30 01:26 /home/Lexiiz3417/.config/environment.d
+d 2026-10-30 02:21 /home/Lexiiz3417/Music
+d 2026-10-30 02:21 /home/Lexiiz3417/Music/YTMusic
+d 2026-10-30 02:51 /home/Lexiiz3417/grub-backup-20261030T0251
+d 2026-10-30 03:23 /home/Lexiiz3417/.cache/plasma_engine_potd
+d 2026-10-30 10:50 /home/Lexiiz3417/.config/systemd
+d 2026-10-30 16:47 /home/Lexiiz3417/.cache/Microsoft
+d 2026-10-30 16:47 /home/Lexiiz3417/.vscode/cli
+d 2026-10-30 16:47 /home/Lexiiz3417/.vscode-shared
+d 2026-10-30 16:51 /home/Lexiiz3417/.copilot/installed-plugins
+d 2026-10-30 16:52 /home/Lexiiz3417/.vscode/agent-plugins
+d 2026-10-30 16:57 /home/Lexiiz3417/.vscode
+d 2026-10-30 17:11 /home/Lexiiz3417/.dotnet
+d 2026-10-30 17:11 /home/Lexiiz3417/.dotnet/corefx
+d 2026-10-30 17:29 /home/Lexiiz3417/.cache/easyeffects
+d 2026-10-30 17:29 /home/Lexiiz3417/.config/easyeffects
+d 2026-10-30 18:18 /home/Lexiiz3417/REVO 211080200174/__pycache__
+d 2026-10-30 18:19 /home/Lexiiz3417/.copilot/chats
+d 2026-10-30 18:45 /home/Lexiiz3417/REVO 211080200174
+d 2026-10-30 18:45 /home/Lexiiz3417/REVO 211080200174/.vscode
+d 2026-10-30 19:12 /home/Lexiiz3417/.cache/ksmserver-logout-greeter
+d 2026-10-30 19:16 /home/Lexiiz3417/.sentry-native/attachments
+d 2026-10-30 19:16 /home/Lexiiz3417/.sentry-native/completed
+d 2026-10-30 19:16 /home/Lexiiz3417/.sentry-native/new
+d 2026-10-30 19:16 /home/Lexiiz3417/.sentry-native/pending
+d 2026-10-30 19:35 /home/Lexiiz3417/.cache/cloud-code
+d 2026-10-30 19:35 /home/Lexiiz3417/.cache/google-vscode-extension
+d 2026-10-30 19:38 /home/Lexiiz3417/Videos
+d 2026-10-30 21:02 /home/Lexiiz3417/.cache/accountwizard
+d 2026-10-30 21:04 /home/Lexiiz3417/.cache/kontact
+d 2026-10-30 21:06 /home/Lexiiz3417/.bun
+d 2026-10-30 21:06 /home/Lexiiz3417/.bun/install
+d 2026-10-30 21:55 /home/Lexiiz3417/.cache/kmail2
+d 2026-10-31 00:13 /home/Lexiiz3417/.cache/dragonplayer
+d 2026-10-31 00:17 /home/Lexiiz3417/.cache/kinfocenter
+d 2026-10-31 00:17 /home/Lexiiz3417/Videos/Screencasts
+d 2026-10-31 00:31 /home/Lexiiz3417/tugas
+d 2026-10-31 01:20 /home/Lexiiz3417/.cache/khelpcenter
+d 2026-10-31 01:38 /home/Lexiiz3417/.cache/systemsettings
+d 2026-10-31 01:58 /home/Lexiiz3417/.icons/Bibata-Modern-Ice
+d 2026-10-31 02:04 /home/Lexiiz3417/.cache/kpackage-knshandler
+d 2026-10-31 10:51 /home/Lexiiz3417/.cache/opencode
+d 2026-10-31 10:51 /home/Lexiiz3417/.opencode/bin
+d 2026-10-31 11:00 /home/Lexiiz3417/.config/Kvantum
+d 2026-10-31 11:03 /home/Lexiiz3417/.config/panel-colorizer
+d 2026-10-31 11:42 /home/Lexiiz3417/.config/cava
+d 2026-10-31 11:43 /home/Lexiiz3417/.cache/sddm-greeter-qt6
+d 2026-10-31 12:05 /home/Lexiiz3417/.cache/fish
+d 2026-10-31 14:54 /home/Lexiiz3417/.cache/starship
+d 2026-10-31 20:11 /home/Lexiiz3417/.config/Vencord
+d 2026-11-01 01:05 /home/Lexiiz3417/.ollama
+d 2026-11-01 01:05 /home/Lexiiz3417/.ollama/backup
+d 2026-11-01 01:21 /home/Lexiiz3417/.cache/cool-retro-term
+d 2026-11-01 01:21 /home/Lexiiz3417/.cache/mesa_shader_cache
+d 2026-11-01 01:28 /home/Lexiiz3417/.config/cool-retro-term
+d 2026-11-01 11:16 /home/Lexiiz3417/.cache/fastfetch
+d 2026-11-01 12:07 /home/Lexiiz3417/.var/app
+d 2026-11-01 12:29 /home/Lexiiz3417/.cache/plasma.emojier
+d 2026-11-01 12:51 /home/Lexiiz3417/.cache/org.kde.ki18n
+d 2026-11-01 13:17 /home/Lexiiz3417/.config/opencode
+d 2026-11-01 13:18 /home/Lexiiz3417/.local
+d 2026-11-01 13:18 /home/Lexiiz3417/.local/lib
+d 2026-11-01 17:44 /home/Lexiiz3417/Documents/KDEConnect Share File
+d 2026-11-01 22:09 /home/Lexiiz3417/.cache/kwin-tabbox-preview
+d 2026-11-02 19:16 /home/Lexiiz3417/.cache/kamoso
+d 2026-11-02 20:28 /home/Lexiiz3417/.config/wireplumber
+d 2026-11-02 21:16 /home/Lexiiz3417/.icons
+d 2026-11-02 23:36 /home/Lexiiz3417/.cache/union
+d 2026-11-03 01:08 /home/Lexiiz3417/.config/kate
+d 2026-11-03 03:25 /home/Lexiiz3417/.cargo/registry
+d 2026-11-03 03:47 /home/Lexiiz3417/.cargo
+d 2026-11-03 03:50 /home/Lexiiz3417/.config/fish
+d 2026-11-03 04:27 /home/Lexiiz3417/.config/chromium
+d 2026-11-03 04:27 /home/Lexiiz3417/.config/google-chrome
+d 2026-11-03 04:27 /home/Lexiiz3417/.mozilla
+d 2026-11-03 04:27 /home/Lexiiz3417/.mozilla/native-messaging-hosts
+d 2026-11-03 04:45 /home/Lexiiz3417/.config/user-tmpfiles.d
+d 2026-11-03 07:32 /home/Lexiiz3417/.cache/gtk-4.0
+d 2026-11-03 07:32 /home/Lexiiz3417/.cache/radv_builtin_shaders
+d 2026-11-03 10:12 /home/Lexiiz3417/.cache/alexia
+d 2026-11-03 20:42 /home/Lexiiz3417/kde-reset-backup-20261103-204201
+d 2026-11-03 20:43 /home/Lexiiz3417/kde-reset-backup-20261103-204259
+d 2026-11-03 21:18 /home/Lexiiz3417/Documents
+d 2026-11-03 21:19 /home/Lexiiz3417/Documents/Restore Firefox
+d 2026-11-03 22:01 /home/Lexiiz3417/Projects
+d 2026-11-03 22:09 /home/Lexiiz3417/.cache/libdnf5
+d 2026-11-03 22:47 /home/Lexiiz3417/.cache/imsettings
+d 2026-11-03 23:18 /home/Lexiiz3417/.cargo/bin
+d 2026-11-03 23:21 /home/Lexiiz3417/.config/autostart
+d 2026-11-03 23:43 /home/Lexiiz3417/.local/opt
+d 2026-11-03 23:48 /home/Lexiiz3417/.config/YouTube Music
+d 2026-11-04 00:21 /home/Lexiiz3417/plasma-reset-backup
+d 2026-11-04 00:22 /home/Lexiiz3417/plasma-reset-backup/config-old
+d 2026-11-04 00:22 /home/Lexiiz3417/plasma-reset-backup/local-share-old
+d 2026-11-04 00:58 /home/Lexiiz3417/Backups
+d 2026-11-04 00:58 /home/Lexiiz3417/Backups/KDE-baseline
+d 2026-11-04 01:56 /home/Lexiiz3417/.sentry-native
+d 2026-11-04 01:56 /home/Lexiiz3417/.sentry-native/2166df4f-f57a-440d-d1fd-be2ccc2f4d4b.run
+d 2026-11-04 02:49 /home/Lexiiz3417/.config/procps
+d 2026-11-04 08:01 /home/Lexiiz3417/.cache/Maui
+d 2026-11-04 08:04 /home/Lexiiz3417/.config/Maui
+d 2026-11-04 11:04 /home/Lexiiz3417/.cache/drkonqi
+d 2026-11-04 12:35 /home/Lexiiz3417/.config/kdeconnect
+d 2026-11-04 12:39 /home/Lexiiz3417/.config/fontconfig
+d 2026-11-04 12:41 /home/Lexiiz3417/.cache/gstreamer-1.0
+d 2026-11-04 14:34 /home/Lexiiz3417/.config/btop
+d 2026-11-04 14:37 /home/Lexiiz3417/.cache/akonadi_ical_resource_0
+d 2026-11-04 18:31 /home/Lexiiz3417/.cache/KDE
+d 2026-11-04 19:52 /home/Lexiiz3417/Downloads/grub-theme-audit
+d 2026-11-04 20:43 /home/Lexiiz3417/grub-theme-backup
+d 2026-11-04 21:47 /home/Lexiiz3417/.cache/plasmashell
+d 2026-11-05 08:36 /home/Lexiiz3417/.copilot
+d 2026-11-05 08:36 /home/Lexiiz3417/.copilot/.cache
+d 2026-11-05 12:01 /home/Lexiiz3417/.gnupg/private-keys-v1.d
+d 2026-11-05 12:12 /home/Lexiiz3417/.gnupg
+d 2026-11-05 13:26 /home/Lexiiz3417/tugas/revo0174
+d 2026-11-05 14:12 /home/Lexiiz3417/.cache/copilot
+d 2026-11-05 14:22 /home/Lexiiz3417/Revo_211080200174/video
+d 2026-11-05 15:03 /home/Lexiiz3417/.copilot/logs
+d 2026-11-05 15:03 /home/Lexiiz3417/.copilot/session-state
+d 2026-11-05 15:03 /home/Lexiiz3417/.vscode/extensions
+d 2026-11-05 15:13 /home/Lexiiz3417/.vscode-shared/sharedStorage
+d 2026-11-05 15:14 /home/Lexiiz3417/Revo_211080200174/image
+d 2026-11-05 15:34 /home/Lexiiz3417/Revo_211080200174
+d 2026-11-05 16:46 /home/Lexiiz3417/.config/Code
+d 2026-11-05 16:46 /home/Lexiiz3417/.copilot/ide
+d 2026-11-05 17:04 /home/Lexiiz3417/.gnupg/public-keys.d
+d 2026-11-05 22:14 /home/Lexiiz3417/.cache/debuginfod_client
+d 2026-11-05 22:14 /home/Lexiiz3417/.config/abrt
+d 2026-11-06 14:26 /home/Lexiiz3417/.config/kitty.backup
+d 2026-11-06 14:28 /home/Lexiiz3417/.cache/elisa
+d 2026-11-06 19:23 /home/Lexiiz3417/.config/kde.org
+d 2026-11-06 22:55 /home/Lexiiz3417/.local/bin
+d 2026-11-06 22:57 /home/Lexiiz3417/.config/dconf
+d 2026-11-06 22:57 /home/Lexiiz3417/.config/kdedefaults
+d 2026-11-07 01:48 /home/Lexiiz3417/.cache/fontconfig
+d 2026-11-07 02:34 /home/Lexiiz3417/Pictures
+d 2026-11-07 02:59 /home/Lexiiz3417/.cache/appstream
+d 2026-11-07 03:18 /home/Lexiiz3417/Downloads
+d 2026-11-07 03:18 /home/Lexiiz3417/Pictures/Wallpapers
+d 2026-11-07 04:13 /home/Lexiiz3417/.cache/kcrash-metadata
+d 2026-11-07 04:14 /home/Lexiiz3417/.config/akonadi
+d 2026-11-07 13:01 /home/Lexiiz3417/.config/gtk-3.0
+d 2026-11-07 13:01 /home/Lexiiz3417/.config/gtk-4.0
+d 2026-11-07 13:01 /home/Lexiiz3417/.config/xsettingsd
+d 2026-11-07 13:03 /home/Lexiiz3417/.cache/qtshadercache-x86_64-little_endian-lp64
+d 2026-11-07 13:11 /home/Lexiiz3417/.cache
+d 2026-11-07 13:14 /home/Lexiiz3417/Desktop
+d 2026-11-07 13:15 /home/Lexiiz3417/.config/session
+d 2026-11-07 13:25 /home/Lexiiz3417/.cache/kitty
+d 2026-11-07 13:34 /home/Lexiiz3417/.config
+d 2026-11-07 13:34 /home/Lexiiz3417/Pictures/Screenshots
+d 2026-11-07 13:55 /home/Lexiiz3417/.config/kitty
+d 2026-11-07 13:55 /home/Lexiiz3417/.local/share
+d 2026-11-07 13:57 /home/Lexiiz3417/.local/state
+f 2022-10-20 00:44 /home/Lexiiz3417/tugas/GROUP 12 (Passive Voice).pptx
+f 2022-11-14 13:08 /home/Lexiiz3417/tugas/029_073_055_042_039_038 TugasUTS A1.pdf
+f 2022-11-16 10:03 /home/Lexiiz3417/tugas/~$S PANCASILA.docx
+f 2022-11-20 12:42 /home/Lexiiz3417/tugas/HIDAYAT TAUFIK ISMAIL_221080200038_UTS).docx
+f 2022-12-03 23:02 /home/Lexiiz3417/tugas/DualSafePassword-Recovery-Code.pdf
+f 2023-01-18 12:05 /home/Lexiiz3417/tugas/dokumenasli supersemar.7z
+f 2023-05-16 09:39 /home/Lexiiz3417/tugas/UTS ALGORITMA.docx
+f 2023-07-13 15:25 /home/Lexiiz3417/tugas/prin.docx
+f 2023-07-17 20:01 /home/Lexiiz3417/tugas/MAKALAH.docx
+f 2023-07-17 20:01 /home/Lexiiz3417/tugas/MAKALAH ROUTER.pdf
+f 2023-07-23 13:19 /home/Lexiiz3417/tugas/savingplaner.docx
+f 2023-11-06 13:02 /home/Lexiiz3417/Downloads/DigitalWorks.exe
+f 2024-01-12 20:43 /home/Lexiiz3417/tugas/UAS SO_221080200038_Hidayat Taufik Ismail.docx
+f 2024-01-12 20:44 /home/Lexiiz3417/tugas/UAS SO_221080200038_Hidayat Taufik Ismail.pdf
+f 2024-05-15 18:04 /home/Lexiiz3417/tugas/Hidayat Taufik Ismail_221080200038_UTS AIK_4A1.docx
+f 2024-05-15 18:04 /home/Lexiiz3417/tugas/Hidayat Taufik Ismail_221080200038_UTS AIK_4A1.pdf
+f 2024-05-24 20:34 /home/Lexiiz3417/tugas/UTS GRAFIKA POINT A.docx
+f 2024-06-28 12:49 /home/Lexiiz3417/tugas/(810-887M) 221080200038_HIDAYAT TAUFIK ISMAIL.docx
+f 2024-06-28 12:49 /home/Lexiiz3417/tugas/(810-887M) 221080200038_HIDAYAT TAUFIK ISMAIL.pdf
+f 2024-07-09 00:29 /home/Lexiiz3417/tugas/UAS AUDIT_Hidayat Taufik Ismail_221080200038.docx
+f 2024-07-09 00:29 /home/Lexiiz3417/tugas/UAS AUDIT_Hidayat Taufik Ismail_221080200038.pdf
+f 2024-07-10 08:23 /home/Lexiiz3417/tugas/UAS KEL 10.docx
+f 2024-07-10 08:27 /home/Lexiiz3417/tugas/UAS KEL 10 SISTEM INFORMASI.docx
+f 2024-07-10 13:07 /home/Lexiiz3417/tugas/Hidayat Taufik Ismail_221080200038_UAS AIK.docx
+f 2024-07-10 13:09 /home/Lexiiz3417/tugas/Hidayat Taufik Ismail_221080200038_UAS AIK.pdf
+f 2025-05-19 12:47 /home/Lexiiz3417/tugas/uts 5_Hidayat Taufik Ismail (038).csv
+f 2025-05-19 12:48 /home/Lexiiz3417/tugas/uts 5_Hidayat Taufik Ismail (038).xlsx
+f 2025-06-18 10:33 /home/Lexiiz3417/tugas/~$STEM PENGAMANAN KOMPUTER 221080200038.docx
+f 2025-06-18 10:33 /home/Lexiiz3417/tugas/SISTEM PENGAMANAN KOMPUTER 221080200038.docx
+f 2025-06-28 00:15 /home/Lexiiz3417/tugas/debug.log
+f 2025-06-30 00:00 /home/Lexiiz3417/tugas/workout_rpg.zip
+f 2025-07-02 10:46 /home/Lexiiz3417/tugas/SISTEM PENGAMANAN KOMPUTER.pptx
+f 2025-07-05 12:08 /home/Lexiiz3417/tugas/draft skripsi.docx
+f 2025-11-20 16:06 /home/Lexiiz3417/tugas/~$S_EH_221080200038_HIDAYAT TAUFIK ISMAIL.docx
+f 2025-11-20 16:06 /home/Lexiiz3417/tugas/UTS_EH_221080200038_HIDAYAT TAUFIK ISMAIL.docx
+f 2025-11-20 16:08 /home/Lexiiz3417/tugas/UTS_EH_221080200038_HIDAYAT TAUFIK ISMAIL.pdf
+f 2025-11-23 15:33 /home/Lexiiz3417/tugas/UTS PCD 221080200038.docx
+f 2025-11-23 16:38 /home/Lexiiz3417/tugas/UTS DESAIN 221080200038 HIDAYAT TAUFIK ISMAIL.docx
+f 2025-11-23 16:38 /home/Lexiiz3417/tugas/UTS DESAIN 221080200038 HIDAYAT TAUFIK ISMAIL.pdf
+f 2025-11-25 16:42 /home/Lexiiz3417/tugas/UTS TEXT MINING.docx
+f 2025-11-27 15:04 /home/Lexiiz3417/tugas/PPT UTS Text Mining.pptx
+f 2025-11-27 15:05 /home/Lexiiz3417/tugas/UTS_TEXT_MINING.docx
+f 2025-11-27 17:43 /home/Lexiiz3417/tugas/UTS-211080200174-PABW7A2-GS2526.pdf
+f 2025-12-23 23:29 /home/Lexiiz3417/tugas/Tugas Hidayat Taufik Ismail_221080200038.xlsx
+f 2026-01-06 19:59 /home/Lexiiz3417/tugas/Tugas REVO NAGARA FISABILHAQ_211080200174 .xlsx
+f 2026-01-14 19:10 /home/Lexiiz3417/tugas/SISTEM KLASIFIKASI CITRA DIGITAL.docx
+f 2026-01-16 07:00 /home/Lexiiz3417/.bash_logout
+f 2026-01-16 07:00 /home/Lexiiz3417/.bash_profile
+f 2026-01-19 17:49 /home/Lexiiz3417/tugas/UAS_TEXT_MINING.docx
+f 2026-07-06 15:38 /home/Lexiiz3417/tugas/UAS PEMROGRAMAN TERDISTRIBUSI_REVO NAGARA FISABILHAQ_211080200174.docx
+f 2026-07-06 15:39 /home/Lexiiz3417/tugas/UAS PEMROGRAMAN SISTEM TERDISTRIBUSI_REVO NAGARA FISABILHAQ_211080200174.pdf
+f 2026-10-29 18:37 /home/Lexiiz3417/.config/akonadi_contacts_resource_0rc
+f 2026-10-29 18:37 /home/Lexiiz3417/.config/akonadi-firstrunrc
+f 2026-10-29 18:37 /home/Lexiiz3417/.config/kactivitymanagerd-statsrc
+f 2026-10-29 18:37 /home/Lexiiz3417/.config/ktimezonedrc
+f 2026-10-29 18:37 /home/Lexiiz3417/.config/powermanagementprofilesrc
+f 2026-10-29 18:37 /home/Lexiiz3417/.config/specialmailcollectionsrc
+f 2026-10-29 18:37 /home/Lexiiz3417/Desktop/.directory
+f 2026-10-29 18:56 /home/Lexiiz3417/.config/kactivitymanagerd-pluginsrc
+f 2026-10-29 19:36 /home/Lexiiz3417/grub-backup-20261030T0251/grub.default
+f 2026-10-29 19:38 /home/Lexiiz3417/grub-backup-20261030T0251/grub.cfg
+f 2026-10-29 19:46 /home/Lexiiz3417/.config/trashrc
+f 2026-10-29 20:02 /home/Lexiiz3417/.config/katevirc
+f 2026-10-29 20:05 /home/Lexiiz3417/Downloads/Pilihan_distro_Linux_untuk_dual_boot_2026-10-29.md
+f 2026-10-29 20:08 /home/Lexiiz3417/.opencode/.gitignore
+f 2026-10-29 20:09 /home/Lexiiz3417/.opencode/package.json
+f 2026-10-29 20:09 /home/Lexiiz3417/.opencode/package-lock.json
+f 2026-10-29 20:31 /home/Lexiiz3417/.config/kdeconnect.notifyrc
+f 2026-10-29 21:17 /home/Lexiiz3417/Downloads/Alexia_Zaphyra_Complete_Fanart_Reference_Blank_Frames.pdf
+f 2026-10-29 21:21 /home/Lexiiz3417/kglobalshortcutsrc.bak
+f 2026-10-29 22:36 /home/Lexiiz3417/.config/importwizardrc
+f 2026-10-29 22:36 /home/Lexiiz3417/.config/user-dirs.locale
+f 2026-10-29 23:13 /home/Lexiiz3417/.config/arkrc
+f 2026-10-30 00:27 /home/Lexiiz3417/Zotero/fulltext.sqlite
+f 2026-10-30 00:33 /home/Lexiiz3417/Zotero/zotero.sqlite.bak
+f 2026-10-30 00:33 /home/Lexiiz3417/Zotero/zotero.sqlite.tmp-wal
+f 2026-10-30 01:02 /home/Lexiiz3417/lo-verify.sh
+f 2026-10-30 01:18 /home/Lexiiz3417/registrymodifications.xcu.bak-20261030T0126
+f 2026-10-30 04:19 /home/Lexiiz3417/.bashrc
+f 2026-10-30 04:22 /home/Lexiiz3417/Downloads/preview.webp
+f 2026-10-30 12:28 /home/Lexiiz3417/Downloads/alexia-smile.png
+f 2026-10-30 15:00 /home/Lexiiz3417/Downloads/file_000000008df882119d3dce7a15e82b00.png
+f 2026-10-30 15:01 /home/Lexiiz3417/Downloads/ascii-art.txt
+f 2026-10-30 15:51 /home/Lexiiz3417/Downloads/Materi_Persiapan_Praktikum_Sesi_1.pdf
+f 2026-10-30 15:52 /home/Lexiiz3417/Downloads/Kunci latihan 1A, persiapan praktikum.pdf
+f 2026-10-30 15:55 /home/Lexiiz3417/Downloads/Alternatif_API_gratis_OpenCode_2026-10-30.md
+f 2026-10-30 16:47 /home/Lexiiz3417/.vscode/argv.json
+f 2026-10-30 16:51 /home/Lexiiz3417/Downloads/Personalized_tool_and_app_recommendations_2026-10-30.md
+f 2026-10-30 16:52 /home/Lexiiz3417/Downloads/Latihan Persiapan Praktikum - Revo Nagara Fisabilhaq.docx
+f 2026-10-30 16:59 /home/Lexiiz3417/Downloads/Hasil_jalankan_latihan_praktikum.html
+f 2026-10-30 17:05 /home/Lexiiz3417/REVO 211080200174/Hasil_jalankan_latihan_praktikum.html
+f 2026-10-30 17:57 /home/Lexiiz3417/REVO 211080200174/1c_total_harga.py
+f 2026-10-30 17:57 /home/Lexiiz3417/REVO 211080200174/2a_kembalian_kasir.py
+f 2026-10-30 17:57 /home/Lexiiz3417/REVO 211080200174/2b_nilai_akhir.py
+f 2026-10-30 17:57 /home/Lexiiz3417/REVO 211080200174/2c_kotak_kue.py
+f 2026-10-30 17:57 /home/Lexiiz3417/REVO 211080200174/3a_tarif_parkir.py
+f 2026-10-30 17:57 /home/Lexiiz3417/REVO 211080200174/3b_diskon_toko.py
+f 2026-10-30 17:57 /home/Lexiiz3417/REVO 211080200174/3c_kelayakan_lomba.py
+f 2026-10-30 17:57 /home/Lexiiz3417/REVO 211080200174/3d_menu_paket_internet.py
+f 2026-10-30 17:57 /home/Lexiiz3417/REVO 211080200174/c1_sistem_kantin.py
+f 2026-10-30 17:57 /home/Lexiiz3417/REVO 211080200174/c2_ongkos_pengiriman.py
+f 2026-10-30 18:13 /home/Lexiiz3417/REVO 211080200174/1b_konversi_durasi.py
+f 2026-10-30 18:16 /home/Lexiiz3417/REVO 211080200174/1a_biaya_fotokopi.py
+f 2026-10-30 20:10 /home/Lexiiz3417/.config/kactivitymanagerdrc
+f 2026-10-30 21:03 /home/Lexiiz3417/.config/emaildefaults
+f 2026-10-30 21:04 /home/Lexiiz3417/.config/kontact_summaryrc
+f 2026-10-30 21:07 /home/Lexiiz3417/.config/akonadi_contactrc
+f 2026-10-30 22:03 /home/Lexiiz3417/Downloads/Pertemuan 4 Operasi Bilangan Biner (Penjumlahan,Pengurangan dan Perkalian).pdf
+f 2026-10-30 22:03 /home/Lexiiz3417/Downloads/Pertemuan 5 Gerbang Logika.pdf
+f 2026-10-30 22:52 /home/Lexiiz3417/Downloads/Screenshot 2026-10-30 at 22-52-38 Models Try NVIDIA NIM APIs.png
+f 2026-10-30 22:53 /home/Lexiiz3417/Downloads/Screenshot 2026-10-30 at 22-53-03 Models Try NVIDIA NIM APIs.png
+f 2026-10-30 23:05 /home/Lexiiz3417/Downloads/Screenshot 2026-10-30 at 23-05-49 deepseek-v4.1-flash Model by Deepseek-ai NVIDIA NIM.png
+f 2026-10-31 00:31 /home/Lexiiz3417/.config/baloofileinformationrc
+f 2026-10-31 01:20 /home/Lexiiz3417/.config/khelpcenterrc
+f 2026-10-31 02:13 /home/Lexiiz3417/Pictures/Screenshot_20261031_021353.png
+f 2026-10-31 02:16 /home/Lexiiz3417/.config/systemsettingsrc
+f 2026-10-31 02:26 /home/Lexiiz3417/.config/plasma_calendar_holiday_regions
+f 2026-10-31 02:28 /home/Lexiiz3417/.config/plasma_calendar_alternatecalendar
+f 2026-10-31 08:14 /home/Lexiiz3417/.config/kioslaverc
+f 2026-10-31 08:15 /home/Lexiiz3417/Zotero/zotero.sqlite
+f 2026-10-31 08:15 /home/Lexiiz3417/Zotero/zotero.sqlite-wal
+f 2026-10-31 09:05 /home/Lexiiz3417/.config/kglobalshortcutsrc.bak-20261031-0905
+f 2026-10-31 11:09 /home/Lexiiz3417/.cache/plasma_theme_Scratchy.kcache
+f 2026-10-31 21:12 /home/Lexiiz3417/.config/kmailsearchindexingrc
+f 2026-10-31 21:12 /home/Lexiiz3417/.config/kontactrc
+f 2026-10-31 21:55 /home/Lexiiz3417/.cache/plasma_theme_Carl-custom.kcache
+f 2026-10-31 23:57 /home/Lexiiz3417/Downloads/Latihan Persiapan Praktikum - Revo Nagara Fisabilhaq(1).docx
+f 2026-10-31 23:58 /home/Lexiiz3417/Downloads/Materi_Persiapan_Praktikum_Sesi_1-1.pdf
+f 2026-11-01 00:52 /home/Lexiiz3417/.ollama/history
+f 2026-11-01 01:05 /home/Lexiiz3417/.ollama/config.json
+f 2026-11-01 01:14 /home/Lexiiz3417/.cache/plasma_theme_Monochrome_v0.7.kcache
+f 2026-11-01 03:17 /home/Lexiiz3417/.cache/plasma_theme_Shirokuro.kcache
+f 2026-11-01 11:30 /home/Lexiiz3417/.config/Trolltech.conf
+f 2026-11-01 12:07 /home/Lexiiz3417/.config/kaccessrc
+f 2026-11-01 12:20 /home/Lexiiz3417/.config/krdpserverrc
+f 2026-11-01 15:27 /home/Lexiiz3417/Downloads/Kunci latihan 1A, persiapan praktikum-1.pdf
+f 2026-11-01 20:11 /home/Lexiiz3417/Downloads/Materi_Persiapan_Praktikum_Sesi_1-1.odg
+f 2026-11-01 21:00 /home/Lexiiz3417/Downloads/Laporan Praktikum (Format Materi).docx
+f 2026-11-01 21:12 /home/Lexiiz3417/.config/konsolerc.bak-20261101T211248
+f 2026-11-01 21:43 /home/Lexiiz3417/.config/kdeglobals.bak-20261101T214337
+f 2026-11-01 22:40 /home/Lexiiz3417/.config/plasma-org.kde.plasma.desktop-appletsrc.bak-20261101T224035
+f 2026-11-02 15:51 /home/Lexiiz3417/.cache/plasma_theme_breeze-light.kcache
+f 2026-11-02 17:29 /home/Lexiiz3417/Downloads/Latihan Praktikum Revo Nagara Fisabilhaq 211080200174.docx
+f 2026-11-02 19:22 /home/Lexiiz3417/.config/kamosorc
+f 2026-11-03 00:02 /home/Lexiiz3417/.config/kwriterc
+f 2026-11-03 00:03 /home/Lexiiz3417/Downloads/Lexiiz3417 dnf repoquery --avail.txt
+f 2026-11-03 00:23 /home/Lexiiz3417/Downloads/ChatGPT - Bandingkan Compositor Fedora - 2026-11-03_00-23(1).md
+f 2026-11-03 00:23 /home/Lexiiz3417/Downloads/ChatGPT - Bandingkan Compositor Fedora - 2026-11-03_00-23.md
+f 2026-11-03 00:44 /home/Lexiiz3417/.gnupg/common.conf
+f 2026-11-03 00:46 /home/Lexiiz3417/.gnupg/trustdb.gpg
+f 2026-11-03 01:25 /home/Lexiiz3417/.config/kate-externaltoolspluginrc
+f 2026-11-03 03:21 /home/Lexiiz3417/udo
+f 2026-11-03 03:25 /home/Lexiiz3417/.cargo/.package-cache
+f 2026-11-03 03:25 /home/Lexiiz3417/.cargo/.package-cache-mutate
+f 2026-11-03 03:27 /home/Lexiiz3417/mprisence-build.log
+f 2026-11-03 03:42 /home/Lexiiz3417/.cargo/.global-cache
+f 2026-11-03 03:47 /home/Lexiiz3417/.cargo/.crates2.json
+f 2026-11-03 03:47 /home/Lexiiz3417/.cargo/.crates.toml
+f 2026-11-03 19:39 /home/Lexiiz3417/.cache/fuzzel
+f 2026-11-03 20:24 /home/Lexiiz3417/.config/kunifiedpush-org.kde.neochat
+f 2026-11-03 20:38 /home/Lexiiz3417/.cache/wayland-errors
+f 2026-11-03 20:42 /home/Lexiiz3417/kde-reset-backup-20261103-204201/config.tar.gz
+f 2026-11-03 20:42 /home/Lexiiz3417/kde-reset-backup-20261103-204201/reset.log
+f 2026-11-03 20:42 /home/Lexiiz3417/kde-reset-backup-20261103-204201/rpm-kde.txt
+f 2026-11-03 20:42 /home/Lexiiz3417/kde-reset-backup-20261103-204201/share.tar.gz
+f 2026-11-03 20:42 /home/Lexiiz3417/kde-reset-backup-20261103-204259/config.tar.gz
+f 2026-11-03 20:42 /home/Lexiiz3417/kde-reset-total.sh
+f 2026-11-03 20:43 /home/Lexiiz3417/kde-reset-backup-20261103-204259/reset.log
+f 2026-11-03 20:43 /home/Lexiiz3417/kde-reset-backup-20261103-204259/rpm-kde.txt
+f 2026-11-03 20:43 /home/Lexiiz3417/kde-reset-backup-20261103-204259/share.tar.gz
+f 2026-11-03 20:51 /home/Lexiiz3417/.config/konsolerc
+f 2026-11-03 22:01 /home/Lexiiz3417/.config/user-dirs.dirs
+f 2026-11-03 22:08 /home/Lexiiz3417/.config/plasma-nm
+f 2026-11-03 22:42 /home/Lexiiz3417/.config/kwinrc.bak.224228
+f 2026-11-03 23:20 /home/Lexiiz3417/setup-log.md
+f 2026-11-04 00:03 /home/Lexiiz3417/plasma-reset-backup/kde-config-backup.tar.gz
+f 2026-11-04 00:18 /home/Lexiiz3417/Downloads/reset-plasma-config.sh
+f 2026-11-04 00:23 /home/Lexiiz3417/.config/plasma-welcomerc
+f 2026-11-04 00:24 /home/Lexiiz3417/.config/PlasmaUserFeedback
+f 2026-11-04 00:37 /home/Lexiiz3417/.cache/plasma_theme_breeze-dark.kcache
+f 2026-11-04 01:56 /home/Lexiiz3417/.sentry-native/2166df4f-f57a-440d-d1fd-be2ccc2f4d4b.run.lock
+f 2026-11-04 01:56 /home/Lexiiz3417/.sentry-native/settings.dat
+f 2026-11-04 02:07 /home/Lexiiz3417/.config/klaunchrc
+f 2026-11-04 07:47 /home/Lexiiz3417/.config/powerdevilrc
+f 2026-11-04 08:08 /home/Lexiiz3417/.config/krunnerrc
+f 2026-11-04 08:13 /home/Lexiiz3417/Downloads/DigitalWorks.zip
+f 2026-11-04 08:13 /home/Lexiiz3417/Downloads/MODUL SISTEM DIGITAL 1-3.pdf
+f 2026-11-04 13:27 /home/Lexiiz3417/.config/kmenueditrc
+f 2026-11-04 13:29 /home/Lexiiz3417/.config/baloofilerc
+f 2026-11-04 13:29 /home/Lexiiz3417/.config/baloofilerc.bak
+f 2026-11-04 14:25 /home/Lexiiz3417/.config/eventviewsrc
+f 2026-11-04 14:25 /home/Lexiiz3417/.config/korganizerrc
+f 2026-11-04 14:30 /home/Lexiiz3417/.config/systemmonitorrc
+f 2026-11-04 14:37 /home/Lexiiz3417/.config/akonadi_ical_resource_0rc
+f 2026-11-04 14:37 /home/Lexiiz3417/.config/defaultcalendarrc
+f 2026-11-04 16:36 /home/Lexiiz3417/.config/kaddressbookrc
+f 2026-11-04 16:55 /home/Lexiiz3417/.config/merkuro.mailrc
+f 2026-11-04 16:57 /home/Lexiiz3417/.config/emailidentities
+f 2026-11-04 17:48 /home/Lexiiz3417/.config/kwalletmanagerrc
+f 2026-11-04 17:55 /home/Lexiiz3417/.config/kwalletrc
+f 2026-11-04 18:01 /home/Lexiiz3417/.config/akonadi_indexing_agentrc
+f 2026-11-04 18:01 /home/Lexiiz3417/.config/akonadi-migrationrc
+f 2026-11-04 18:16 /home/Lexiiz3417/.config/mailtransports
+f 2026-11-04 18:36 /home/Lexiiz3417/.config/kmail2rc
+f 2026-11-04 18:41 /home/Lexiiz3417/.config/akonadi_google_resource_0rc
+f 2026-11-04 18:43 /home/Lexiiz3417/.config/akonadi_maildir_resource_0rc
+f 2026-11-04 18:43 /home/Lexiiz3417/.config/akonadi_unifiedmailbox_agentrc
+f 2026-11-04 18:43 /home/Lexiiz3417/.config/foldermailarchiverc
+f 2026-11-04 18:47 /home/Lexiiz3417/.config/kalendarrc
+f 2026-11-04 18:54 /home/Lexiiz3417/.config/kwinrulesrc
+f 2026-11-04 18:56 /home/Lexiiz3417/.config/merkuro.calendarrc
+f 2026-11-04 20:28 /home/Lexiiz3417/.config/akonadi_imap_resource_2rc
+f 2026-11-04 20:43 /home/Lexiiz3417/grub-theme-backup/pre-clean-install.tar.gz
+f 2026-11-04 21:15 /home/Lexiiz3417/Desktop/kde-input-debug.sh
+f 2026-11-04 23:44 /home/Lexiiz3417/.config/plasma-localerc
+f 2026-11-05 08:19 /home/Lexiiz3417/Downloads/TUGAS_PERTEMUAN_1-5.docx
+f 2026-11-05 09:11 /home/Lexiiz3417/.cache/event-sound-cache.tdb.6681a10b6c5a4826aa0a27a5ae24ab45.x86_64-redhat-linux-gnu
+f 2026-11-05 11:44 /home/Lexiiz3417/.config/dolphinrc
+f 2026-11-05 11:46 /home/Lexiiz3417/.config/breezerc
+f 2026-11-05 12:12 /home/Lexiiz3417/.config/kleopatrarc
+f 2026-11-05 12:12 /home/Lexiiz3417/.gnupg/random_seed
+f 2026-11-05 12:41 /home/Lexiiz3417/Downloads/wallhaven-571je1_1920x1080.png
+f 2026-11-05 13:29 /home/Lexiiz3417/Revo_211080200174/revo_0174.html
+f 2026-11-05 13:34 /home/Lexiiz3417/Downloads/MODUL_PEMROGRAMAN_BERBASIS_WEB_(1-3)_2026_FIX.pdf
+f 2026-11-05 13:41 /home/Lexiiz3417/Revo_211080200174/0174.html
+f 2026-11-05 13:57 /home/Lexiiz3417/Revo_211080200174/revo_0174_1.html
+f 2026-11-05 14:05 /home/Lexiiz3417/Revo_211080200174/revo_0174_2.html
+f 2026-11-05 14:07 /home/Lexiiz3417/Downloads/lab-umsida.avif
+f 2026-11-05 14:07 /home/Lexiiz3417/Downloads/lab-umsida.jpg
+f 2026-11-05 14:09 /home/Lexiiz3417/Downloads/lab-umsida_11zon.webp
+f 2026-11-05 14:19 /home/Lexiiz3417/Downloads/acumalaka_04ZUCRu.mp3
+f 2026-11-05 14:27 /home/Lexiiz3417/Revo_211080200174/revo_0174_3.html
+f 2026-11-05 14:31 /home/Lexiiz3417/Revo_211080200174/revo_0174_4.html
+f 2026-11-05 14:33 /home/Lexiiz3417/Revo_211080200174/revo_0174_5.html
+f 2026-11-05 14:34 /home/Lexiiz3417/Revo_211080200174/revo_0174_6.html
+f 2026-11-05 14:36 /home/Lexiiz3417/Revo_211080200174/revo_0174_7.html
+f 2026-11-05 14:37 /home/Lexiiz3417/Revo_211080200174/revo_0174_8.html
+f 2026-11-05 14:39 /home/Lexiiz3417/Revo_211080200174/revo_0174_9.html
+f 2026-11-05 14:40 /home/Lexiiz3417/Revo_211080200174/revo_0174_10.html
+f 2026-11-05 14:42 /home/Lexiiz3417/Revo_211080200174/revo_0174_11.html
+f 2026-11-05 14:43 /home/Lexiiz3417/Revo_211080200174/revo_0174_13.html
+f 2026-11-05 14:46 /home/Lexiiz3417/Revo_211080200174/revo_0174_12.html
+f 2026-11-05 14:48 /home/Lexiiz3417/Revo_211080200174/revo_0174_14.html
+f 2026-11-05 14:49 /home/Lexiiz3417/Revo_211080200174/revo_0174_15.html
+f 2026-11-05 14:51 /home/Lexiiz3417/Revo_211080200174/revo_0174_16.html
+f 2026-11-05 14:56 /home/Lexiiz3417/Revo_211080200174/revo_0174_17.html
+f 2026-11-05 14:58 /home/Lexiiz3417/Revo_211080200174/revo_0174_18.html
+f 2026-11-05 14:59 /home/Lexiiz3417/Revo_211080200174/revo_0174_19.html
+f 2026-11-05 15:01 /home/Lexiiz3417/Revo_211080200174/revo_0174_20.html
+f 2026-11-05 15:03 /home/Lexiiz3417/Revo_211080200174/revo_0174_21.html
+f 2026-11-05 15:05 /home/Lexiiz3417/Revo_211080200174/revo_0174_22.html
+f 2026-11-05 15:07 /home/Lexiiz3417/Revo_211080200174/style.css
+f 2026-11-05 15:09 /home/Lexiiz3417/Revo_211080200174/revo_0174_23.html
+f 2026-11-05 15:11 /home/Lexiiz3417/Downloads/gemini-code-1793866312697.html
+f 2026-11-05 15:11 /home/Lexiiz3417/Revo_211080200174/revo_0174_24.html
+f 2026-11-05 15:13 /home/Lexiiz3417/Revo_211080200174/revo_0174_25.html
+f 2026-11-05 15:14 /home/Lexiiz3417/Downloads/bluesky.svg
+f 2026-11-05 15:15 /home/Lexiiz3417/Revo_211080200174/revo_0174_26.html
+f 2026-11-05 15:18 /home/Lexiiz3417/Revo_211080200174.tar.gz
+f 2026-11-05 15:33 /home/Lexiiz3417/Revo_211080200174/draft pbw.odt
+f 2026-11-05 16:48 /home/Lexiiz3417/.config/okularpartrc
+f 2026-11-05 16:48 /home/Lexiiz3417/.config/okularrc
+f 2026-11-05 17:04 /home/Lexiiz3417/.config/discoverrc
+f 2026-11-06 03:05 /home/Lexiiz3417/.bash_history
+f 2026-11-06 14:28 /home/Lexiiz3417/.config/elisarc
+f 2026-11-06 14:34 /home/Lexiiz3417/.config/plasmaparc
+f 2026-11-06 19:27 /home/Lexiiz3417/.config/konsolesshconfig
+f 2026-11-06 20:28 /home/Lexiiz3417/.config/kconf_updaterc
+f 2026-11-06 20:29 /home/Lexiiz3417/.cache/ksycoca6_en_l7CbfstGPFV+q90j9szF+q+fdz8=
+f 2026-11-06 22:57 /home/Lexiiz3417/.config/kcminputrc
+f 2026-11-06 22:57 /home/Lexiiz3417/.config/ksplashrc
+f 2026-11-06 22:57 /home/Lexiiz3417/.config/plasmarc
+f 2026-11-06 23:17 /home/Lexiiz3417/.config/QtProject.conf
+f 2026-11-06 23:30 /home/Lexiiz3417/.gitconfig
+f 2026-11-07 00:18 /home/Lexiiz3417/.config/katerc
+f 2026-11-07 00:20 /home/Lexiiz3417/home-config-audit.txt
+f 2026-11-07 02:18 /home/Lexiiz3417/Downloads/1405510.webp
+f 2026-11-07 02:35 /home/Lexiiz3417/.config/bluedevilglobalrc
+f 2026-11-07 04:14 /home/Lexiiz3417/.cache/kwinsession.kcache
+f 2026-11-07 04:14 /home/Lexiiz3417/.config/kded_device_automounterrc
+f 2026-11-07 12:57 /home/Lexiiz3417/.config/kwinoutputconfig.json
+f 2026-11-07 13:01 /home/Lexiiz3417/.gtkrc-2.0
+f 2026-11-07 13:03 /home/Lexiiz3417/.config/kglobalshortcutsrc
+f 2026-11-07 13:09 /home/Lexiiz3417/.cache/plasma_theme_default.kcache
+f 2026-11-07 13:11 /home/Lexiiz3417/.cache/ksvg-elements
+f 2026-11-07 13:20 /home/Lexiiz3417/.config/plasmashellrc
+f 2026-11-07 13:22 /home/Lexiiz3417/.config/plasma-org.kde.plasma.desktop-appletsrc
+f 2026-11-07 13:24 /home/Lexiiz3417/.config/gwenviewrc
+f 2026-11-07 13:24 /home/Lexiiz3417/.config/kwinrc
+f 2026-11-07 13:34 /home/Lexiiz3417/.config/kdeglobals
+f 2026-11-07 13:34 /home/Lexiiz3417/.config/plasmanotifyrc
+f 2026-11-07 13:34 /home/Lexiiz3417/.config/spectaclerc
+l 2026-11-07 13:14 /home/Lexiiz3417/Desktop/tugas
+
+========== 2. CONFIG DIRECTORIES ==========
+fish: do: command not found...
+Similar command is: 'od'
+fish: 
+do
+^^
+--- /home/Lexiiz3417/.config/opencode ---
+2026-11-01 13:17 3166 bytes /home/Lexiiz3417/.config/opencode/opencode.json
+2026-10-29 20:08 63 bytes /home/Lexiiz3417/.config/opencode/.gitignore
+2026-10-29 20:09 1080 bytes /home/Lexiiz3417/.config/opencode/node_modules/find-my-way-ts/LICENSE
+2026-10-29 20:09 308 bytes /home/Lexiiz3417/.config/opencode/node_modules/find-my-way-ts/README.md
+2026-10-29 20:09 898 bytes /home/Lexiiz3417/.config/opencode/node_modules/find-my-way-ts/package.json
+2026-10-29 20:09 1071 bytes /home/Lexiiz3417/.config/opencode/node_modules/fast-check/LICENSE
+2026-10-29 20:09 3028 bytes /home/Lexiiz3417/.config/opencode/node_modules/fast-check/package.json
+2026-10-29 20:09 42422 bytes /home/Lexiiz3417/.config/opencode/node_modules/fast-check/README.md
+2026-10-29 20:09 11357 bytes /home/Lexiiz3417/.config/opencode/node_modules/detect-libc/LICENSE
+2026-10-29 20:09 1278 bytes /home/Lexiiz3417/.config/opencode/node_modules/detect-libc/package.json
+2026-10-29 20:09 3215 bytes /home/Lexiiz3417/.config/opencode/node_modules/detect-libc/README.md
+2026-10-29 20:09 436 bytes /home/Lexiiz3417/.config/opencode/node_modules/detect-libc/index.d.ts
+2026-10-29 20:09 1079 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/LICENSE
+2026-10-29 20:09 2219 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/bin.js
+2026-10-29 20:09 398 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/build-test.js
+2026-10-29 20:09 390 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/index.js
+2026-10-29 20:09 7195 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/node-gyp-build.js
+2026-10-29 20:09 143 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/optional.js
+2026-10-29 20:09 897 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/package.json
+2026-10-29 20:09 2485 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/README.md
+2026-10-29 20:09 1116 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-command/license
+2026-10-29 20:09 387 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-command/index.js
+2026-10-29 20:09 558 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-command/package.json
+2026-10-29 20:09 495 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-command/readme.md
+2026-10-29 20:09 1105 bytes /home/Lexiiz3417/.config/opencode/node_modules/cross-spawn/LICENSE
+2026-10-29 20:09 1192 bytes /home/Lexiiz3417/.config/opencode/node_modules/cross-spawn/index.js
+2026-10-29 20:09 1655 bytes /home/Lexiiz3417/.config/opencode/node_modules/cross-spawn/package.json
+2026-10-29 20:09 4117 bytes /home/Lexiiz3417/.config/opencode/node_modules/cross-spawn/README.md
+2026-10-29 20:09 1065 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/LICENSE
+2026-10-29 20:09 1526 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/binding.gyp
+2026-10-29 20:09 72 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/index.js
+2026-10-29 20:09 2487 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/package.json
+2026-10-29 20:09 1012 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/README.md
+2026-10-29 20:09 1072 bytes /home/Lexiiz3417/.config/opencode/node_modules/zod/LICENSE
+2026-10-29 20:09 1486 bytes /home/Lexiiz3417/.config/opencode/node_modules/zod/index.cjs
+2026-10-29 20:09 123 bytes /home/Lexiiz3417/.config/opencode/node_modules/zod/index.d.cts
+2026-10-29 20:09 121 bytes /home/Lexiiz3417/.config/opencode/node_modules/zod/index.js
+2026-10-29 20:09 3796 bytes /home/Lexiiz3417/.config/opencode/node_modules/zod/package.json
+2026-10-29 20:09 6281 bytes /home/Lexiiz3417/.config/opencode/node_modules/zod/README.md
+2026-10-29 20:09 121 bytes /home/Lexiiz3417/.config/opencode/node_modules/zod/index.d.ts
+2026-10-29 20:09 765 bytes /home/Lexiiz3417/.config/opencode/node_modules/which/LICENSE
+2026-10-29 20:09 3163 bytes /home/Lexiiz3417/.config/opencode/node_modules/which/which.js
+2026-10-29 20:09 1043 bytes /home/Lexiiz3417/.config/opencode/node_modules/which/package.json
+2026-10-29 20:09 2667 bytes /home/Lexiiz3417/.config/opencode/node_modules/which/CHANGELOG.md
+2026-10-29 20:09 1352 bytes /home/Lexiiz3417/.config/opencode/node_modules/which/README.md
+2026-10-29 20:09 765 bytes /home/Lexiiz3417/.config/opencode/node_modules/ini/LICENSE
+2026-10-29 20:09 1068 bytes /home/Lexiiz3417/.config/opencode/node_modules/ini/package.json
+2026-10-29 20:09 3184 bytes /home/Lexiiz3417/.config/opencode/node_modules/ini/README.md
+2026-10-29 20:09 3611 bytes /home/Lexiiz3417/.config/opencode/node_modules/uuid/package.json
+2026-10-29 20:09 1109 bytes /home/Lexiiz3417/.config/opencode/node_modules/uuid/LICENSE.md
+2026-10-29 20:09 16402 bytes /home/Lexiiz3417/.config/opencode/node_modules/uuid/README.md
+2026-10-29 20:09 738 bytes /home/Lexiiz3417/.config/opencode/node_modules/yaml/LICENSE
+2026-10-29 20:09 80 bytes /home/Lexiiz3417/.config/opencode/node_modules/yaml/util.js
+2026-10-29 20:09 3254 bytes /home/Lexiiz3417/.config/opencode/node_modules/yaml/package.json
+2026-10-29 20:09 6266 bytes /home/Lexiiz3417/.config/opencode/node_modules/yaml/README.md
+2026-10-29 20:09 310 bytes /home/Lexiiz3417/.config/opencode/node_modules/yaml/bin.mjs
+2026-10-29 20:09 11583 bytes /home/Lexiiz3417/.config/opencode/node_modules/json-schema/LICENSE
+2026-10-29 20:09 597 bytes /home/Lexiiz3417/.config/opencode/node_modules/json-schema/package.json
+2026-10-29 20:09 821 bytes /home/Lexiiz3417/.config/opencode/node_modules/json-schema/README.md
+2026-10-29 20:09 1083 bytes /home/Lexiiz3417/.config/opencode/node_modules/effect/LICENSE
+2026-10-29 20:09 3208 bytes /home/Lexiiz3417/.config/opencode/node_modules/effect/package.json
+2026-10-29 20:09 2681 bytes /home/Lexiiz3417/.config/opencode/node_modules/effect/README.md
+2026-10-29 20:09 1109 bytes /home/Lexiiz3417/.config/opencode/node_modules/path-key/license
+2026-10-29 20:09 415 bytes /home/Lexiiz3417/.config/opencode/node_modules/path-key/index.js
+2026-10-29 20:09 650 bytes /home/Lexiiz3417/.config/opencode/node_modules/path-key/package.json
+2026-10-29 20:09 1347 bytes /home/Lexiiz3417/.config/opencode/node_modules/path-key/readme.md
+2026-10-29 20:09 1032 bytes /home/Lexiiz3417/.config/opencode/node_modules/path-key/index.d.ts
+2026-10-29 20:09 582 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/package.json
+2026-10-29 20:09 446 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/index.d.ts
+2026-10-29 20:09 42 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/index.js
+2026-10-29 20:09 1109 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/license
+2026-10-29 20:09 649 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/readme.md
+2026-10-29 20:09 1081 bytes /home/Lexiiz3417/.config/opencode/node_modules/multipasta/LICENSE
+2026-10-29 20:09 61 bytes /home/Lexiiz3417/.config/opencode/node_modules/multipasta/README.md
+2026-10-29 20:09 1434 bytes /home/Lexiiz3417/.config/opencode/node_modules/multipasta/package.json
+2026-10-29 20:09 1059 bytes /home/Lexiiz3417/.config/opencode/node_modules/toml/LICENSE
+2026-10-29 20:09 269 bytes /home/Lexiiz3417/.config/opencode/node_modules/toml/index.js
+2026-10-29 20:09 969 bytes /home/Lexiiz3417/.config/opencode/node_modules/toml/package.json
+2026-10-29 20:09 5743 bytes /home/Lexiiz3417/.config/opencode/node_modules/toml/README.md
+2026-10-29 20:09 1534 bytes /home/Lexiiz3417/.config/opencode/node_modules/toml/index.d.ts
+2026-10-29 20:09 1065 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/LICENSE
+2026-10-29 20:09 3850 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/index.d.cts
+2026-10-29 20:09 173 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/pack.d.cts
+2026-10-29 20:09 148 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/unpack.d.cts
+2026-10-29 20:09 456 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/index.js
+2026-10-29 20:09 6502 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/iterators.js
+2026-10-29 20:09 1166 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/node-index.js
+2026-10-29 20:09 53047 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/pack.js
+2026-10-29 20:09 2001 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/rollup.config.js
+2026-10-29 20:09 1567 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/stream.js
+2026-10-29 20:09 50 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/test-worker.js
+2026-10-29 20:09 43324 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/unpack.js
+2026-10-29 20:09 2572 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/package.json
+2026-10-29 20:09 5612 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/benchmark.md
+2026-10-29 20:09 32635 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/README.md
+2026-10-29 20:09 233 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/SECURITY.md
+2026-10-29 20:09 3850 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/index.d.ts
+2026-10-29 20:09 173 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/pack.d.ts
+2026-10-29 20:09 148 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/unpack.d.ts
+2026-10-29 20:09 786 bytes /home/Lexiiz3417/.config/opencode/node_modules/isexe/package.json
+2026-10-29 20:09 23 bytes /home/Lexiiz3417/.config/opencode/node_modules/isexe/.npmignore
+2026-10-29 20:09 1395 bytes /home/Lexiiz3417/.config/opencode/node_modules/isexe/README.md
+2026-10-29 20:09 765 bytes /home/Lexiiz3417/.config/opencode/node_modules/isexe/LICENSE
+2026-10-29 20:09 890 bytes /home/Lexiiz3417/.config/opencode/node_modules/isexe/windows.js
+2026-10-29 20:09 1192 bytes /home/Lexiiz3417/.config/opencode/node_modules/isexe/index.js
+2026-10-29 20:09 909 bytes /home/Lexiiz3417/.config/opencode/node_modules/isexe/mode.js
+2026-10-29 20:09 1071 bytes /home/Lexiiz3417/.config/opencode/node_modules/pure-rand/LICENSE
+2026-10-29 20:09 4580 bytes /home/Lexiiz3417/.config/opencode/node_modules/pure-rand/package.json
+2026-10-29 20:09 9680 bytes /home/Lexiiz3417/.config/opencode/node_modules/pure-rand/README.md
+2026-10-29 20:09 323 bytes /home/Lexiiz3417/.config/opencode/node_modules/kubernetes-types/package.json
+2026-10-29 20:09 1009 bytes /home/Lexiiz3417/.config/opencode/node_modules/kubernetes-types/README.md
+2026-10-29 20:09 1511 bytes /home/Lexiiz3417/.config/opencode/node_modules/kubernetes-types/runtime.d.ts
+2026-10-29 20:09 319 bytes /home/Lexiiz3417/.config/opencode/node_modules/kubernetes-types/version.d.ts
+2026-10-29 20:09 12144 bytes /home/Lexiiz3417/.config/opencode/node_modules/.package-lock.json
+2026-10-29 20:09 64 bytes /home/Lexiiz3417/.config/opencode/package.json
+2026-10-29 20:09 14627 bytes /home/Lexiiz3417/.config/opencode/package-lock.json
+2026-10-29 20:10 64 bytes /home/Lexiiz3417/.config/opencode/service.json
+2026-11-01 13:20 7493 bytes /home/Lexiiz3417/.config/opencode/AGENTS.md
+2026-10-29 21:44 1526 bytes /home/Lexiiz3417/.config/opencode/skills/coding-workflow/SKILL.md
+2026-10-29 21:44 1097 bytes /home/Lexiiz3417/.config/opencode/skills/debugging/SKILL.md
+2026-10-29 21:45 1105 bytes /home/Lexiiz3417/.config/opencode/skills/code-review/SKILL.md
+2026-10-29 21:45 983 bytes /home/Lexiiz3417/.config/opencode/skills/testing/SKILL.md
+2026-10-29 22:16 2152 bytes /home/Lexiiz3417/.config/opencode/skills/session-memory/SKILL.md
+2026-11-03 09:42 11810 bytes /home/Lexiiz3417/.config/opencode/skills/custom-hyprland-setup/SKILL.md
+2026-10-30 03:18 3930 bytes /home/Lexiiz3417/.config/opencode/memory/sessions/2026-10-30-grub-evangelion.md
+2026-10-29 22:17 988 bytes /home/Lexiiz3417/.config/opencode/memory/ALEXIA.md
+2026-10-30 11:35 1307 bytes /home/Lexiiz3417/.config/opencode/memory/USER.md
+2026-10-30 23:43 1528 bytes /home/Lexiiz3417/.config/opencode/memory/PREFERENCES.md
+2026-11-03 23:43 89696 bytes /home/Lexiiz3417/.config/opencode/memory/PROJECTS.md
+2026-11-02 19:59 101168 bytes /home/Lexiiz3417/.config/opencode/memory/CUSTOM_COMMAND.md
+2026-10-29 22:18 682 bytes /home/Lexiiz3417/.config/opencode/commands/remember.md
+2026-10-29 22:18 714 bytes /home/Lexiiz3417/.config/opencode/commands/inget.md
+2026-10-29 22:15 4339 bytes /home/Lexiiz3417/.config/opencode/AGENTS.md.bak-20261030T0419
+2026-10-30 04:19 28853 bytes /home/Lexiiz3417/.config/opencode/completion.bash
+2026-10-31 15:01 2148408 bytes /home/Lexiiz3417/.config/opencode/assets/alexia-portrait.png
+2026-10-31 15:01 1355593 bytes /home/Lexiiz3417/.config/opencode/assets/alexia-portrait.old.bak
+2026-11-01 16:31 1355593 bytes /home/Lexiiz3417/.config/opencode/assets/alexia-portrait-face.png
+2026-11-01 21:00 15053 bytes /home/Lexiiz3417/.config/opencode/assets/alexia-portrait-face.txt
+2026-10-29 20:08 316 bytes /home/Lexiiz3417/.config/opencode/opencode.json.bak-20261030T210553
+2026-10-31 02:52 973 bytes /home/Lexiiz3417/.config/opencode/cli.json
+2026-10-30 23:42 11249 bytes /home/Lexiiz3417/.config/opencode/plugins-disabled/alexia-fallback/index.js
+2026-11-01 13:17 2679 bytes /home/Lexiiz3417/.config/opencode/opencode.json.bak-20261101T131700
+fish: do: command not found...
+Similar command is: 'od'
+fish: 
+do
+^^
+--- /home/Lexiiz3417/.config/fish ---
+2026-10-31 11:27 106 bytes /home/Lexiiz3417/.config/fish/config.fish
+2026-11-01 13:20 1442 bytes /home/Lexiiz3417/.config/fish/completions/alexia.fish
+2026-11-06 19:43 618 bytes /home/Lexiiz3417/.config/fish/conf.d/terminal-tools.fish
+2026-11-06 20:24 979 bytes /home/Lexiiz3417/.config/fish/conf.d/syntax-colors.fish
+2026-11-06 23:35 745 bytes /home/Lexiiz3417/.config/fish/conf.d/abbreviations.fish
+2026-11-07 13:01 350 bytes /home/Lexiiz3417/.config/fish/conf.d/prompt-theme.fish
+2026-11-06 19:01 1813 bytes /home/Lexiiz3417/.config/fish/functions/fish_prompt.fish
+2026-11-06 21:15 348 bytes /home/Lexiiz3417/.config/fish/functions/sysinfo.fish
+2026-11-06 22:42 204 bytes /home/Lexiiz3417/.config/fish/functions/svcstatus.fish
+2026-11-06 21:17 115 bytes /home/Lexiiz3417/.config/fish/functions/journalerr.fish
+2026-11-03 03:50 263 bytes /home/Lexiiz3417/.config/fish/fish_variables
+fish: do: command not found...
+Similar command is: 'od'
+fish: 
+do
+^^
+--- /home/Lexiiz3417/.config/kitty ---
+2026-11-05 17:21 1387 bytes /home/Lexiiz3417/.config/kitty/kitty.conf.bak
+2026-11-01 21:42 162 bytes /home/Lexiiz3417/.config/kitty/kitty.conf.bak-20261101T214248
+2026-11-02 15:19 1321 bytes /home/Lexiiz3417/.config/kitty/kitty.conf.bak-20261102T151945
+2026-11-02 15:19 357 bytes /home/Lexiiz3417/.config/kitty/light-theme.auto.conf.bak-20261102T151945
+2026-11-02 15:19 3020 bytes /home/Lexiiz3417/.config/kitty/dark-theme.auto.conf.bak-20261102T151945
+2026-11-02 15:19 3020 bytes /home/Lexiiz3417/.config/kitty/current-theme.conf.bak-20261102T151945
+2026-11-05 17:21 3427 bytes /home/Lexiiz3417/.config/kitty/dark-theme.auto.conf.bak
+2026-11-06 02:51 964 bytes /home/Lexiiz3417/.config/kitty/backup/kitty.conf.before-accent
+2026-11-02 15:20 1794 bytes /home/Lexiiz3417/.config/kitty/backup/kitty-theme-sync.before-accent
+2026-11-06 23:20 1042 bytes /home/Lexiiz3417/.config/kitty/kitty.conf
+2026-11-06 02:43 3912 bytes /home/Lexiiz3417/.config/kitty/dark-theme.base.conf
+2026-11-06 15:43 1136 bytes /home/Lexiiz3417/.config/kitty/light-theme.base.conf
+2026-11-06 22:57 3912 bytes /home/Lexiiz3417/.config/kitty/current-theme.conf
+2026-11-07 13:01 115 bytes /home/Lexiiz3417/.config/kitty/plasma-accent.conf
+fish: do: command not found...
+Similar command is: 'od'
+fish: 
+do
+^^
+--- /home/Lexiiz3417/.config/systemd/user ---
+2026-11-06 16:03 142 bytes /home/Lexiiz3417/.config/systemd/user/kitty-theme-sync.service
+2026-11-06 15:59 202 bytes /home/Lexiiz3417/.config/systemd/user/kitty-theme-sync.path
+2026-11-02 15:29 194 bytes /home/Lexiiz3417/.config/systemd/user/kitty-theme-sync.timer
+fish: do: command not found...
+Similar command is: 'od'
+fish: 
+do
+^^
+--- /home/Lexiiz3417/.local/bin ---
+2026-11-01 15:08 2397 bytes /home/Lexiiz3417/.local/bin/alexia
+2026-11-02 17:22 35501 bytes /home/Lexiiz3417/.local/bin/alexia-splash.py
+2026-10-30 15:31 6329 bytes /home/Lexiiz3417/.local/bin/__pycache__/alexia-title.cpython-314.pyc
+2026-11-02 17:23 54749 bytes /home/Lexiiz3417/.local/bin/__pycache__/alexia-splash.cpython-314.pyc
+2026-11-03 20:04 13510 bytes /home/Lexiiz3417/.local/bin/__pycache__/panel-autohidecpython-314.pyc
+2026-10-30 15:33 3423 bytes /home/Lexiiz3417/.local/bin/alexia-title.py
+2026-10-31 08:29 2673 bytes /home/Lexiiz3417/.local/bin/touchpad-diag.sh
+2026-10-31 09:00 3027 bytes /home/Lexiiz3417/.local/bin/usb-replug.sh
+2026-10-31 14:54 12565272 bytes /home/Lexiiz3417/.local/bin/starship
+2026-10-31 20:54 5591 bytes /home/Lexiiz3417/.local/bin/shirokuro-icons-build.py
+2026-10-31 20:11 17241584 bytes /home/Lexiiz3417/.local/bin/rmpc
+2026-10-31 15:06 5488 bytes /home/Lexiiz3417/.local/bin/alexia.bak-20261101T131846
+2026-11-02 15:20 31658 bytes /home/Lexiiz3417/.local/bin/alexia-splash.py.bak-20261102T152045
+2026-11-02 15:43 1216 bytes /home/Lexiiz3417/.local/bin/plasma-theme-mode
+2026-11-02 17:23 9352 bytes /home/Lexiiz3417/.local/bin/alexia-remover.py
+2026-11-06 22:55 5299 bytes /home/Lexiiz3417/.local/bin/kitty-theme-sync
+fish: do: command not found...
+Similar command is: 'od'
+fish: 
+do
+^^
+--- /home/Lexiiz3417/.local/share/applications ---
+2026-10-30 00:09 375 bytes /home/Lexiiz3417/.local/share/applications/zotero.desktop
+2026-11-03 23:43 53 bytes /home/Lexiiz3417/.local/share/applications/mimeinfo.cache
+2026-11-04 13:27 400 bytes /home/Lexiiz3417/.local/share/applications/alexia.desktop
+fish: do: command not found...
+Similar command is: 'od'
+fish: 
+do
+^^
+--- /home/Lexiiz3417/.local/share/systemd/user ---
+NOT FOUND
+
+========== 3. USER SERVICES ==========
+UNIT FILE                                                              STATE     PRESET  
+drkonqi-sentry-postman.path                                            disabled  disabled
+kitty-theme-sync.path                                                  enabled   disabled
+kitty-87444-0.scope                                                    transient -       
+akonadi_control.service                                                static    -       
+app-geoclue\x2ddemo\x2dagent@autostart.service                         generated -       
+app-kitty@fdabf738a3554483ab51833804cd1cdd.service                     transient -       
+app-kxkb2locale1@autostart.service                                     generated -       
+app-liveinst\x2dsetup@autostart.service                                generated -       
+app-org.freedesktop.problems.applet@autostart.service                  generated -       
+app-org.kde.kalendarac@autostart.service                               generated -       
+app-org.kde.kate@5ade8fa2f2964c92b6163843975aa7a6.service              transient -       
+app-org.kde.kdeconnect.daemon@autostart.service                        generated -       
+app-org.kde.krdpserver.service                                         disabled  disabled
+app-org.kde.plasma\x2dfallback\x2dsession\x2drestore@autostart.service generated -       
+app-org.kde.spectacle.service                                          static    -       
+app-org.kde.xwaylandvideobridge@autostart.service                      generated -       
+app-org.mozilla.firefox@3fb207bfe64047dfa87658954405b188.service       transient -       
+app-pano\x2dscrobbler@autostart.service                                generated -       
+app-sealertauto@autostart.service                                      generated -       
+at-spi-dbus-bus.service                                                static    -       
+cgroupify@.service                                                     static    -       
+colord-session.service                                                 static    -       
+dbus-:1.2-org.kde.kwalletd6@0.service                                  transient -       
+dbus-:1.30-org.a11y.atspi.Registry@0.service                           transient -       
+dbus-broker.service                                                    enabled   enabled 
+dbus-daemon.service                                                    disabled  disabled
+dbus-org.bluez.obex.service                                            alias     -       
+dbus.service                                                           alias     -       
+dconf.service                                                          static    -       
+dirmngr.service                                                        static    -       
+drkonqi-coredump-cleanup.service                                       disabled  disabled
+drkonqi-coredump-launcher@.service                                     static    -       
+drkonqi-coredump-pickup.service                                        disabled  disabled
+drkonqi-sentry-postman.service                                         static    -       
+filter-chain.service                                                   disabled  disabled
+flatpak-oci-authenticator.service                                      static    -       
+flatpak-portal.service                                                 static    -       
+flatpak-session-helper.service                                         static    -       
+gamemoded.service                                                      disabled  disabled
+gcr-ssh-agent.service                                                  disabled  disabled
+glib-pacrunner.service                                                 static    -       
+gpg-agent.service                                                      static    -       
+grub-boot-success.service                                              static    -       
+gssuserproxy.service                                                   static    -       
+gvfs-daemon.service                                                    static    -       
+gvfs-metadata.service                                                  static    -       
+gvfs-udisks2-volume-monitor.service                                    static    -       
+kde-baloo.service                                                      disabled  disabled
+keyboxd.service                                                        static    -       
+kio-fuse.service                                                       static    -       
+kitty-theme-sync.service                                               static    -       
+kunifiedpush-distributor.service                                       disabled  disabled
+locale1-x11-sync.service                                               disabled  disabled
+mpris-proxy.service                                                    disabled  enabled 
+obex.service                                                           enabled   enabled 
+orca.service                                                           disabled  disabled
+p11-kit-server.service                                                 disabled  disabled
+pipewire-pulse.service                                                 disabled  disabled
+pipewire-session-manager.service                                       alias     -       
+pipewire.service                                                       disabled  disabled
+plasma-baloorunner.service                                             static    -       
+plasma-dolphin.service                                                 static    -       
+plasma-gmenudbusmenuproxy.service                                      static    -       
+plasma-kaccess.service                                                 static    -       
+plasma-kactivitymanagerd.service                                       static    -       
+plasma-kded6.service                                                   static    -       
+plasma-knighttimed.service                                             static    -       
+plasma-krunner.service                                                 static    -       
+plasma-kscreen-osd.service                                             static    -       
+plasma-ksmserver.service                                               disabled  disabled
+plasma-ksplash.service                                                 static    -       
+plasma-ksystemstats.service                                            static    -       
+plasma-kwallet-pam.service                                             static    -       
+plasma-kwin_wayland.service                                            static    -       
+plasma-login-kwin_wayland.service                                      static    -       
+plasma-login.service                                                   static    -       
+plasma-plasmashell.service                                             disabled  disabled
+plasma-polkit-agent.service                                            static    -       
+plasma-powerdevil.service                                              static    -       
+plasma-restoresession.service                                          static    -       
+plasma-startupsound.service                                            static    -       
+plasma-wallpaper.service                                               static    -       
+plasma-xdg-desktop-portal-kde.service                                  static    -       
+plasma-xembedsniproxy.service                                          static    -       
+podman-auto-update.service                                             disabled  disabled
+podman-clean-transient.service                                         disabled  disabled
+podman-kube@.service                                                   disabled  disabled
+podman-restart.service                                                 disabled  disabled
+podman-user-wait-network-online.service                                static    -       
+podman.service                                                         disabled  disabled
+speech-dispatcher.service                                              static    -       
+ssh-agent.service                                                      indirect  disabled
+systemd-ask-password@.service                                          static    -       
+systemd-exit.service                                                   static    -       
+systemd-journalctl@.service                                            static    -       
+systemd-storage-fs@.service                                            static    -       
+systemd-tmpfiles-clean.service                                         static    -       
+systemd-tmpfiles-setup.service                                         enabled   enabled 
+tinysparql-xdg-portal-3.service                                        static    -       
+unity-gtk-module.service                                               disabled  disabled
+uresourced.service                                                     static    -       
+wireplumber.service                                                    enabled   enabled 
+wireplumber@.service                                                   disabled  disabled
+xdg-desktop-portal-gtk.service                                         static    -       
+xdg-desktop-portal-rewrite-launchers.service                           disabled  disabled
+xdg-desktop-portal.service                                             static    -       
+xdg-document-portal.service                                            static    -       
+xdg-permission-store.service                                           static    -       
+xdg-user-dirs.service                                                  enabled   enabled 
+xsettingsd.service                                                     static    -       
+app.slice                                                              static    -       
+background.slice                                                       static    -       
+session.slice                                                          static    -       
+dbus.socket                                                            enabled   enabled 
+dirmngr.socket                                                         disabled  disabled
+drkonqi-coredump-launcher.socket                                       disabled  disabled
+gcr-ssh-agent.socket                                                   disabled  disabled
+gpg-agent-browser.socket                                               disabled  disabled
+gpg-agent-extra.socket                                                 disabled  disabled
+gpg-agent-ssh.socket                                                   disabled  disabled
+gpg-agent.socket                                                       disabled  disabled
+gssuserproxy.socket                                                    disabled  disabled
+keyboxd.socket                                                         disabled  disabled
+p11-kit-server.socket                                                  disabled  disabled
+pipewire-pulse.socket                                                  enabled   enabled 
+pipewire.socket                                                        enabled   enabled 
+podman.socket                                                          disabled  disabled
+speech-dispatcher.socket                                               disabled  disabled
+ssh-agent.socket                                                       disabled  disabled
+systemd-ask-password.socket                                            static    -       
+systemd-journalctl.socket                                              static    -       
+systemd-storage-fs.socket                                              disabled  disabled
+basic.target                                                           static    -       
+bluetooth.target                                                       static    -       
+capsule@.target                                                        static    -       
+default.target                                                         static    -       
+exit.target                                                            static    -       
+graphical-session-pre.target                                           static    -       
+graphical-session.target                                               static    -       
+paths.target                                                           static    -       
+plasma-core.target                                                     static    -       
+plasma-login-wayland.target                                            static    -       
+plasma-workspace-wayland.target                                        static    -       
+plasma-workspace.target                                                static    -       
+printer.target                                                         static    -       
+shutdown.target                                                        static    -       
+smartcard.target                                                       static    -       
+sockets.target                                                         static    -       
+sound.target                                                           static    -       
+timers.target                                                          static    -       
+xdg-desktop-autostart.target                                           static    -       
+drkonqi-coredump-cleanup.timer                                         disabled  disabled
+drkonqi-sentry-postman.timer                                           disabled  disabled
+grub-boot-success.timer                                                enabled   enabled 
+kitty-theme-sync.timer                                                 enabled   disabled
+podman-auto-update.timer                                               disabled  disabled
+systemd-tmpfiles-clean.timer                                           enabled   enabled 
+
+157 unit files listed.
+
+  UNIT                            LOAD      ACTIVE   SUB     DESCRIPTION                     
+  akonadi_control.service         loaded    active   running Akonadi Control
+  app-geoclue\x2ddemo\x2dagent@a… loaded    active   running Geoclue Demo agent
+  app-kitty@fdabf738a3554483ab51… loaded    active   running kitty - Terminal emulator
+  app-kxkb2locale1@autostart.ser… loaded    inactive dead    Kxkb to Locale1 synchronization…
+  app-liveinst\x2dsetup@autostar… loaded    inactive dead    Liveinst Setup
+  app-org.freedesktop.problems.a… loaded    active   running Problem Reporting
+  app-org.kde.kalendarac@autosta… loaded    active   running Calendar Reminders
+  app-org.kde.kate@5ade8fa2f2964… loaded    active   running Kate - Advanced Text Editor
+  app-org.kde.kdeconnect.daemon@… loaded    active   running KDE Connect
+  app-org.kde.plasma\x2dfallback… loaded    inactive dead    Plasma Session Restore
+  app-org.kde.xwaylandvideobridg… loaded    active   running Xwayland Video Bridge
+  app-org.mozilla.firefox@3fb207… loaded    active   running Firefox - Web Browser
+  app-pano\x2dscrobbler@autostar… loaded    active   running Pano Scrobbler
+  app-sealertauto@autostart.serv… loaded    active   running SELinux Troubleshooter
+  at-spi-dbus-bus.service         loaded    active   running Accessibility services bus
+  dbus-:1.2-org.kde.kwalletd6@0.… loaded    active   running dbus-:1.2-org.kde.kwalletd6@0.s…
+  dbus-:1.30-org.a11y.atspi.Regi… loaded    active   running dbus-:1.30-org.a11y.atspi.Regis…
+  dbus-broker.service             loaded    active   running D-Bus User Message Bus
+  dconf.service                   loaded    active   running User preferences database
+  drkonqi-coredump-cleanup.servi… loaded    inactive dead    Cleaning DrKonqi data
+  drkonqi-coredump-pickup.service loaded    inactive dead    Consume pending crashes using D…
+  drkonqi-sentry-postman.service  loaded    inactive dead    Submitting pending crash events
+  gcr-ssh-agent.service           loaded    inactive dead    GCR ssh-agent wrapper
+● gnome-session.service           not-found inactive dead    gnome-session.service
+  grub-boot-success.service       loaded    inactive dead    Mark boot as successful
+  gvfs-daemon.service             loaded    active   running Virtual filesystem service
+  gvfs-metadata.service           loaded    active   running Virtual filesystem metadata ser…
+  kde-baloo.service               loaded    active   running Baloo File Indexer Daemon
+  kitty-theme-sync.service        loaded    inactive dead    Sync kitty colors with the KDE …
+  kunifiedpush-distributor.servi… loaded    active   running KUnifiedPush Distributor
+  obex.service                    loaded    active   running Bluetooth OBEX service
+● pipewire-media-session.service  not-found inactive dead    pipewire-media-session.service
+  pipewire-pulse.service          loaded    active   running PipeWire PulseAudio
+  pipewire.service                loaded    active   running PipeWire Multimedia Service
+  plasma-baloorunner.service      loaded    active   running KRunner provider for baloo file…
+  plasma-dolphin.service          loaded    active   running Dolphin file manager
+● plasma-foreground-booster.serv… not-found inactive dead    plasma-foreground-booster.servi…
+  plasma-gmenudbusmenuproxy.serv… loaded    active   running Proxies GTK DBus menus to a Pla…
+  plasma-kaccess.service          loaded    active   running KAccess
+  plasma-kactivitymanagerd.servi… loaded    active   running KActivityManager Activity manag…
+● plasma-kcminit.service          not-found inactive dead    plasma-kcminit.service
+  plasma-kded6.service            loaded    active   running KDE Daemon 6
+● plasma-kglobalaccel.service     not-found inactive dead    plasma-kglobalaccel.service
+  plasma-knighttimed.service      loaded    active   running KDE Night Time Service
+  plasma-krunner.service          loaded    active   running KRunner
+  plasma-ksmserver.service        loaded    active   running KDE Session Management Server
+  plasma-kwallet-pam.service      loaded    inactive dead    Unlock kwallet from pam credent…
+  plasma-kwin_wayland.service     loaded    active   running KDE Wayland Compositor
+  plasma-plasmashell.service      loaded    active   running KDE Plasma Workspace
+  plasma-polkit-agent.service     loaded    active   running KDE PolicyKit Authentication Ag…
+  plasma-powerdevil.service       loaded    active   running Powerdevil
+  plasma-restoresession.service   loaded    inactive dead    KDE Session Restoration
+  plasma-startupsound.service     loaded    inactive dead    KDE Startup Sound
+  plasma-xdg-desktop-portal-kde.… loaded    active   running Xdg Desktop Portal For KDE
+  plasma-xembedsniproxy.service   loaded    active   running Handle legacy xembed system tra…
+● pulseaudio.service              not-found inactive dead    pulseaudio.service
+  ssh-agent.service               loaded    active   running OpenSSH key agent
+● systemd-oomd.service            not-found inactive dead    systemd-oomd.service
+  systemd-tmpfiles-clean.service  loaded    inactive dead    Cleanup of User's Temporary Fil…
+  systemd-tmpfiles-setup.service  loaded    active   exited  Create User Files and Directori…
+  unity-gtk-module.service        loaded    active   exited  Unity GTK Module Environment va…
+● unity-panel-service.service     not-found inactive dead    unity-panel-service.service
+● unity7.service                  not-found inactive dead    unity7.service
+  uresourced.service              loaded    active   running User resource assignment daemon
+● warp-desktop-svc.service        not-found inactive dead    warp-desktop-svc.service
+  wireplumber.service             loaded    active   running Multimedia Service Session Mana…
+  xdg-desktop-portal-gtk.service  loaded    active   running Portal service (GTK/GNOME imple…
+  xdg-desktop-portal.service      loaded    active   running Portal service
+  xdg-document-portal.service     loaded    active   running flatpak document portal service
+  xdg-permission-store.service    loaded    active   running sandboxed app permission store
+  xdg-user-dirs.service           loaded    inactive dead    User folders update
+
+Legend: LOAD   → Reflects whether the unit definition was properly loaded.
+        ACTIVE → The high-level unit activation state, i.e. generalization of SUB.
+        SUB    → The low-level unit activation state, values depend on unit type.
+
+71 loaded units listed.
+To show all installed unit files use 'systemctl list-unit-files'.
+
+========== 4. USER TIMERS ==========
+NEXT                  LEFT LAST                    PASSED UNIT              ACTIVATES        
+Sat 2026-11-07 …        9s Sat 2026-11-07 1… 1min 50s ago kitty-theme-sync… kitty-theme-sync…
+Sun 2026-11-08 …       14h Sat 2026-11-07 0…       9h ago systemd-tmpfiles… systemd-tmpfiles…
+Mon 2026-11-09 … 1 day 10h -                            - drkonqi-coredump… drkonqi-coredump…
+-                        - -                            - drkonqi-sentry-p… drkonqi-sentry-p…
+-                        - Sat 2026-11-07 0…       9h ago grub-boot-succes… grub-boot-succes…
+
+5 timers listed.
+
+========== 5. AUTOSTART ==========
+Permissions Size User       Date Modified Name
+.rw-r--r--@  249 Lexiiz3417  3 Nov 23:22   pano-scrobbler.desktop
+
+========== 6. OPENCode VERSION ==========
+/home/Lexiiz3417/.opencode/bin/opencode
+opencode v2.2.5
+
+========== 7. OPENCode DIRECTORY METADATA ==========
+--- /home/Lexiiz3417/.config/opencode ---
+67M	/home/Lexiiz3417/.config/opencode
+2026-11-01 13:17 3166 bytes /home/Lexiiz3417/.config/opencode/opencode.json
+2026-10-29 20:08 63 bytes /home/Lexiiz3417/.config/opencode/.gitignore
+2026-10-29 20:09 1080 bytes /home/Lexiiz3417/.config/opencode/node_modules/find-my-way-ts/LICENSE
+2026-10-29 20:09 308 bytes /home/Lexiiz3417/.config/opencode/node_modules/find-my-way-ts/README.md
+2026-10-29 20:09 898 bytes /home/Lexiiz3417/.config/opencode/node_modules/find-my-way-ts/package.json
+2026-10-29 20:09 1071 bytes /home/Lexiiz3417/.config/opencode/node_modules/fast-check/LICENSE
+2026-10-29 20:09 3028 bytes /home/Lexiiz3417/.config/opencode/node_modules/fast-check/package.json
+2026-10-29 20:09 42422 bytes /home/Lexiiz3417/.config/opencode/node_modules/fast-check/README.md
+2026-10-29 20:09 11357 bytes /home/Lexiiz3417/.config/opencode/node_modules/detect-libc/LICENSE
+2026-10-29 20:09 1278 bytes /home/Lexiiz3417/.config/opencode/node_modules/detect-libc/package.json
+2026-10-29 20:09 3215 bytes /home/Lexiiz3417/.config/opencode/node_modules/detect-libc/README.md
+2026-10-29 20:09 436 bytes /home/Lexiiz3417/.config/opencode/node_modules/detect-libc/index.d.ts
+2026-10-29 20:09 1079 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/LICENSE
+2026-10-29 20:09 2219 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/bin.js
+2026-10-29 20:09 398 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/build-test.js
+2026-10-29 20:09 390 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/index.js
+2026-10-29 20:09 7195 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/node-gyp-build.js
+2026-10-29 20:09 143 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/optional.js
+2026-10-29 20:09 897 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/package.json
+2026-10-29 20:09 2485 bytes /home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/README.md
+2026-10-29 20:09 1116 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-command/license
+2026-10-29 20:09 387 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-command/index.js
+2026-10-29 20:09 558 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-command/package.json
+2026-10-29 20:09 495 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-command/readme.md
+2026-10-29 20:09 1105 bytes /home/Lexiiz3417/.config/opencode/node_modules/cross-spawn/LICENSE
+2026-10-29 20:09 1192 bytes /home/Lexiiz3417/.config/opencode/node_modules/cross-spawn/index.js
+2026-10-29 20:09 1655 bytes /home/Lexiiz3417/.config/opencode/node_modules/cross-spawn/package.json
+2026-10-29 20:09 4117 bytes /home/Lexiiz3417/.config/opencode/node_modules/cross-spawn/README.md
+2026-10-29 20:09 1065 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/LICENSE
+2026-10-29 20:09 1526 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/binding.gyp
+2026-10-29 20:09 72 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/index.js
+2026-10-29 20:09 2487 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/package.json
+2026-10-29 20:09 1012 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/README.md
+2026-10-29 20:09 1072 bytes /home/Lexiiz3417/.config/opencode/node_modules/zod/LICENSE
+2026-10-29 20:09 1486 bytes /home/Lexiiz3417/.config/opencode/node_modules/zod/index.cjs
+2026-10-29 20:09 123 bytes /home/Lexiiz3417/.config/opencode/node_modules/zod/index.d.cts
+2026-10-29 20:09 121 bytes /home/Lexiiz3417/.config/opencode/node_modules/zod/index.js
+2026-10-29 20:09 3796 bytes /home/Lexiiz3417/.config/opencode/node_modules/zod/package.json
+2026-10-29 20:09 6281 bytes /home/Lexiiz3417/.config/opencode/node_modules/zod/README.md
+2026-10-29 20:09 121 bytes /home/Lexiiz3417/.config/opencode/node_modules/zod/index.d.ts
+2026-10-29 20:09 765 bytes /home/Lexiiz3417/.config/opencode/node_modules/which/LICENSE
+2026-10-29 20:09 3163 bytes /home/Lexiiz3417/.config/opencode/node_modules/which/which.js
+2026-10-29 20:09 1043 bytes /home/Lexiiz3417/.config/opencode/node_modules/which/package.json
+2026-10-29 20:09 2667 bytes /home/Lexiiz3417/.config/opencode/node_modules/which/CHANGELOG.md
+2026-10-29 20:09 1352 bytes /home/Lexiiz3417/.config/opencode/node_modules/which/README.md
+2026-10-29 20:09 765 bytes /home/Lexiiz3417/.config/opencode/node_modules/ini/LICENSE
+2026-10-29 20:09 1068 bytes /home/Lexiiz3417/.config/opencode/node_modules/ini/package.json
+2026-10-29 20:09 3184 bytes /home/Lexiiz3417/.config/opencode/node_modules/ini/README.md
+2026-10-29 20:09 3611 bytes /home/Lexiiz3417/.config/opencode/node_modules/uuid/package.json
+2026-10-29 20:09 1109 bytes /home/Lexiiz3417/.config/opencode/node_modules/uuid/LICENSE.md
+2026-10-29 20:09 16402 bytes /home/Lexiiz3417/.config/opencode/node_modules/uuid/README.md
+2026-10-29 20:09 738 bytes /home/Lexiiz3417/.config/opencode/node_modules/yaml/LICENSE
+2026-10-29 20:09 80 bytes /home/Lexiiz3417/.config/opencode/node_modules/yaml/util.js
+2026-10-29 20:09 3254 bytes /home/Lexiiz3417/.config/opencode/node_modules/yaml/package.json
+2026-10-29 20:09 6266 bytes /home/Lexiiz3417/.config/opencode/node_modules/yaml/README.md
+2026-10-29 20:09 310 bytes /home/Lexiiz3417/.config/opencode/node_modules/yaml/bin.mjs
+2026-10-29 20:09 11583 bytes /home/Lexiiz3417/.config/opencode/node_modules/json-schema/LICENSE
+2026-10-29 20:09 597 bytes /home/Lexiiz3417/.config/opencode/node_modules/json-schema/package.json
+2026-10-29 20:09 821 bytes /home/Lexiiz3417/.config/opencode/node_modules/json-schema/README.md
+2026-10-29 20:09 1083 bytes /home/Lexiiz3417/.config/opencode/node_modules/effect/LICENSE
+2026-10-29 20:09 3208 bytes /home/Lexiiz3417/.config/opencode/node_modules/effect/package.json
+2026-10-29 20:09 2681 bytes /home/Lexiiz3417/.config/opencode/node_modules/effect/README.md
+2026-10-29 20:09 1109 bytes /home/Lexiiz3417/.config/opencode/node_modules/path-key/license
+2026-10-29 20:09 415 bytes /home/Lexiiz3417/.config/opencode/node_modules/path-key/index.js
+2026-10-29 20:09 650 bytes /home/Lexiiz3417/.config/opencode/node_modules/path-key/package.json
+2026-10-29 20:09 1347 bytes /home/Lexiiz3417/.config/opencode/node_modules/path-key/readme.md
+2026-10-29 20:09 1032 bytes /home/Lexiiz3417/.config/opencode/node_modules/path-key/index.d.ts
+2026-10-29 20:09 582 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/package.json
+2026-10-29 20:09 446 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/index.d.ts
+2026-10-29 20:09 42 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/index.js
+2026-10-29 20:09 1109 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/license
+2026-10-29 20:09 649 bytes /home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/readme.md
+2026-10-29 20:09 1081 bytes /home/Lexiiz3417/.config/opencode/node_modules/multipasta/LICENSE
+2026-10-29 20:09 61 bytes /home/Lexiiz3417/.config/opencode/node_modules/multipasta/README.md
+2026-10-29 20:09 1434 bytes /home/Lexiiz3417/.config/opencode/node_modules/multipasta/package.json
+2026-10-29 20:09 1059 bytes /home/Lexiiz3417/.config/opencode/node_modules/toml/LICENSE
+2026-10-29 20:09 269 bytes /home/Lexiiz3417/.config/opencode/node_modules/toml/index.js
+2026-10-29 20:09 969 bytes /home/Lexiiz3417/.config/opencode/node_modules/toml/package.json
+2026-10-29 20:09 5743 bytes /home/Lexiiz3417/.config/opencode/node_modules/toml/README.md
+2026-10-29 20:09 1534 bytes /home/Lexiiz3417/.config/opencode/node_modules/toml/index.d.ts
+2026-10-29 20:09 1065 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/LICENSE
+2026-10-29 20:09 3850 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/index.d.cts
+2026-10-29 20:09 173 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/pack.d.cts
+2026-10-29 20:09 148 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/unpack.d.cts
+2026-10-29 20:09 456 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/index.js
+2026-10-29 20:09 6502 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/iterators.js
+2026-10-29 20:09 1166 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/node-index.js
+2026-10-29 20:09 53047 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/pack.js
+2026-10-29 20:09 2001 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/rollup.config.js
+2026-10-29 20:09 1567 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/stream.js
+2026-10-29 20:09 50 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/test-worker.js
+2026-10-29 20:09 43324 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/unpack.js
+2026-10-29 20:09 2572 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/package.json
+2026-10-29 20:09 5612 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/benchmark.md
+2026-10-29 20:09 32635 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/README.md
+2026-10-29 20:09 233 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/SECURITY.md
+2026-10-29 20:09 3850 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/index.d.ts
+2026-10-29 20:09 173 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/pack.d.ts
+2026-10-29 20:09 148 bytes /home/Lexiiz3417/.config/opencode/node_modules/msgpackr/unpack.d.ts
+2026-10-29 20:09 786 bytes /home/Lexiiz3417/.config/opencode/node_modules/isexe/package.json
+2026-10-29 20:09 23 bytes /home/Lexiiz3417/.config/opencode/node_modules/isexe/.npmignore
+2026-10-29 20:09 1395 bytes /home/Lexiiz3417/.config/opencode/node_modules/isexe/README.md
+2026-10-29 20:09 765 bytes /home/Lexiiz3417/.config/opencode/node_modules/isexe/LICENSE
+2026-10-29 20:09 890 bytes /home/Lexiiz3417/.config/opencode/node_modules/isexe/windows.js
+2026-10-29 20:09 1192 bytes /home/Lexiiz3417/.config/opencode/node_modules/isexe/index.js
+2026-10-29 20:09 909 bytes /home/Lexiiz3417/.config/opencode/node_modules/isexe/mode.js
+2026-10-29 20:09 1071 bytes /home/Lexiiz3417/.config/opencode/node_modules/pure-rand/LICENSE
+2026-10-29 20:09 4580 bytes /home/Lexiiz3417/.config/opencode/node_modules/pure-rand/package.json
+2026-10-29 20:09 9680 bytes /home/Lexiiz3417/.config/opencode/node_modules/pure-rand/README.md
+2026-10-29 20:09 323 bytes /home/Lexiiz3417/.config/opencode/node_modules/kubernetes-types/package.json
+2026-10-29 20:09 1009 bytes /home/Lexiiz3417/.config/opencode/node_modules/kubernetes-types/README.md
+2026-10-29 20:09 1511 bytes /home/Lexiiz3417/.config/opencode/node_modules/kubernetes-types/runtime.d.ts
+2026-10-29 20:09 319 bytes /home/Lexiiz3417/.config/opencode/node_modules/kubernetes-types/version.d.ts
+2026-10-29 20:09 12144 bytes /home/Lexiiz3417/.config/opencode/node_modules/.package-lock.json
+2026-10-29 20:09 64 bytes /home/Lexiiz3417/.config/opencode/package.json
+2026-10-29 20:09 14627 bytes /home/Lexiiz3417/.config/opencode/package-lock.json
+2026-10-29 20:10 64 bytes /home/Lexiiz3417/.config/opencode/service.json
+2026-11-01 13:20 7493 bytes /home/Lexiiz3417/.config/opencode/AGENTS.md
+2026-10-29 21:44 1526 bytes /home/Lexiiz3417/.config/opencode/skills/coding-workflow/SKILL.md
+2026-10-29 21:44 1097 bytes /home/Lexiiz3417/.config/opencode/skills/debugging/SKILL.md
+2026-10-29 21:45 1105 bytes /home/Lexiiz3417/.config/opencode/skills/code-review/SKILL.md
+2026-10-29 21:45 983 bytes /home/Lexiiz3417/.config/opencode/skills/testing/SKILL.md
+2026-10-29 22:16 2152 bytes /home/Lexiiz3417/.config/opencode/skills/session-memory/SKILL.md
+2026-11-03 09:42 11810 bytes /home/Lexiiz3417/.config/opencode/skills/custom-hyprland-setup/SKILL.md
+2026-10-30 03:18 3930 bytes /home/Lexiiz3417/.config/opencode/memory/sessions/2026-10-30-grub-evangelion.md
+2026-10-29 22:17 988 bytes /home/Lexiiz3417/.config/opencode/memory/ALEXIA.md
+2026-10-30 11:35 1307 bytes /home/Lexiiz3417/.config/opencode/memory/USER.md
+2026-10-30 23:43 1528 bytes /home/Lexiiz3417/.config/opencode/memory/PREFERENCES.md
+2026-11-03 23:43 89696 bytes /home/Lexiiz3417/.config/opencode/memory/PROJECTS.md
+2026-11-02 19:59 101168 bytes /home/Lexiiz3417/.config/opencode/memory/CUSTOM_COMMAND.md
+2026-10-29 22:18 682 bytes /home/Lexiiz3417/.config/opencode/commands/remember.md
+2026-10-29 22:18 714 bytes /home/Lexiiz3417/.config/opencode/commands/inget.md
+2026-10-29 22:15 4339 bytes /home/Lexiiz3417/.config/opencode/AGENTS.md.bak-20261030T0419
+2026-10-30 04:19 28853 bytes /home/Lexiiz3417/.config/opencode/completion.bash
+2026-10-31 15:01 2148408 bytes /home/Lexiiz3417/.config/opencode/assets/alexia-portrait.png
+2026-10-31 15:01 1355593 bytes /home/Lexiiz3417/.config/opencode/assets/alexia-portrait.old.bak
+2026-11-01 16:31 1355593 bytes /home/Lexiiz3417/.config/opencode/assets/alexia-portrait-face.png
+2026-11-01 21:00 15053 bytes /home/Lexiiz3417/.config/opencode/assets/alexia-portrait-face.txt
+2026-10-29 20:08 316 bytes /home/Lexiiz3417/.config/opencode/opencode.json.bak-20261030T210553
+2026-10-31 02:52 973 bytes /home/Lexiiz3417/.config/opencode/cli.json
+2026-10-30 23:42 11249 bytes /home/Lexiiz3417/.config/opencode/plugins-disabled/alexia-fallback/index.js
+2026-11-01 13:17 2679 bytes /home/Lexiiz3417/.config/opencode/opencode.json.bak-20261101T131700
+--- /home/Lexiiz3417/.local/share/opencode ---
+130M	/home/Lexiiz3417/.local/share/opencode
+2026-11-07 13:57 3857175 bytes /home/Lexiiz3417/.local/share/opencode/log/opencode.log
+2026-11-04 00:23 106221568 bytes /home/Lexiiz3417/.local/share/opencode/opencode.db
+2026-10-30 02:53 623 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_189395924001LU0DVPaCiFpDiW.out
+2026-10-30 02:53 1270 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_189399d7e00186TT8U7rA0oijS.out
+2026-10-30 02:53 3390 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18939c31a001JUqa4zeSLoujW6.out
+2026-10-30 02:54 617 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1893a24c2001dc4GFqThboKUvo.out
+2026-10-30 02:54 947 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1893ac1850015zoUQq5YeOPTyC.out
+2026-10-30 02:55 1621 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1893b063c001TTIp0YnMZT7Enc.out
+2026-10-30 02:56 928 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1893b6244001h5s4aSLl8MBkS3.out
+2026-10-30 02:56 1975 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1893c102d001YeOuyPfV4fBxuk.out
+2026-10-30 02:56 1977 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1893c4781001F8IWrAv0YNFqt6.out
+2026-10-30 02:56 934 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1893c9e500013iA3ak0nDNzSTO.out
+2026-10-30 02:59 441 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1893f734b001qR2ikwciVdPF7S.out
+2026-10-30 03:00 1208 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1893fa066001r8G1pp4g2rd6M9.out
+2026-10-30 03:00 1023 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_189403255001E8Jf3P3Xb8b7oF.out
+2026-10-30 03:01 1626 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18940ac59001ginbzK5Utas9gQ.out
+2026-10-30 03:01 1365 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18940d529001bPSpMDP2aG0DqF.out
+2026-10-30 03:04 766 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18943bbbd001pJLNgARpgcERPj.out
+2026-10-30 03:04 3382 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18943edfe001tRPVDS93o8mbF5.out
+2026-10-30 03:05 342 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_189440fa4001PijkVRRXU0Sx5l.out
+2026-10-30 03:05 1835 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18944258c001HR3UuqzP3YosxX.out
+2026-10-30 03:05 1064 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18944557c001j2SCGrbbTgx6V5.out
+2026-10-30 03:05 471 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_189447405001yc9U6Y7ujZAwB3.out
+2026-10-30 03:05 325 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1894491ee001JDOtoH1ngWimMG.out
+2026-10-30 03:05 1165 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18944b796001tqrgWwl6CuC1z6.out
+2026-10-30 03:08 691 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_189473a4e001Pth9bMgpWpI5G6.out
+2026-10-30 03:09 159 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_189480bad001tMa5trCoZYywy0.out
+2026-10-30 03:43 417 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_189675618001AdTl7Zzqyxs249.out
+2026-10-30 03:51 602 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1896ee5ac001JKKk5SJheOmz6r.out
+2026-10-30 03:52 958 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1896f34dc001f4NcND08WJz9mx.out
+2026-10-30 03:59 443 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1897593c5001XTkXnnZhGhd7TA.out
+2026-10-30 03:59 4260 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18975bfb3001wI5FqPic56Y4QN.out
+2026-10-30 03:59 4619 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18975e14a001ZOcnns2j64Fo7l.out
+2026-10-30 04:17 1611 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18986c59800112xHFeeeG2TuyQ.out
+2026-10-30 04:18 413 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18986e6860010YxqPn7oBQ8CbD.out
+2026-10-30 04:18 453 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18987005c001yHHdt6p8cCBNfJ.out
+2026-10-30 04:18 148 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_189871a04001O7Jjn0szDJ5gkQ.out
+2026-10-30 04:18 2494 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18987353e001MGDR05WzEYp1ZF.out
+2026-10-30 04:18 2768 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1898748be0017rOHcRqFG01JJo.out
+2026-10-30 04:18 446 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_189874f3f001T80zCvVUMJJbms.out
+2026-10-30 04:18 347 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18987bf870015RXbSVDIUfLPzK.out
+2026-10-30 04:19 611 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1898820d6001xTS1yBpaBdiPsR.out
+2026-10-30 04:19 685 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_189884314001RW2yT7xqj5vr20.out
+2026-10-30 04:20 2222 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18988c463001zxOwG6SIv9wjkZ.out
+2026-10-30 04:20 1618 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18988d72400125EoHrcVY5sVNJ.out
+2026-10-30 04:20 9348 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18988dd3a001esoo55Uer6ZwEU.out
+2026-10-30 04:20 889 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18988e46e001sd8MwAwXKjHrVI.out
+2026-10-30 04:20 10175 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_189892442001cuO0rhh86tjTWT.out
+2026-10-30 04:20 1743 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1898946ce0010PZIGTHqpbegif.out
+2026-10-30 04:20 1618 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18989585a001Mz4AR8DQpvUwAL.out
+2026-10-30 04:20 9328 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1898961e5001qqYJB7P7Z6sAiL.out
+2026-10-30 04:21 514 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18989b454001qLIg4V2mDKHSI4.out
+2026-10-30 10:09 463 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18ac8b240001bMoXFhE5qdk8Wi.out
+2026-10-30 10:12 1618 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18acb8cb0001YtzBbAYTFqQ400.out
+2026-10-30 12:06 1885 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b339f9c001uUw143oPuRi99L.out
+2026-10-30 12:06 1436 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b33ba7d0010dnY4LEFqgONbc.out
+2026-10-30 12:06 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b33e28c001Pk73hf1wh2YESP.out
+2026-10-30 12:08 846 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b358027001seopLJHyNRHmlr.out
+2026-10-30 12:08 112 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b35a0f5001lSZKLqA9ybDzfH.out
+2026-10-30 12:08 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b35c424001GYXmBJFiRb0016.out
+2026-10-30 12:08 186 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b35df71001Dyg0l4LJPEl3Fm.out
+2026-10-30 12:09 16 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b36aeb7001CY2fh5bXcYToxj.out
+2026-10-30 12:11 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b380cb5001c0juMdzGt1regH.out
+2026-10-30 12:16 89 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b3cd502001VVD7CTjMo5JnD3.out
+2026-10-30 12:17 89 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b3e2d4a001IhrxMA0wmIe2Zt.out
+2026-10-30 12:20 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b405827001xnjIuYuFWo0vfP.out
+2026-10-30 12:20 146 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b407835001ZPiCKzDhRke1tH.out
+2026-10-30 12:20 16 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b4096350012nkkegSTCMtuQq.out
+2026-10-30 12:21 16 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b41eb6f001qKVN19QNh47LqS.out
+2026-10-30 12:25 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b44f9a7001XO76ZV4dnIgkWI.out
+2026-10-30 12:25 408 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b4519b3001Fy1jBBg7EKCVgG.out
+2026-10-30 12:25 1371 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b453d54001q8nFxYnno1fgeB.out
+2026-10-30 12:25 16 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b456aee0010bPpgpjftbS1Do.out
+2026-10-30 12:27 922 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b46e958001V3aAEfLyhgB6hd.out
+2026-10-30 12:27 1541 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b470aec001wFU3mEwXFKPeC9.out
+2026-10-30 12:27 16 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b4737540011TAJuqarjG63cg.out
+2026-10-30 12:28 640 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b47fcf7001Q3iNMBISm0CcbP.out
+2026-10-30 12:28 1107 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b48256b001i3wA9I0o4C2iiQ.out
+2026-10-30 12:28 16 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18b484cf400135aW2s1zGuAfjR.out
+2026-10-30 18:50 22342087 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18bfb5e4c001XFDvkC7uiXt72W.out
+2026-10-30 16:38 1099 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c2ce016001N5BXzf0ytvqD80.out
+2026-10-30 16:43 1516 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c313bd30012yiYcdd57WZpOT.out
+2026-10-30 16:43 513 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c313bd60011i1cqKDCxHoCmq.out
+2026-10-30 16:43 410 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c315769001fWCyRFCkumclQW.out
+2026-10-30 16:43 1670 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c316f630012CjOOwCJY6PM9Z.out
+2026-10-30 16:43 428 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c31a033001Y7OeCjIKBU1lf8.out
+2026-10-30 16:43 755 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c31a033002hK2h8cRU5a3EP7.out
+2026-10-30 16:43 1522 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c31a49e001n69Z5kkAV2wWvm.out
+2026-10-30 16:43 686 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c31a49f001lHRrMFeuOzM7MR.out
+2026-10-30 16:43 1404 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c31b337001vXg2RvzzT31KRD.out
+2026-10-30 16:43 488 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c31cacf001PX9pTdwDtz60Zh.out
+2026-10-30 16:43 105 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c31cacf002BmU0g2nTYHi6hL.out
+2026-10-30 16:46 87 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c33bd66001HUhmh35DE10Dea.out
+2026-10-30 16:46 1067 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c33c591001qMqI8knw8MY80E.out
+2026-10-30 16:46 53 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c348d65001dCHiMSAlNk1X1J.out
+2026-10-30 16:47 85 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c34a3a4001XUTFsd3qMubC5c.out
+2026-10-30 16:47 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c34af50001bvkL44GTWrNc6Q.out
+2026-10-30 17:00 3010 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c411915001A5naTscV5xEXHs.out
+2026-10-30 17:06 2937 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c445b15001GBnLeuK4XoNugD.out
+2026-10-30 17:06 59 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c46364f0012m8lK7eu4pHPE7.out
+2026-10-30 17:06 5221 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c4648a70015WQL4Tuf206ssD.out
+2026-10-30 17:06 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c46ba76001StAm8TXzlUTwwH.out
+2026-10-30 18:38 6059 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c9ae1ca001ANYtGFqtIrAl3s.out
+2026-10-30 18:38 5770 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c9ae1d3001zc17RyFA0PLHdT.out
+2026-10-30 18:39 4877 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18c9bd1ef001RvrsPbFRDg3hYm.out
+2026-10-31 00:40 119 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18de6431c001jX4i19lfcLX7Pc.out
+2026-10-31 00:40 183 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18de659c5001Zmvh0GV7fhpeEL.out
+2026-10-31 00:46 68 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18debedf00015Ug26xKz4rvBv4.out
+2026-10-31 00:46 535 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18debfc6a001UfARdC61BS2XMi.out
+2026-10-31 00:47 34 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18dec12aa001kvoVSFDCJIwGo5.out
+2026-10-31 00:47 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18dec264f001WgRgInmaF4chU9.out
+2026-10-31 00:54 834 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df2b2db001Qu0jVdlmKW6J60.out
+2026-10-31 00:54 3445 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df2b2db002l7itSM40Ap1Z4p.out
+2026-10-31 00:54 293 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df2d455001VAimjVDw4aFyQ3.out
+2026-10-31 00:54 365 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df2d4550026QHFRAcIQRu0yK.out
+2026-10-31 00:54 185 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df30190001AaZXoAZTH2DJbf.out
+2026-10-31 00:54 603 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df31e94001cbDWeG8Zwl6Vjs.out
+2026-10-31 00:56 755 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df485f8001vAUKsjTO5gmp4o.out
+2026-10-31 00:56 1784 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df49d54001DmN0TMECY57N8x.out
+2026-10-31 00:56 761 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df4bd2f00123TfWI9kmPidbk.out
+2026-10-31 00:56 367 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df4e147001A4uZk0QWlNGLZa.out
+2026-10-31 00:59 405 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df75955001zoMkFHr0JfKYsj.out
+2026-10-31 00:59 79 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df766c00016ce5y39VvQ7sQz.out
+2026-10-31 00:59 1803 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df77481001uY7d4cqI0FDrb3.out
+2026-10-31 00:59 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df79cfa001UKfNw2K0t4YoWD.out
+2026-10-31 01:01 2976 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df8f2fc001CUkH9PCHSHGgyL.out
+2026-10-31 01:01 1550 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df9085d001TSU67frLJKbPZg.out
+2026-10-31 01:01 259 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df91e85001DP5Shj98jK6xI3.out
+2026-10-31 01:01 1642 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18df92ce9001l0yVrpuaAvutfB.out
+2026-10-31 01:10 225 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18e0122f9001nL0NxKHCSRKT2P.out
+2026-10-31 02:48 69 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18e5b2e970011MD8k3yGE8Bv2W.out
+2026-10-31 02:53 3055 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18e5f704c001cuqZm7m69q26Qh.out
+2026-10-31 08:06 701 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18f7dff1f001ig7k7W5DRmZCvE.out
+2026-10-31 08:07 367 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18f7f7f4a001yyV0ces7QveFjO.out
+2026-10-31 08:07 285 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18f7f9130001rDZc2cRGSEA2OM.out
+2026-10-31 08:07 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18f7fa6d2001aBZD2UgROvpGpD.out
+2026-10-31 08:07 3657 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18f7fc47b0012HnyT4qN3Jrb1q.out
+2026-10-31 08:08 4230 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18f7fd76e00183Vfv75j6t8Ouf.out
+2026-10-31 08:08 208 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18f7fee0c001J8e3cRtoYcE0yz.out
+2026-10-31 08:08 423 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18f80006c0014reep0IDHvqCzl.out
+2026-10-31 08:08 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18f801a3d001UsOAj8E33Y8qrl.out
+2026-10-31 09:31 1123 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fcc4ad3001VbWRtsdLvW4vXZ.out
+2026-10-31 09:31 14 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fcc634e001jfLp4c6skt1NLe.out
+2026-10-31 09:31 152 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fcc726300127VhzjmvCpiSHF.out
+2026-10-31 09:33 1904 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fcdb1c3001x1VquD7B8XHmta.out
+2026-10-31 09:33 996 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fcdf621001yGpGmoWniO1oVQ.out
+2026-10-31 09:33 1318 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fce09ee0014uwdsJKGx2r43N.out
+2026-10-31 09:33 568 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fce6edd0010LJODMzNr5krXz.out
+2026-10-31 09:34 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fcedfe4001OKblGk8SjzPFgg.out
+2026-10-31 09:34 272 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fceeeb2001bvOIIglQsye1y8.out
+2026-10-31 09:34 247 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fcf023e001QZRlT9y3FgkPSd.out
+2026-10-31 09:34 424 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fcf22a1001mGnwzTWdocopFR.out
+2026-10-31 09:36 1755 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fd0fdb6001225pFLXQKsK8dZ.out
+2026-10-31 09:36 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fd132f1001N3Lof8JYT0ThS6.out
+2026-10-31 09:37 687 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fd14ab9001h9c2w9iw0vvUat.out
+2026-10-31 09:37 271 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fd1c2f70017xlzzYBvFkdaFV.out
+2026-10-31 09:37 129 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fd1d7eb0019dfSjI5UStkvDF.out
+2026-10-31 09:37 891 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fd1fb87001dR5hKcldUICzxV.out
+2026-10-31 09:42 108 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fd63439001S3ty3i123d0Cwi.out
+2026-10-31 09:42 1370 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fd6495d001GTKZpLyAOBgFSJ.out
+2026-10-31 09:50 390 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fdd6aa6001VilvIzq2mRkpCG.out
+2026-10-31 09:50 134 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fddc0c8001B8T7cBEFL6h74G.out
+2026-10-31 09:53 103 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fe00d0c001cP62Y2kz2WSiEw.out
+2026-10-31 09:53 358 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fe034bb0014EyFlZZa7U2F2H.out
+2026-10-31 09:54 317 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fe0f142001Rb1S9Sn7fEsVMR.out
+2026-10-31 09:54 178 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18fe11dbd0011ZL0rZfsw4yrPd.out
+2026-10-31 10:16 224 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18ff5b2fe001KvCUmccr6XuhBX.out
+2026-10-31 10:17 529 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18ff5ea0d001keMXw6yHiz3kUS.out
+2026-10-31 10:17 308 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18ff60d270010CWL57Yxrl6bGl.out
+2026-10-31 10:17 691 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18ff63548001ENHqR5o3imdiFM.out
+2026-10-31 10:17 305 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18ff6aed6001YIAy40f6wxlmUN.out
+2026-10-31 10:18 12 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18ff6ec100017C7T53S2hrQa21.out
+2026-10-31 10:18 51 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18ff72f640011OTIsokw093jjh.out
+2026-10-31 10:19 418 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_18ff87a850012cmvVXg4RDHQan.out
+2026-10-31 11:30 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19038fb080013KvAPzFdiryJpz.out
+2026-10-31 11:42 407 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19043e440001y2UxXV0r5XDJn2.out
+2026-10-31 11:42 529 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_190440130001Mpnd6CI5IY7b0q.out
+2026-10-31 11:42 47 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19044211f001gP7rIF57xGShN0.out
+2026-10-31 11:42 205 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1904443fc0019KIghD8Ns1vUOA.out
+2026-10-31 11:42 244 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1904460e6001gJXkVWwlRPtFlh.out
+2026-10-31 11:43 140 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19044a7a10019ATk4u3VHtmEOI.out
+2026-10-31 11:43 1960 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19044f053001naeQyHXe1T4EjS.out
+2026-10-31 11:43 2431 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1904522b80011c4MVa0ziygyr8.out
+2026-10-31 11:43 2775 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1904543ec001J5xdB2ORGbszmn.out
+2026-10-31 11:43 555 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_190455d82001KrVHYCDpreuCOW.out
+2026-10-31 11:44 167 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19045a21f001m0Al5cI6FnqoY6.out
+2026-10-31 11:44 2361 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_190460fcf001a8JE708Pf0SbgP.out
+2026-10-31 11:44 1465 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1904646750012Qc8czJbXiQPEq.out
+2026-10-31 11:44 167 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1904671840016prVOB930QT3TS.out
+2026-10-31 11:45 86 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19046bd5d001QnaBb3UfjRMIaz.out
+2026-10-31 11:46 318 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19046e9d30018JTA5Sd1x2UcEu.out
+2026-10-31 11:47 301 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1904851f0001zhJpn0NtQ6ZjIn.out
+2026-10-31 11:47 633 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19048b383001WrChpG4RdG1r6k.out
+2026-10-31 11:49 261 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19048f4f9001M6sQwA1SdegOQn.out
+2026-10-31 11:49 379 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1904a6cbb001juZBHQXa59gd71.out
+2026-10-31 11:49 83 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1904aaf96001Foqv8MYebM7ke4.out
+2026-10-31 11:50 1675 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1904b2c4f0010xGouCx2571TZK.out
+2026-10-31 11:50 155 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1904b8b88001sARGVFLotH3J2N.out
+2026-10-31 11:51 156 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1904c0bb0001fnGqv5QJwrtHYq.out
+2026-10-31 11:55 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_190500fe2001RQzMFzcMMbhYQ2.out
+2026-10-31 13:01 796 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1908c473f0012k01LlN7u9yvxH.out
+2026-10-31 13:16 1159 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1909a6de1001KJL8U2zzPpCeKZ.out
+2026-10-31 13:16 632 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1909a6de1002WR37me0wMW0Wcy.out
+2026-10-31 13:22 986 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1909f9c37001euI0pmJjvZReHB.out
+2026-10-31 13:23 221 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_190a0c411001OV4wijV1cXtXdl.out
+2026-10-31 15:41 144 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1911f6fb5001ssUT0nF65WdisH.out
+2026-10-31 15:42 73 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1911fa676001t4rMziQzJX7H16.out
+2026-10-31 15:42 48 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1911fba10001TA7Ds8hSN8er63.out
+2026-10-31 15:42 33 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1911fdfcd001BzXC3ksGmVKulw.out
+2026-10-31 15:42 2656 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1911ffe5b00121utTji9CBHlHQ.out
+2026-10-31 15:42 768 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_191200a33001RK0VYQ7phIInHQ.out
+2026-10-31 15:42 220 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_191203ab5001a2Qu3HuCIZatpv.out
+2026-10-31 15:43 94 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1912066e4001Qj8N94oONMSJIc.out
+2026-10-31 15:43 1481 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1912095ad0019AICHfU2RrZu40.out
+2026-10-31 15:43 48 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19120b43c001lcbtvo9DSOo3Vx.out
+2026-10-31 15:43 356 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19120d081001cEEHe8OOLvmafL.out
+2026-10-31 15:43 84 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1912111a4001aND71N6zwxtvSq.out
+2026-10-31 15:44 897 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_191215cbb001qLDQmShJH8UhLX.out
+2026-10-31 15:44 491 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19121794c001VpbwqWNvegp5eo.out
+2026-10-31 15:44 270 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1912198d7001rKGyeFS60W5NUo.out
+2026-10-31 15:44 469 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19121cf33001draqqy69dsDf4g.out
+2026-10-31 15:44 79 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19121fc92001PtnyWIdqA6AUUl.out
+2026-10-31 15:44 628 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1912219a2001PxK1F2Id75zvQz.out
+2026-10-31 15:45 214 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1912232e8001P4sbYrrv4HGU6j.out
+2026-10-31 15:45 169 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_191224c7f001O6xse5mbMQO5vu.out
+2026-10-31 15:45 81 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1912266ed001D6JdAyejtM8DZb.out
+2026-10-31 15:45 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19122a47b001FaFA8WjkYRPYU0.out
+2026-10-31 15:45 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19122f27b001DDnfbSpJwIUXEO.out
+2026-10-31 15:46 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_191234347001ATfbUFmQsKE9Oz.out
+2026-10-31 15:48 60 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1912564a70015hOfH77lHht5UW.out
+2026-10-31 22:39 90 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1929c02410011CsymzU1SOIlHQ.out
+2026-10-31 22:39 762 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1929d701c001OcMriAB0Q3aJ0W.out
+2026-10-31 22:39 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1929daa72001gt1hyoSnPD4Z1h.out
+2026-10-31 22:41 525 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1929fae7c001XUub1J7dEaz7tt.out
+2026-10-31 22:41 764 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1929fc1470011ac08UNUUrje5c.out
+2026-10-31 22:42 595 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a03275001i6k9sUQ4uUo0jw.out
+2026-10-31 22:42 200 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a05a77001evAq6aojnbZZMD.out
+2026-10-31 22:42 2269 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a0a571001AZ0uObCqsuWpz2.out
+2026-10-31 22:43 777 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a100dd001Wuq3wsznANFLYN.out
+2026-10-31 22:43 439 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a17e14001KZ760idES1m5g4.out
+2026-10-31 22:43 982 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a19ce1001RKGuzcWbWH8GS9.out
+2026-10-31 22:43 118 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a1b879001UWHaitg1Q46vnn.out
+2026-10-31 22:44 715 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a1ce7d0014liICcmgoWXKS7.out
+2026-10-31 22:44 5412 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a1e84e001INDFLCcbK61bvl.out
+2026-10-31 22:44 1412 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a210dd001rLvNP5pC2a3I35.out
+2026-10-31 22:44 362 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a2320d001ZGX5wHB0ZY5AQa.out
+2026-10-31 22:44 493 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a249ad001C1K5p8TNBDsISx.out
+2026-10-31 22:44 1269 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a26ba8001VBEcOvZ2jfv4fx.out
+2026-10-31 22:45 245 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a2d1ac001EbyTkWYa4wmaxk.out
+2026-10-31 22:45 467 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a2ed470017e1BHTKcOJxVQv.out
+2026-10-31 22:45 1939 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a2ffd6001uw5kEcc6cxVKH6.out
+2026-10-31 22:45 617 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a368da001bBV6uW82RIxNGE.out
+2026-10-31 22:45 275 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a39a6b001XK8XvlI0M6QXxj.out
+2026-10-31 22:46 293 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a3da43001MhWKGbGVZid6fJ.out
+2026-10-31 22:46 51 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_192a3e73f001piDJlIxiSUtCL7.out
+2026-11-01 01:27 2 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1933757ab001Ja3XA03JBKEwQn.out
+2026-11-01 01:27 2633 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_193377b7e0011sZK9nm3qNKhWA.out
+2026-11-01 01:27 37 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19337907d001xfH9iEiCW01YSY.out
+2026-11-01 01:27 403 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19337b934001g61u1rVuaO95Tx.out
+2026-11-01 01:27 1440 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19337eb2a001mm6oXx81rjO1D3.out
+2026-11-01 01:28 233 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_193381aa7001HvGqY6N0Ags8p9.out
+2026-11-01 01:29 238 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19338f6b0001VFjqAhotOphh22.out
+2026-11-01 01:29 3298 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1933915500016F1tUizYSvwetv.out
+2026-11-01 01:29 856 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19339b2c60011UdGr9tiTbMs01.out
+2026-11-01 01:30 3351 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19339d3c3001UWjOhKrJVPI390.out
+2026-11-01 01:30 198 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1933a7d560014Y6SDOnkrAQPZS.out
+2026-11-01 01:31 68 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1933ab42f0010akSZmTcThP1Nj.out
+2026-11-01 01:31 144 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1933acbe00019dFt5cScI26pH2.out
+2026-11-01 01:31 854 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1933adbb6001fNUlq7BIWnlb6F.out
+2026-11-01 01:31 3373 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1933b5610001cmxt7R6C5Tkhag.out
+2026-11-01 01:31 4260 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1933b7a58001EUiH4a70WmWqYT.out
+2026-11-01 01:32 201 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1933ba661001uL3daBxa8TEzvS.out
+2026-11-01 01:32 326 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1933c34e7001r0dmoCIz36Rtno.out
+2026-11-01 01:37 238 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1933fd906001KLkOXEdhoc840p.out
+2026-11-01 01:37 734 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19340680f001lMgh8De6jUni6j.out
+2026-11-01 01:38 66 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19340cd91001MJms1N498XDdwm.out
+2026-11-01 01:38 2989 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1934147ca001GNaO8MtL0h6W53.out
+2026-11-01 01:38 352 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_193415e350016Q8PnexG8vqm0K.out
+2026-11-01 01:38 713 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1934181de001w6P0ftQUzojeMN.out
+2026-11-01 01:57 2358 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19353699a001VPyf36nxDMbalG.out
+2026-11-01 11:39 297 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956768160016q1kuxaApL1wqd.out
+2026-11-01 11:39 1499 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19567d93f001xEPezmk8D4CpA4.out
+2026-11-01 11:39 22 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19567eafe001myRZH26A655fO1.out
+2026-11-01 11:39 1 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19567f5cb001mjYnwai6Xi3Uxl.out
+2026-11-01 11:39 3410 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19568064d001UPQdzFocdlcnWW.out
+2026-11-01 11:39 1566 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_195681689001iuZjy1PEIIBmAt.out
+2026-11-01 11:39 122 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19568387e0018ifd4A2g5QwCM8.out
+2026-11-01 11:39 111 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956840f0001Bu0ryzn19iRban.out
+2026-11-01 11:40 155 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_195684b38001cEgd3fSJjmmG7H.out
+2026-11-01 11:40 508 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956880d7001Od5a9a1c9KtpTh.out
+2026-11-01 11:40 29 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19568b5d80017octARMYDeVOR3.out
+2026-11-01 11:42 611 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956a85ea001Rrbc5TvTe7M4RU.out
+2026-11-01 11:42 330 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956a980c00157jJAErPoS3VQI.out
+2026-11-01 11:42 211 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956aa4f9001AX6uxDmvw46onA.out
+2026-11-01 11:43 384 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956addfd0015d4QDmOXXyJQQN.out
+2026-11-01 11:43 1099 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956b535b001nTM0enCJ1h731E.out
+2026-11-01 11:43 619 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956b6ae6001JTCwt6zEjdwoC2.out
+2026-11-01 11:43 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956b8612001DtDaW6GDz0rqWl.out
+2026-11-01 11:45 1221 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956cfa0300167xInbb93TOVWp.out
+2026-11-01 11:45 3311 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956d11ce001ysHy1x1CBQM2Eg.out
+2026-11-01 11:45 1161 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956d29a9001vhNJLSXQLkiLph.out
+2026-11-01 11:46 261 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956df84f001n1UstJR755o5aj.out
+2026-11-01 11:46 801 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956e059a001QQ3Jdxu2kAou4y.out
+2026-11-01 11:46 410 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956e17a4001oLhqmXo7uNTr93.out
+2026-11-01 11:46 31 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1956e3736001jrcxKawqPqkv8T.out
+2026-11-01 15:58 229 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1965478d50012BmMc3BaTq5T2k.out
+2026-11-01 16:00 162 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1965662d0001ojTKjK873OfQcv.out
+2026-11-01 16:00 377 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19656ae4a001Bx1p97QM1rQr4G.out
+2026-11-01 16:00 641 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19656f9a40010lNqYFv97tWG4q.out
+2026-11-01 16:00 3041 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1965703bd001MuLq0W0Xgg7fJC.out
+2026-11-01 16:00 3315 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1965703bd002j8NGcUuarx1uXV.out
+2026-11-01 16:02 740 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19658896d001s4ilhG325Q2sOO.out
+2026-11-01 16:02 308 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19658a446001Wg2l3o7uYFXZ9o.out
+2026-11-01 16:02 25 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19658acaf0012HtcVUFjUy6ieh.out
+2026-11-01 16:03 1075 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19658acb5001Eg7VMN6X3kyjX2.out
+2026-11-01 16:03 71 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_196593e8e0010vR95znHkH48S3.out
+2026-11-01 16:03 174 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1965948b9001rb28e4Bva8bP2C.out
+2026-11-01 16:18 305 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_196670ab8001mN0PhYNogWlikH.out
+2026-11-01 16:18 6295 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_196672b7400197JSJc1fz4cDpD.out
+2026-11-01 16:18 842 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_196674ce0001wgLxOAHaqyC1wN.out
+2026-11-01 16:30 8202 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1967269c0001k32OFUD82oG45D.out
+2026-11-01 16:31 387 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19672d208001UniBTPwFq1AgLM.out
+2026-11-01 16:31 171 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1967335fe001dEICD4r5124G0t.out
+2026-11-01 16:32 2163 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_196743d80001Otlrl55AGSDozF.out
+2026-11-01 16:33 1132 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19674cbd8001khyHAgCkBNzA2u.out
+2026-11-01 16:40 1573 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1967babc3001o8pTv7WwKfVbsG.out
+2026-11-01 16:55 1593 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_196892775001PRv1epCP7s2Hm3.out
+2026-11-01 16:57 195 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1968ab983001LHpqbb5YgAfNUG.out
+2026-11-01 17:00 66 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1968d3c05001j2saoYZSE5h17U.out
+2026-11-01 17:46 880 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_196b8049500191ChQqOdg5SPSg.out
+2026-11-01 23:10 98 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e022f3001x3u6FeJMcGjQm3.out
+2026-11-01 23:10 53 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e09709001AP6WCbprXfSGkr.out
+2026-11-01 23:11 111 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e0e7ed0016TbSF6Oayemn02.out
+2026-11-01 23:11 1366 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e155dd001pOB3HzkCvn4bcL.out
+2026-11-01 23:11 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e18b43001fjb95CJjYno9jM.out
+2026-11-01 23:12 929 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e21e07001N9uTAXG3v3prd4.out
+2026-11-01 23:12 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e243700017BTYxoDcNR886O.out
+2026-11-01 23:13 15 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e2c7ce0016mJoCc7GOCzQt3.out
+2026-11-01 23:13 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e2fbd2001ji52U8zrOV0Ps1.out
+2026-11-01 23:13 611 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e36e9d001Tkdx0LsfaSDPMJ.out
+2026-11-01 23:14 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e398a1001IA9cu0W2L7Wcg8.out
+2026-11-01 23:14 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e44823001YUJVLTP4InpvA1.out
+2026-11-01 23:15 1391 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e4c9d3001L1HiL9YvYhfNGm.out
+2026-11-01 23:15 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e51c00001o6KEi036kj84aZ.out
+2026-11-01 23:16 859 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e5b57c00189pKzH9T4dHo8v.out
+2026-11-01 23:16 961 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e5bf58001DE8tumjtXNjVku.out
+2026-11-01 23:16 566 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e5ce03001hQiotydob5fqG2.out
+2026-11-01 23:16 1231 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e5df440016mVAOObknIMxPs.out
+2026-11-01 23:16 53 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e61f7e001AnEWfXobTQFGIK.out
+2026-11-01 23:16 512 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e62b04001b1dw81j04V6tOk.out
+2026-11-01 23:16 2446 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e633d1001cMgMbiEflLSQt4.out
+2026-11-01 23:16 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e65d05001056glAqU8L7tob.out
+2026-11-01 23:17 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e66be00017jRBZ0uaWCEm8F.out
+2026-11-01 23:17 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e680f9001WYVfNdqtp02ojm.out
+2026-11-01 23:17 599 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_197e68fd7001cIvVnmVIFSm0Bp.out
+2026-11-02 00:42 1066 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19834ba16001J6WIlHHzcxw50v.out
+2026-11-02 00:42 2801 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19834f722001z4Xhx7N1SlVx1S.out
+2026-11-02 00:43 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19835624c001GceGJ563SnlkdU.out
+2026-11-02 00:43 17 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19835c9a3001fhbJeIiLguoxMa.out
+2026-11-02 00:44 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983635cc001pESVvNyeovU0Jf.out
+2026-11-02 00:44 71 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983693fa001h2SOhDhH5Zz1fK.out
+2026-11-02 00:45 2522 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19836f1a5001g0wTXi09lmVSf2.out
+2026-11-02 00:45 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_198372156001tcqo2bfYZkr3S7.out
+2026-11-02 00:45 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_198374201001L0z4xTb4Doksvp.out
+2026-11-02 00:45 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983767f3001pcL9q70j8lh4lJ.out
+2026-11-02 00:45 2206 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_198377e6e0011BDqdgpcyGyhKc.out
+2026-11-02 00:50 1385 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983bce6a001TmtTUQxJOirq7a.out
+2026-11-02 00:50 15 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983c0656001WNH9UX2qtU4ItT.out
+2026-11-02 00:50 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983c3009001jijbBM3zKVBmNT.out
+2026-11-02 00:51 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983c8ce100192tT5LjMEApWFv.out
+2026-11-02 00:51 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983ce743001h8VlPMX9jfCFJ5.out
+2026-11-02 00:52 18 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983d6e73001Z7va22Vykp1OfE.out
+2026-11-02 00:52 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983e0c74001gGlpNMPMRrVVrb.out
+2026-11-02 00:53 710 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983e7e55001LRsdzlr3Blnuqc.out
+2026-11-02 00:53 43 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983eb20c001d4yonXnEDKYnv1.out
+2026-11-02 00:54 92 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983f3b01001nwBM2S4iSDH8Xy.out
+2026-11-02 00:54 687 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983f5810001oKlye8A0ixH1y5.out
+2026-11-02 00:54 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983f7ed90011UOmtPbdDD82ds.out
+2026-11-02 00:54 444 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1983fa0d2001wpn4mIxJzLPEtZ.out
+2026-11-02 00:59 4434 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19843e528001szwR7dCzsW7rxC.out
+2026-11-02 16:15 26 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8b2e4a001P07N50snErzPYi.out
+2026-11-02 16:16 19 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8b5877001j3oEzjiDfQSoMP.out
+2026-11-02 16:16 10786 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8bab22001ENHc0jAJKipsCn.out
+2026-11-02 16:16 119 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8be73d001XvcMbJHLJwKpLI.out
+2026-11-02 16:16 276 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8c0b04001ETs6YdB7w50j8v.out
+2026-11-02 16:16 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8c2333001QZMFwXhF3iEvMo.out
+2026-11-02 16:17 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8c4400001KDqzZscOGAq2J3.out
+2026-11-02 16:17 671 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8c5b35001Ol48gz0Lcromxm.out
+2026-11-02 16:17 481 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8cb9f5001jQbLOaOfCNQxSI.out
+2026-11-02 16:17 1962 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8cd75d001hZ8wBd0QvF6evf.out
+2026-11-02 16:18 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8cffda001A0mqaH7MQlH5Dx.out
+2026-11-02 16:18 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8d7c06001PLw8KBqNAAGhm2.out
+2026-11-02 16:18 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8dd1c8001kteZKZ37gzOB1E.out
+2026-11-02 16:18 1828 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8e0352001X7MxpeNjIaUDuA.out
+2026-11-02 16:19 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8e2e57001NB84UTLJ46kcPv.out
+2026-11-02 16:19 273 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8e97fc001czYSmohtS44uYa.out
+2026-11-02 16:19 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8eb400001NX1jQtF6fzDQDv.out
+2026-11-02 16:20 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8f0fa0001dx98NGcnGsoSzN.out
+2026-11-02 16:20 1191 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b8f7b7a001DaV1GT3XldCWt8.out
+2026-11-02 16:26 75 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b94ce46001yVASsiq8VtD4xf.out
+2026-11-02 16:26 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b94fa96001WaZwXQU4xt22in.out
+2026-11-02 16:27 19 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b955d03001VFQzrpKCcxbcMH.out
+2026-11-02 16:27 2513 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b95d36e001EbdNikx7NFjGJ8.out
+2026-11-02 16:27 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b9626910013ZNrK73o3vAdzo.out
+2026-11-02 16:28 61 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19b9657ef001uILNeup0D6gcKK.out
+2026-11-02 17:08 537 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bbb8ef7001tLyL15OTdeoH9n.out
+2026-11-02 17:21 4342 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bc76c32001DgJLTmK6nE3h25.out
+2026-11-02 17:21 697 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bc77e72001YaHGvcLiTra0NA.out
+2026-11-02 17:21 635 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bc79220001F6IP2oUbGXoZQw.out
+2026-11-02 17:21 1482 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bc79e1b001EtWjKm4UyVa66e.out
+2026-11-02 17:22 2951 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bc7bf65001vtP98SWOSVVELF.out
+2026-11-02 17:22 627 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bc7e8d80013RqHwA8Fgq9UtG.out
+2026-11-02 17:22 299 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bc7f617001T2a4GdaMiCKl4S.out
+2026-11-02 17:22 384 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bc853de0017KqGGmjL7yHSq5.out
+2026-11-02 17:22 97 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bc86ba3001ZSh4pAWu3K90Ay.out
+2026-11-02 17:23 372 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bc8dd4a001eGMp0FnkFnokDS.out
+2026-11-02 17:23 1207 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bc8e80e001e45LefQW226WVt.out
+2026-11-02 17:23 1255 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bc8f8a4001ZYkwhz3eki2raP.out
+2026-11-02 17:24 104 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bc9c260001ypr4KW0dKppb8Y.out
+2026-11-02 17:24 484 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bca1699001xoHF1QCjD3gcOC.out
+2026-11-02 17:24 1971 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bca20120017VHGYagm2YgoLa.out
+2026-11-02 17:24 3314 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bca2b57001Ew8iNHUjibjf3Y.out
+2026-11-02 17:24 8 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bca46130015UUHOlJ3p9PkBT.out
+2026-11-02 17:24 772 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bca50d5001KyKJz2BytofVss.out
+2026-11-02 17:25 25 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bca84fb001V1WX1NyYWbFey9.out
+2026-11-02 17:25 190 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bcafc20001gxxdGwVouq9QG4.out
+2026-11-02 17:25 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bcb1c940017WMd8615yU3zZk.out
+2026-11-02 17:26 94 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bcbabc10010CP2A1jcZxss3L.out
+2026-11-02 17:26 498 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bcbd085001YiQxsZ0p3bd8E5.out
+2026-11-02 17:26 248 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19bcbfbb90013bGYM2FAeLIumT.out
+2026-11-02 19:01 6 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c22347c001ZZQjgq9W1MWzLf.out
+2026-11-02 19:01 161 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c22c5ba001OG6wmuM1908kDV.out
+2026-11-02 19:01 5728 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c23326500181djyWKUQTuhEZ.out
+2026-11-02 19:02 174 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c2361b40016MtBClo4LJt2xY.out
+2026-11-02 19:02 6277 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c239b83001JngYqzL5pW2APq.out
+2026-11-02 19:03 709 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c2452eb001LPCEZCTS4aHQj3.out
+2026-11-02 19:03 468 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c24c942001WmzL2mcEBx1OHt.out
+2026-11-02 19:04 1942 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c25c8cf001RYxQyHEyiWmUtr.out
+2026-11-02 19:05 468 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c25f162001WtYPPjaLCsXar7.out
+2026-11-02 19:05 167 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c269426001KIEU4AFIeXeocR.out
+2026-11-02 19:07 170 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c281111001f1i4QJXCGc0Rc5.out
+2026-11-02 19:07 4 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c2866b4001PVLeqV16XYpZEa.out
+2026-11-02 19:08 21 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c29068b001mNsrWuDkO334Oq.out
+2026-11-02 19:08 1 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c296cdc0012R8YCxOujSMgaU.out
+2026-11-02 19:09 1999 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c2a691d001nNReGxSYdh0e35.out
+2026-11-02 19:10 468 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c2aacfb001FTCK6Rbr26PRi9.out
+2026-11-02 19:10 1056 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c2b6e75001O3pQfG9aJyvIry.out
+2026-11-02 19:11 46 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c2bb191001ir0rQ0hZuAsj4m.out
+2026-11-02 19:11 2819 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c2c0ccb0011AHVkc7VVJZALd.out
+2026-11-02 19:19 2314 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c336a900012CYmBTwLk9vyqR.out
+2026-11-02 19:19 714 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c33a362001ilXP7ssZzv5NMl.out
+2026-11-02 19:20 16 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c33d73d001ZqAlMtvTzxuN3S.out
+2026-11-02 19:21 98 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c34ac1b001sBx5L9mGyoIc4r.out
+2026-11-02 19:21 227 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c34fede001ge2cfAHoHQcUB0.out
+2026-11-02 19:22 112 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c358766001fpyg0ou91mgCBY.out
+2026-11-02 20:23 498 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c6e13cf001L0SbZzywMxWE2O.out
+2026-11-02 20:23 198 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c6e13d0001ANcXEYs7TeaMA2.out
+2026-11-02 20:23 350 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c6e4ede001WQaDA5fSO9FDOT.out
+2026-11-02 20:24 651 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c6e86a00019yHoPKp99IIc6F.out
+2026-11-02 20:24 610 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c6ec9f5001nHEidcY56uaibu.out
+2026-11-02 20:24 909 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c6f1bf8001QWrxqE45rnH1eh.out
+2026-11-02 20:25 256 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c6f7b8a001BSvnOJHH2Bg4E4.out
+2026-11-02 20:25 333 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c701b25001rxxosKB1Glb3uv.out
+2026-11-02 20:26 316 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c704ebd001rzdqoeNIfKKPrb.out
+2026-11-02 20:26 366 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c70c288001IKYFk72sTl8pwx.out
+2026-11-02 20:27 154 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c715f9e001WC6h5Lkf5j9yg8.out
+2026-11-02 20:27 1293 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c715f9e002RTvaKF82Nuhs5B.out
+2026-11-02 20:27 22 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c71bdde001HwrhP0d7ubi5yT.out
+2026-11-02 20:27 322 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c71bddf001aEgkZk0FUJD1RW.out
+2026-11-02 20:28 131 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c722901001kzaqJG7FnIb9Mg.out
+2026-11-02 20:28 180 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c7255030015rIEpuPJoR7bco.out
+2026-11-02 20:28 257 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c7291b0001BOLw438U0gencg.out
+2026-11-02 20:28 3680 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c72e1a9001l5xkTpxWqr5F66.out
+2026-11-02 20:28 1241 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c72e1a9002nY7LDn2z6L1CxS.out
+2026-11-02 20:29 260 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c73481d001dV6A4A0pbqqQ2x.out
+2026-11-02 20:29 61 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c7399c7001wRSKl1PMi9A5Tp.out
+2026-11-02 20:29 445 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c7399ce0014jKgwVRFtZ4EF3.out
+2026-11-02 20:30 806 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c74197a001EYO8rU8yIhmif7.out
+2026-11-02 20:30 266 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c747d52001Dkr9XKyRea5dLN.out
+2026-11-02 20:47 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8424ca001W08132KBCTD0ba.out
+2026-11-02 20:50 305 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c86f8280014jXtxjcnI8WFtj.out
+2026-11-02 20:51 427 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c86f833001CEGQRl4uovctni.out
+2026-11-02 20:51 920 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8754ee001jKiaDVbPOAW935.out
+2026-11-02 20:51 290 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8754f6001PwdlnVffq3NkXv.out
+2026-11-02 20:52 930 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c87fe86001pRc43i1LXNBQIa.out
+2026-11-02 20:52 392 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c87fe8d001Sa9s1KFOsIfDWY.out
+2026-11-02 20:52 310 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8839580011pI2YPYpT101jE.out
+2026-11-02 20:52 804 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c885f13001z8OJitVJgoHiJU.out
+2026-11-02 20:53 1377 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c889927001ih9cm5yJzcCvQl.out
+2026-11-02 20:53 435 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8941080013lLoKgzuayAoYW.out
+2026-11-02 20:53 421 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c89410e0013ljJT2uOFqJzGc.out
+2026-11-02 20:54 381 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c89dfaa001Gf6EMBPChBQAOx.out
+2026-11-02 20:54 265 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8a184b001MgdLzR1wSfOqXc.out
+2026-11-02 20:54 354 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8a59d1001B196BoErg1ZJB6.out
+2026-11-02 20:54 467 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8a59d1002I62coi37Q064b3.out
+2026-11-02 20:55 429 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8aa6e7001PmL2JMSvkSPUV0.out
+2026-11-02 20:55 343 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8b0ef7001Jg89jQ9ORY4R8u.out
+2026-11-02 20:56 173 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8bceeb001YNxl7oruBKCuig.out
+2026-11-02 20:56 93 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8bfbfa001815iRqiRooRUP5.out
+2026-11-02 20:57 408 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8caf81001wpP4U5Iuc5myV4.out
+2026-11-02 20:59 460 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8dea98001Spoi8JCwaR8DBf.out
+2026-11-02 20:59 216 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8f0de60013vKqytMPQNY7xj.out
+2026-11-02 20:59 377 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19c8f3cd4001rdmH6hgu5Ef19P.out
+2026-11-02 23:59 87 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19d3337680013mLM1AimK9XLel.out
+2026-11-03 00:31 2845 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19d50e2b2001q0qDstwcOYSZWy.out
+2026-11-03 00:31 8729 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19d50f109001rTXEspYJt0SIiK.out
+2026-11-03 00:32 1947 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19d514fc5001yMLlV4eUq7bWcG.out
+2026-11-03 10:25 218 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f7107670015FLVEaZdXd3uw2.out
+2026-11-03 10:26 5449 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f71d67f001lEAnZfU2pYwJ9n.out
+2026-11-03 10:27 222 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f7225560013H5dr9CmJCs6Ha.out
+2026-11-03 10:27 90 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f72aa46001ud4sQdtzrD433Y.out
+2026-11-03 10:28 91 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f72fc62001lhCoGU1C9nvbae.out
+2026-11-03 10:28 135 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f73c444001tfD70FOoWADQ4H.out
+2026-11-03 10:29 1630 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f741a1c001xpg9TwrHRY5hvz.out
+2026-11-03 10:29 487 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f7478a4001tolLFL72yVIkRs.out
+2026-11-03 10:30 584 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f752e8c001Wsk98L18lSYnz8.out
+2026-11-03 10:30 212 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f7594ec001sYdx4QRYC3NGhI.out
+2026-11-03 10:31 939 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f75f53e0016ihTYt0TFgv7p1.out
+2026-11-03 10:31 223 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f764b0e0014zApw0kdFw2EmM.out
+2026-11-03 10:32 958 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f77131b001V8t2cjKjoa05uk.out
+2026-11-03 10:33 1094 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f77c858001AO2hmSu5MchBWf.out
+2026-11-03 10:33 42 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f786534001jP7C7qhGL1k6Ln.out
+2026-11-03 10:35 238 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f797c58001BbcDIf0eGsQFWO.out
+2026-11-03 10:35 190 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f79faba001tH0mZeSXY5e03b.out
+2026-11-03 10:36 255 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f7a7b100013k4ACRWGSBdrYY.out
+2026-11-03 10:36 170 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f7acd27001H3l2xHE6d4Rzfe.out
+2026-11-03 10:37 3779 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f7bb550001oiFryD4YwR6H85.out
+2026-11-03 10:38 1993 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f7c6b200010kHPG6hnRoSGg8.out
+2026-11-03 10:38 198 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f7d0c2d0014EjQqvdA9Xezny.out
+2026-11-03 10:38 97 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f7d0c2d002APjAgi0sw7ISL2.out
+2026-11-03 10:38 249 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f7d0c2d003jGwReVPt5aCjOA.out
+2026-11-03 10:39 2488 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_19f7d22bc0016JouObMzHCAlxt.out
+2026-11-03 20:53 1117 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1af9de7001kxqqSGxNSSobIj.out
+2026-11-03 20:53 1051 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1afbe1c0015458h1aeLlGNVr.out
+2026-11-03 20:53 4056 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1afd457001jjEhF7DifT6XOv.out
+2026-11-03 20:53 666 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b02116001CSKAYY6jeoVXbz.out
+2026-11-03 20:54 13 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b04123001e5jW432poqti7I.out
+2026-11-03 20:54 214 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b067b9001lyg5k5Xc08a3Vd.out
+2026-11-03 20:54 89 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b09134001QATeYsHxKOwQ1Q.out
+2026-11-03 20:54 1426 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b0adf6001u3liQK6HiOH4zF.out
+2026-11-03 20:54 411 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b0d0c5001Bh6jKJz9Wh8aNu.out
+2026-11-03 20:54 533 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b10ef7001I48eMe9muLESSj.out
+2026-11-03 20:55 1018 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b126b0001eB87zUE8csvtcj.out
+2026-11-03 20:55 349 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b149f6001pDSl9QBEWcy4ip.out
+2026-11-03 20:55 323 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b16ef4001bAjFOz7jANJWQO.out
+2026-11-03 20:55 751 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b1c2f1001lLQTfLkvp191DY.out
+2026-11-03 20:55 234 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b1da7a001nxCWUokuwDquKf.out
+2026-11-03 20:55 364 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b1e85d001R8yXVx2N1E23y4.out
+2026-11-03 20:56 208 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b20645001aJ939Vd7SlwxXL.out
+2026-11-03 20:56 75 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b21337001Gr0ENPtyy4gN1D.out
+2026-11-03 20:56 1596 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b220f0001KaQfgXYWK2uid2.out
+2026-11-03 20:56 292 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b25a11001HAsyhpfqq3cE9b.out
+2026-11-03 20:56 1803 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b276fa0016SqeMTPeTJBcQl.out
+2026-11-03 20:56 290 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b2dfbc001jSAfmaIMUWlvoD.out
+2026-11-03 20:57 144 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b307e5001HjuDH2552pis6p.out
+2026-11-03 20:57 430 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b32aaa0015Ax1w8aT8MuGOh.out
+2026-11-03 20:59 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1b5a14a001Ob9sbueDP7rH3r.out
+2026-11-03 21:06 2641 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1bbd6df001v4TkZpJf5u5mGw.out
+2026-11-03 21:06 2364 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1bbf98a001VraWuU6Z621f3q.out
+2026-11-03 21:07 3533 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1bc36ab001XYZL5paBXfsYpk.out
+2026-11-03 21:07 249 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1bc6f280010n2kw2v8nc3CLH.out
+2026-11-03 21:30 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1d1eec2001eXCQl1bAhYDMi6.out
+2026-11-03 21:39 256 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1d9a9f0001fHrZwWNFt9aR8x.out
+2026-11-03 21:39 207 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1d9e699001lLtN457sI6lV3Y.out
+2026-11-03 21:39 514 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1da2821001wFfIWzgByOVnlj.out
+2026-11-03 21:40 170 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1da45d2001TH2gjKbuRyyPM0.out
+2026-11-03 21:40 350 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1da97cb001BKQe2SPGSBosOz.out
+2026-11-03 21:40 2328 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1dab510001cwwBq8GJzXefrf.out
+2026-11-03 21:40 556 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1dade500016t2fnn3t4WemAX.out
+2026-11-03 21:42 678 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1dcd275001r9ln42tntB0Rpy.out
+2026-11-03 21:42 126 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1dd0564001Jyvfoip9tdo63a.out
+2026-11-03 21:43 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1dd1de6001i5BXx9Qec9WqPh.out
+2026-11-03 21:43 0 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1dd3f2b001TnX7Z4LfrUjBbJ.out
+2026-11-03 21:43 132 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1dd50de001Qv9IJS5feZrezN.out
+2026-11-03 21:43 114 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1dda04e001YunXFqLIx29mmj.out
+2026-11-03 21:45 188 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1dfb64f0019ZHOoED7IEIcjx.out
+2026-11-03 21:47 1567 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1e0efb2001Z5czfWUT1nUER1.out
+2026-11-03 21:47 5694 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1e0fe55001LGW7US4S11Ah09.out
+2026-11-03 21:47 654 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1e118be0016h5chb3FN7QPhb.out
+2026-11-03 21:47 923 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1e15bba001sjbCOrdoUyHsdK.out
+2026-11-03 21:49 432 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1e29cfa001L3tRjvR0oLk9Xs.out
+2026-11-03 21:49 73137 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1e2bcbe001qOn6r0Iow6Z73V.out
+2026-11-03 21:49 443 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1e2ef89001w1DdKiuqlIDgGD.out
+2026-11-03 21:51 907 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1e49539001N2NYimK4aYKqHQ.out
+2026-11-03 21:51 79 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1e4a25a001BFlhJKswpVUbjp.out
+2026-11-03 21:51 79 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1e4b07d001aI5GRQmN7vTmB7.out
+2026-11-03 22:11 1227 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f6c535001N21FFnkJOHdWpd.out
+2026-11-03 22:11 122 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f6e361001TrbUjzIyt0Lt8w.out
+2026-11-03 22:11 2757 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f6fb910014N2dQxD9T8gMq0.out
+2026-11-03 22:11 569 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f70ffb001xi2Mu0mil9DQYS.out
+2026-11-03 22:11 156 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f71eaa001vHFp9yhkEgTTcx.out
+2026-11-03 22:11 737 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f72ddd001a1c7bnXDdRnC3w.out
+2026-11-03 22:11 1004 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f74052001tJx6X2C17HMAzS.out
+2026-11-03 22:11 87 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f756cf001KFxzQ8sobcQQxK.out
+2026-11-03 22:11 529 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f766b5001edzgaxGFvoVLzP.out
+2026-11-03 22:11 1297 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f77be6001NPww5ihY9JSkBl.out
+2026-11-03 22:11 554 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f78b87001u4rqCHPDolWQye.out
+2026-11-03 22:12 263 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f79978001FgeW907S4432o0.out
+2026-11-03 22:12 71 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f7a727001i4IbFVISsFMoYf.out
+2026-11-03 22:12 2797 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f7b8b1001hgvqAD01dzdCR1.out
+2026-11-03 22:12 884 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f7cc420019MHpFtg3c7C9UW.out
+2026-11-03 22:12 1865 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f7e70e001bP4HmOHh4Xc6ON.out
+2026-11-03 22:12 70 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f800db001VKlIo4QlgpO3x3.out
+2026-11-03 22:12 81 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f82264001NukAWPLfEObVcf.out
+2026-11-03 22:12 307 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f84247001l0GkpDyhf48396.out
+2026-11-03 22:12 342 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f86da50016LaeF99FkWCdWi.out
+2026-11-03 22:13 89 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f8de6b001mjrKz6R0NXd2mM.out
+2026-11-03 22:13 289 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f8ff740016GtQABpaWWKL6T.out
+2026-11-03 22:13 1405 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f910af001dk1koYHMihWvnA.out
+2026-11-03 22:14 958 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f929ff001sqJDoGpsT5Tlrq.out
+2026-11-03 22:14 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a1f9a505001T4hzTIg37eejn4.out
+2026-11-03 22:58 256 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a22281be001De4odE1gkRzDFq.out
+2026-11-03 22:59 76 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a22298360016n7XKLtOCOAflL.out
+2026-11-03 23:05 1430 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a22897d2001Br56jlh8IO2tJW.out
+2026-11-03 23:06 58 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a228c64d0014MddK288YHkcHW.out
+2026-11-03 23:10 58 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a22c5f87001xxqpF1ShcY6Cey.out
+2026-11-03 23:10 514 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a22d07ad001SzMHTOrNzIiaaf.out
+2026-11-03 23:18 423 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a234c96a0010r5rBcv6O3r9U8.out
+2026-11-03 23:18 123 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a234dd5e001e4NC0R1uOp6w1N.out
+2026-11-03 23:19 2464 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a234f1600012NXaeuq1YyBg0A.out
+2026-11-03 23:19 2007 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a23550d8001DHx4wMfF0Sjl2l.out
+2026-11-03 23:19 584 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a23562ef001COkmbJk9pYXHqI.out
+2026-11-03 23:19 318 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a235847b0011wIdDQ53bUohaH.out
+2026-11-03 23:19 628 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a23598950016uhji4YEs0LgE7.out
+2026-11-03 23:20 147 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a235de86001K1MhuYFHx7OcIh.out
+2026-11-03 23:20 3 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a2360124001aa0vBUz3B40lsV.out
+2026-11-03 23:29 634 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a23eb91c001Xf05uqFwXGOcIQ.out
+2026-11-03 23:29 127 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a23ee582001q4dcIYzi0iI8pk.out
+2026-11-03 23:29 228 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a23ef64800177gleiNeYd1e9v.out
+2026-11-03 23:33 205 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a2426ac10018wnhGbhAe7SL0Y.out
+2026-11-03 23:43 1006 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a2427a43001UOZ5pUyTnw1cgW.out
+2026-11-03 23:42 673 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a24a634c001GgXrtv3aAoaADi.out
+2026-11-03 23:43 658 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a24b0847001aQSbajv7ymU2aI.out
+2026-11-03 23:43 220 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a24b1a1c001r08zur23J9AljG.out
+2026-11-03 23:43 387 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a24b5c530017u5FniR1bA6DLl.out
+2026-11-03 23:43 108 bytes /home/Lexiiz3417/.local/share/opencode/shell/47c8a9bdcad014ebda4f60c4ac864fa5e06fab47/sh_1a24b7e31001hbQY4ezCn7xNQB.out
+2026-10-29 21:56 58532 bytes /home/Lexiiz3417/.local/share/opencode/tool-output/tool_188293121001Qn4cycs4p4RNOH
+2026-10-30 15:16 61423 bytes /home/Lexiiz3417/.local/share/opencode/tool-output/tool_18be18f50001I3eEt1oG8glVol
+2026-10-30 15:16 198011 bytes /home/Lexiiz3417/.local/share/opencode/tool-output/tool_18be226d3001xyc1p0LR9V98BM
+2026-10-30 16:04 61423 bytes /home/Lexiiz3417/.local/share/opencode/tool-output/tool_18c0db3d80010pGmXUt5m3c4Jc
+2026-10-30 16:16 53301 bytes /home/Lexiiz3417/.local/share/opencode/tool-output/tool_18c18fb920013GLGQ4eRSqmSQ2
+2026-10-30 16:17 53301 bytes /home/Lexiiz3417/.local/share/opencode/tool-output/tool_18c19632b001QgYT7u1Io6dYw3
+2026-11-02 19:08 59692 bytes /home/Lexiiz3417/.local/share/opencode/tool-output/tool_19c28d277001eB7ALh6qb1KqAT
+2026-11-02 19:09 55149 bytes /home/Lexiiz3417/.local/share/opencode/tool-output/tool_19c29cdb4001V96EV6LAruTowo
+2026-10-31 08:05 5629 bytes /home/Lexiiz3417/.local/share/opencode/alexia-fallback.log
+2026-11-07 00:41 0 bytes /home/Lexiiz3417/.local/share/opencode/opencode.db-wal
+2026-11-07 01:23 32768 bytes /home/Lexiiz3417/.local/share/opencode/opencode.db-shm
+
+========== 8. LOCAL EXECUTABLES ==========
+Permissions Size User       Date Modified Name
+drwxr-xr-x@    - Lexiiz3417  3 Nov 20:04   __pycache__
+.rwxr-xr-x@ 2.4k Lexiiz3417  1 Nov 15:08  󰡯 alexia
+.rwxr-xr-x@ 9.4k Lexiiz3417  2 Nov 17:23   alexia-remover.py
+.rwxr-xr-x@  36k Lexiiz3417  2 Nov 17:22   alexia-splash.py
+.rwxr-xr-x@  32k Lexiiz3417  2 Nov 15:20   alexia-splash.py.bak-20261102T152045
+.rwxr-xr-x@ 3.4k Lexiiz3417 30 Oct 15:33   alexia-title.py
+.rwxr-xr-x@ 5.5k Lexiiz3417 31 Oct 15:06   alexia.bak-20261101T131846
+.rwxr-xr-x@ 5.3k Lexiiz3417  6 Nov 22:55  󰡯 kitty-theme-sync
+.rwxr-xr-x@ 1.2k Lexiiz3417  2 Nov 15:43  󰡯 plasma-theme-mode
+.rwxr-xr-x@  17M Lexiiz3417 31 Oct 20:11  󰡯 rmpc
+.rwxr-xr-x@ 5.6k Lexiiz3417 31 Oct 20:54   shirokuro-icons-build.py
+.rwxr-xr-x@  13M Lexiiz3417 31 Oct 14:54  󰡯 starship
+.rwxr-xr-x@ 2.7k Lexiiz3417 31 Oct 08:29   touchpad-diag.sh
+.rwxr-xr-x@ 3.0k Lexiiz3417 31 Oct 09:00   usb-replug.sh
+lrwxrwxrwx@    - Lexiiz3417 30 Oct 00:09  󰡯 zotero -> /home/Lexiiz3417/.local/opt/Zotero_linux-x86_64/zotero
+
+========== 9. CRONTAB ==========
+no crontab for Lexiiz3417
+
+========== 10. SNAPSHOT HOME MOUNT ==========
+TARGET SOURCE       FSTYPE OPTIONS
+/home  /dev/nvme0n1p6[/home]
+                    btrfs  rw,relatime,seclabel,compress=zstd:1,ssd,discard=async,space_cache
+Lexiiz3417 > 
