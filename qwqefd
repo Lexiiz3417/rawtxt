@@ -1,0 +1,310 @@
+=== OPENCODE ENVIRONMENT ===
+PATH=/home/Lexiiz3417/.cargo/bin:/home/Lexiiz3417/.local/bin:/home/Lexiiz3417/.opencode/bin:/usr/local/bin:/usr/bin:/bin
+
+=== GLOBAL OPENCODE CONFIG ===
+/home/Lexiiz3417/.config/opencode/opencode.json
+/home/Lexiiz3417/.config/opencode/.gitignore
+/home/Lexiiz3417/.config/opencode/node_modules/find-my-way-ts/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/find-my-way-ts/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/find-my-way-ts/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/fast-check/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/fast-check/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/fast-check/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/detect-libc/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/detect-libc/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/detect-libc/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/detect-libc/index.d.ts
+/home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/bin.js
+/home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/build-test.js
+/home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/index.js
+/home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/node-gyp-build.js
+/home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/optional.js
+/home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/node-gyp-build-optional-packages/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/shebang-command/license
+/home/Lexiiz3417/.config/opencode/node_modules/shebang-command/index.js
+/home/Lexiiz3417/.config/opencode/node_modules/shebang-command/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/shebang-command/readme.md
+/home/Lexiiz3417/.config/opencode/node_modules/cross-spawn/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/cross-spawn/index.js
+/home/Lexiiz3417/.config/opencode/node_modules/cross-spawn/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/cross-spawn/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/binding.gyp
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/index.js
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr-extract/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/zod/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/zod/index.cjs
+/home/Lexiiz3417/.config/opencode/node_modules/zod/index.d.cts
+/home/Lexiiz3417/.config/opencode/node_modules/zod/index.js
+/home/Lexiiz3417/.config/opencode/node_modules/zod/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/zod/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/zod/index.d.ts
+/home/Lexiiz3417/.config/opencode/node_modules/which/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/which/which.js
+/home/Lexiiz3417/.config/opencode/node_modules/which/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/which/CHANGELOG.md
+/home/Lexiiz3417/.config/opencode/node_modules/which/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/ini/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/ini/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/ini/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/uuid/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/uuid/LICENSE.md
+/home/Lexiiz3417/.config/opencode/node_modules/uuid/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/yaml/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/yaml/util.js
+/home/Lexiiz3417/.config/opencode/node_modules/yaml/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/yaml/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/yaml/bin.mjs
+/home/Lexiiz3417/.config/opencode/node_modules/json-schema/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/json-schema/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/json-schema/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/effect/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/effect/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/effect/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/path-key/license
+/home/Lexiiz3417/.config/opencode/node_modules/path-key/index.js
+/home/Lexiiz3417/.config/opencode/node_modules/path-key/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/path-key/readme.md
+/home/Lexiiz3417/.config/opencode/node_modules/path-key/index.d.ts
+/home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/index.d.ts
+/home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/index.js
+/home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/license
+/home/Lexiiz3417/.config/opencode/node_modules/shebang-regex/readme.md
+/home/Lexiiz3417/.config/opencode/node_modules/multipasta/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/multipasta/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/multipasta/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/toml/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/toml/index.js
+/home/Lexiiz3417/.config/opencode/node_modules/toml/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/toml/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/toml/index.d.ts
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/index.d.cts
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/pack.d.cts
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/unpack.d.cts
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/index.js
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/iterators.js
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/node-index.js
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/pack.js
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/rollup.config.js
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/stream.js
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/test-worker.js
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/unpack.js
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/benchmark.md
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/SECURITY.md
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/index.d.ts
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/pack.d.ts
+/home/Lexiiz3417/.config/opencode/node_modules/msgpackr/unpack.d.ts
+/home/Lexiiz3417/.config/opencode/node_modules/isexe/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/isexe/.npmignore
+/home/Lexiiz3417/.config/opencode/node_modules/isexe/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/isexe/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/isexe/windows.js
+/home/Lexiiz3417/.config/opencode/node_modules/isexe/index.js
+/home/Lexiiz3417/.config/opencode/node_modules/isexe/mode.js
+/home/Lexiiz3417/.config/opencode/node_modules/pure-rand/LICENSE
+/home/Lexiiz3417/.config/opencode/node_modules/pure-rand/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/pure-rand/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/kubernetes-types/package.json
+/home/Lexiiz3417/.config/opencode/node_modules/kubernetes-types/README.md
+/home/Lexiiz3417/.config/opencode/node_modules/kubernetes-types/runtime.d.ts
+/home/Lexiiz3417/.config/opencode/node_modules/kubernetes-types/version.d.ts
+/home/Lexiiz3417/.config/opencode/node_modules/.package-lock.json
+/home/Lexiiz3417/.config/opencode/package.json
+/home/Lexiiz3417/.config/opencode/package-lock.json
+/home/Lexiiz3417/.config/opencode/service.json
+/home/Lexiiz3417/.config/opencode/AGENTS.md
+/home/Lexiiz3417/.config/opencode/skills/coding-workflow/SKILL.md
+/home/Lexiiz3417/.config/opencode/skills/debugging/SKILL.md
+/home/Lexiiz3417/.config/opencode/skills/code-review/SKILL.md
+/home/Lexiiz3417/.config/opencode/skills/testing/SKILL.md
+/home/Lexiiz3417/.config/opencode/skills/session-memory/SKILL.md
+/home/Lexiiz3417/.config/opencode/skills/custom-hyprland-setup/SKILL.md
+/home/Lexiiz3417/.config/opencode/memory/sessions/2026-10-30-grub-evangelion.md
+/home/Lexiiz3417/.config/opencode/memory/ALEXIA.md
+/home/Lexiiz3417/.config/opencode/memory/USER.md
+/home/Lexiiz3417/.config/opencode/memory/PREFERENCES.md
+/home/Lexiiz3417/.config/opencode/memory/PROJECTS.md
+/home/Lexiiz3417/.config/opencode/memory/CUSTOM_COMMAND.md
+/home/Lexiiz3417/.config/opencode/commands/remember.md
+/home/Lexiiz3417/.config/opencode/commands/inget.md
+/home/Lexiiz3417/.config/opencode/AGENTS.md.bak-20261030T0419
+/home/Lexiiz3417/.config/opencode/completion.bash
+/home/Lexiiz3417/.config/opencode/assets/alexia-portrait.png
+/home/Lexiiz3417/.config/opencode/assets/alexia-portrait.old.bak
+/home/Lexiiz3417/.config/opencode/assets/alexia-portrait-face.png
+/home/Lexiiz3417/.config/opencode/assets/alexia-portrait-face.txt
+/home/Lexiiz3417/.config/opencode/opencode.json.bak-20261030T210553
+/home/Lexiiz3417/.config/opencode/cli.json
+/home/Lexiiz3417/.config/opencode/plugins-disabled/alexia-fallback/index.js
+/home/Lexiiz3417/.config/opencode/opencode.json.bak-20261101T131700
+
+=== OPENCODE INSTALLATION TREE ===
+d /home/Lexiiz3417/.opencode
+d /home/Lexiiz3417/.opencode/bin
+f /home/Lexiiz3417/.opencode/bin/opencode
+f /home/Lexiiz3417/.opencode/bin/opencode2
+f /home/Lexiiz3417/.opencode/.gitignore
+d /home/Lexiiz3417/.opencode/node_modules
+d /home/Lexiiz3417/.opencode/node_modules/json-schema
+f /home/Lexiiz3417/.opencode/node_modules/json-schema/LICENSE
+d /home/Lexiiz3417/.opencode/node_modules/json-schema/lib
+f /home/Lexiiz3417/.opencode/node_modules/json-schema/package.json
+f /home/Lexiiz3417/.opencode/node_modules/json-schema/README.md
+d /home/Lexiiz3417/.opencode/node_modules/effect
+f /home/Lexiiz3417/.opencode/node_modules/effect/LICENSE
+d /home/Lexiiz3417/.opencode/node_modules/effect/dist
+f /home/Lexiiz3417/.opencode/node_modules/effect/package.json
+f /home/Lexiiz3417/.opencode/node_modules/effect/README.md
+d /home/Lexiiz3417/.opencode/node_modules/effect/src
+d /home/Lexiiz3417/.opencode/node_modules/@opencode-ai
+d /home/Lexiiz3417/.opencode/node_modules/@opencode-ai/sdk
+d /home/Lexiiz3417/.opencode/node_modules/@opencode-ai/plugin
+d /home/Lexiiz3417/.opencode/node_modules/cross-spawn
+f /home/Lexiiz3417/.opencode/node_modules/cross-spawn/LICENSE
+d /home/Lexiiz3417/.opencode/node_modules/cross-spawn/lib
+f /home/Lexiiz3417/.opencode/node_modules/cross-spawn/index.js
+f /home/Lexiiz3417/.opencode/node_modules/cross-spawn/package.json
+f /home/Lexiiz3417/.opencode/node_modules/cross-spawn/README.md
+d /home/Lexiiz3417/.opencode/node_modules/fast-check
+f /home/Lexiiz3417/.opencode/node_modules/fast-check/LICENSE
+d /home/Lexiiz3417/.opencode/node_modules/fast-check/lib
+f /home/Lexiiz3417/.opencode/node_modules/fast-check/package.json
+f /home/Lexiiz3417/.opencode/node_modules/fast-check/README.md
+d /home/Lexiiz3417/.opencode/node_modules/which
+f /home/Lexiiz3417/.opencode/node_modules/which/LICENSE
+d /home/Lexiiz3417/.opencode/node_modules/which/bin
+f /home/Lexiiz3417/.opencode/node_modules/which/which.js
+f /home/Lexiiz3417/.opencode/node_modules/which/package.json
+f /home/Lexiiz3417/.opencode/node_modules/which/CHANGELOG.md
+f /home/Lexiiz3417/.opencode/node_modules/which/README.md
+d /home/Lexiiz3417/.opencode/node_modules/shebang-command
+f /home/Lexiiz3417/.opencode/node_modules/shebang-command/license
+f /home/Lexiiz3417/.opencode/node_modules/shebang-command/index.js
+f /home/Lexiiz3417/.opencode/node_modules/shebang-command/package.json
+f /home/Lexiiz3417/.opencode/node_modules/shebang-command/readme.md
+d /home/Lexiiz3417/.opencode/node_modules/msgpackr
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/LICENSE
+d /home/Lexiiz3417/.opencode/node_modules/msgpackr/dist
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/index.d.cts
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/pack.d.cts
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/unpack.d.cts
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/index.js
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/iterators.js
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/node-index.js
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/pack.js
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/rollup.config.js
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/stream.js
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/test-worker.js
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/unpack.js
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/package.json
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/benchmark.md
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/README.md
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/SECURITY.md
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/index.d.ts
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/pack.d.ts
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr/unpack.d.ts
+d /home/Lexiiz3417/.opencode/node_modules/path-key
+f /home/Lexiiz3417/.opencode/node_modules/path-key/license
+f /home/Lexiiz3417/.opencode/node_modules/path-key/index.js
+f /home/Lexiiz3417/.opencode/node_modules/path-key/package.json
+f /home/Lexiiz3417/.opencode/node_modules/path-key/readme.md
+f /home/Lexiiz3417/.opencode/node_modules/path-key/index.d.ts
+d /home/Lexiiz3417/.opencode/node_modules/pure-rand
+f /home/Lexiiz3417/.opencode/node_modules/pure-rand/LICENSE
+d /home/Lexiiz3417/.opencode/node_modules/pure-rand/lib
+f /home/Lexiiz3417/.opencode/node_modules/pure-rand/package.json
+f /home/Lexiiz3417/.opencode/node_modules/pure-rand/README.md
+d /home/Lexiiz3417/.opencode/node_modules/node-gyp-build-optional-packages
+f /home/Lexiiz3417/.opencode/node_modules/node-gyp-build-optional-packages/LICENSE
+f /home/Lexiiz3417/.opencode/node_modules/node-gyp-build-optional-packages/bin.js
+f /home/Lexiiz3417/.opencode/node_modules/node-gyp-build-optional-packages/build-test.js
+f /home/Lexiiz3417/.opencode/node_modules/node-gyp-build-optional-packages/index.js
+f /home/Lexiiz3417/.opencode/node_modules/node-gyp-build-optional-packages/node-gyp-build.js
+f /home/Lexiiz3417/.opencode/node_modules/node-gyp-build-optional-packages/optional.js
+f /home/Lexiiz3417/.opencode/node_modules/node-gyp-build-optional-packages/package.json
+f /home/Lexiiz3417/.opencode/node_modules/node-gyp-build-optional-packages/README.md
+d /home/Lexiiz3417/.opencode/node_modules/detect-libc
+f /home/Lexiiz3417/.opencode/node_modules/detect-libc/LICENSE
+d /home/Lexiiz3417/.opencode/node_modules/detect-libc/lib
+f /home/Lexiiz3417/.opencode/node_modules/detect-libc/package.json
+f /home/Lexiiz3417/.opencode/node_modules/detect-libc/README.md
+f /home/Lexiiz3417/.opencode/node_modules/detect-libc/index.d.ts
+d /home/Lexiiz3417/.opencode/node_modules/isexe
+f /home/Lexiiz3417/.opencode/node_modules/isexe/package.json
+f /home/Lexiiz3417/.opencode/node_modules/isexe/.npmignore
+f /home/Lexiiz3417/.opencode/node_modules/isexe/README.md
+f /home/Lexiiz3417/.opencode/node_modules/isexe/LICENSE
+f /home/Lexiiz3417/.opencode/node_modules/isexe/windows.js
+f /home/Lexiiz3417/.opencode/node_modules/isexe/index.js
+f /home/Lexiiz3417/.opencode/node_modules/isexe/mode.js
+d /home/Lexiiz3417/.opencode/node_modules/isexe/test
+d /home/Lexiiz3417/.opencode/node_modules/@standard-schema
+d /home/Lexiiz3417/.opencode/node_modules/@standard-schema/spec
+d /home/Lexiiz3417/.opencode/node_modules/toml
+f /home/Lexiiz3417/.opencode/node_modules/toml/LICENSE
+d /home/Lexiiz3417/.opencode/node_modules/toml/lib
+f /home/Lexiiz3417/.opencode/node_modules/toml/index.js
+f /home/Lexiiz3417/.opencode/node_modules/toml/package.json
+f /home/Lexiiz3417/.opencode/node_modules/toml/README.md
+f /home/Lexiiz3417/.opencode/node_modules/toml/index.d.ts
+d /home/Lexiiz3417/.opencode/node_modules/msgpackr-extract
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr-extract/LICENSE
+d /home/Lexiiz3417/.opencode/node_modules/msgpackr-extract/src
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr-extract/binding.gyp
+d /home/Lexiiz3417/.opencode/node_modules/msgpackr-extract/bin
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr-extract/index.js
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr-extract/package.json
+f /home/Lexiiz3417/.opencode/node_modules/msgpackr-extract/README.md
+d /home/Lexiiz3417/.opencode/node_modules/yaml
+f /home/Lexiiz3417/.opencode/node_modules/yaml/LICENSE
+d /home/Lexiiz3417/.opencode/node_modules/yaml/browser
+d /home/Lexiiz3417/.opencode/node_modules/yaml/dist
+f /home/Lexiiz3417/.opencode/node_modules/yaml/util.js
+f /home/Lexiiz3417/.opencode/node_modules/yaml/package.json
+f /home/Lexiiz3417/.opencode/node_modules/yaml/README.md
+f /home/Lexiiz3417/.opencode/node_modules/yaml/bin.mjs
+d /home/Lexiiz3417/.opencode/node_modules/@msgpackr-extract
+d /home/Lexiiz3417/.opencode/node_modules/@msgpackr-extract/msgpackr-extract-linux-x64
+d /home/Lexiiz3417/.opencode/node_modules/shebang-regex
+f /home/Lexiiz3417/.opencode/node_modules/shebang-regex/package.json
+f /home/Lexiiz3417/.opencode/node_modules/shebang-regex/index.d.ts
+f /home/Lexiiz3417/.opencode/node_modules/shebang-regex/index.js
+f /home/Lexiiz3417/.opencode/node_modules/shebang-regex/license
+f /home/Lexiiz3417/.opencode/node_modules/shebang-regex/readme.md
+d /home/Lexiiz3417/.opencode/node_modules/ini
+f /home/Lexiiz3417/.opencode/node_modules/ini/LICENSE
+d /home/Lexiiz3417/.opencode/node_modules/ini/lib
+f /home/Lexiiz3417/.opencode/node_modules/ini/package.json
+f /home/Lexiiz3417/.opencode/node_modules/ini/README.md
+d /home/Lexiiz3417/.opencode/node_modules/uuid
+d /home/Lexiiz3417/.opencode/node_modules/uuid/dist-node
+d /home/Lexiiz3417/.opencode/node_modules/uuid/dist
+f /home/Lexiiz3417/.opencode/node_modules/uuid/package.json
+f /home/Lexiiz3417/.opencode/node_modules/uuid/LICENSE.md
+f /home/Lexiiz3417/.opencode/node_modules/uuid/README.md
+d /home/Lexiiz3417/.opencode/node_modules/find-my-way-ts
+f /home/Lexiiz3417/.opencode/node_modules/find-my-way-ts/LICENSE
+d /home/Lexiiz3417/.opencode/node_modules/find-my-way-ts/dist
+d /home/Lexiiz3417/.opencode/node_modules/find-my-way-ts/QueryString
+f /home/Lexiiz3417/.opencode/node_modules/find-my-way-ts/README.md
+d /home/Lexiiz3417/.opencode/node_modules/find-my-way-ts/src
+f /home/Lexiiz3417/.opencode/node_modules/find-my-way-ts/package.json
+
+=== GLOBAL OPENCODE INSTRUCTIONS ===
+/home/Lexiiz3417/.config/opencode/opencode.json
+/home/Lexiiz3417/.config/opencode/AGENTS.md
+
+=== SYSTEM OPENCODE CONFIG ===
+
+=== USER SERVICES ===
+
+=== SYSTEM SERVICES ===
+
+=== PROJECT CONFIG CANDIDATES ===
